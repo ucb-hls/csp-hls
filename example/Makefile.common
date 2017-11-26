@@ -1,0 +1,31 @@
+LLVM_37_CBE=/home/centos/llvm-3.7/build/bin/llvm-cbe
+LLGO=llgo
+
+SRC= $(TARGET).go
+LDFLAGS=
+IR=$(SRC:.go=.s)
+CBE=$(IR:.s=.cbe.c)
+
+default: all
+
+all: $(TARGET)
+
+$(TARGET): Makefile $(IR) $(CBE)
+	$(LLGO) $(SRC)  -o $(TARGET)
+
+$(IR): $(SRC)
+	$(LLGO) -S -emit-llvm $<
+
+$(CBE): $(IR) $(SRC)
+	perl -p -i -e 's/source_filename = "main"/;source_filename = "main"/g' $<
+	$(LLVM_37_CBE) $< 
+
+build:
+	llgo build
+install:
+	llgo install
+clean: 
+	llgo clean
+	rm -f $(IR) $(TARGET) $(CBE)
+
+.PHONY: clean install
