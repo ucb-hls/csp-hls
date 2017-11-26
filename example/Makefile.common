@@ -4,7 +4,7 @@ LLGO=llgo
 SRC= $(TARGET).go
 LDFLAGS=
 IR=$(SRC:.go=.s)
-CBE=$(IR:.s=.cbe.c)
+CBE=$(IR:.s=.s.cbe.c)
 
 default: all
 
@@ -20,12 +20,12 @@ $(CBE): $(IR) $(SRC)
 	perl -p -i -e 's/source_filename = "main"/;source_filename = "main"/g' $<
 	$(LLVM_37_CBE) $< 
 
-build:
-	llgo build
-install:
-	llgo install
+#build:
+#	llgo build
+#install:
+#	llgo install
 clean: 
-	llgo clean
+#	llgo clean
 	rm -f $(IR) $(TARGET) $(CBE)
 
 .PHONY: clean install
