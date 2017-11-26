@@ -139,3 +139,5 @@ its own function main_OC_worker
 
 
 
+More go examples:
+[https://github.com/avelino/awesome-go#benchmarks](https://github.com/avelino/awesome-go#benchmarks)
