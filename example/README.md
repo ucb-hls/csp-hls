@@ -107,3 +107,36 @@ three.s.cbe.c:310:208: error: ‘tmp__44’ undeclared here (not in a function)
 ```
 
 They seem related to garbage collection, but this works when we compile LLVM ourselves, so what are they being linked against? How do we make sure they're declared?
+
+### Go Runtime APIs
+APIs: 
+[https://github.com/llvm-mirror/llgo/blob/ff92724c045e4856191d137bdda914e1b5de8950/irgen/runtime.go](https://github.com/llvm-mirror/llgo/blob/ff92724c045e4856191d137bdda914e1b5de8950/irgen/runtime.go)
+
+Implementation:
+[https://github.com/llvm-mirror/llgo/blob/de4db9f8144f40014e8b32d263a91478e6f1a21f/third_party/gofrontend/libgo/runtime/chan.goc#L1](https://github.com/llvm-mirror/llgo/blob/de4db9f8144f40014e8b32d263a91478e6f1a21f/third_party/gofrontend/libgo/runtime/chan.goc#L1)
+
+
+Examples: Type `make`  under the corresponding folders
+1. Unbuferred Channel (additional go_new function)
+ __go_new_channel(/*UNDEF*/((uint8_t*)/*NULL*/0), ((&__go_td_CN3_intsre.field0.field0)), UINT64_C(0));
+ __go_new(/*UNDEF*/((uint8_t*)/*NULL*/0), ((&__go_td_S0_CN3_intsree.field0.field0)), UINT64_C(8));
+
+2. Bufferd Channel
+	See most examples
+
+3._Close Channel
+	go_builtin_close
+4. Range Channel 
+  llvm_cbe_tmp__11 = runtime_OC_chanrecv2(/*UNDEF*/((uint8_t*)/*NULL*/0), ((&__go_td_CN6_stringsre.field0.field0)), llvm_cbe_tmp__10, (((uint8_t*)(&llvm_cbe_tmp__7))));
+#	in a loop
+
+5. Select
+uint8_t* runtime_OC_newselect(uint8_t*, uint32_t);
+uint64_t runtime_OC_selectgo(uint8_t*, uint8_t*);
+void runtime_OC_selectrecv2(uint8_t*, uint8_t*, uint8_t*, uint8_t*, uint8_t*, uint32_t);
+
+6. Worker Pool
+its own function main_OC_worker
+
+
+
