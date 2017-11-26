@@ -124,11 +124,10 @@ Examples: Type `make`  under the corresponding folders
 2. Bufferd Channel
 	See most examples
 
-3._Close Channel
+3. _Close Channel
 	go_builtin_close
 4. Range Channel 
-  llvm_cbe_tmp__11 = runtime_OC_chanrecv2(/*UNDEF*/((uint8_t*)/*NULL*/0), ((&__go_td_CN6_stringsre.field0.field0)), llvm_cbe_tmp__10, (((uint8_t*)(&llvm_cbe_tmp__7))));
-#	in a loop
+  llvm_cbe_tmp__11 = runtime_OC_chanrecv2(/*UNDEF*/((uint8_t*)/*NULL*/0), ((&__go_td_CN6_stringsre.field0.field0)), llvm_cbe_tmp__10, (((uint8_t*)(&llvm_cbe_tmp__7)))); // in a loop
 
 5. Select
 uint8_t* runtime_OC_newselect(uint8_t*, uint32_t);
