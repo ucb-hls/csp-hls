@@ -61,6 +61,31 @@ Use:
 1. `${LLVM_37_BUILD}/bin/llvm-cbe <go_source_file_name>.s`
 2. This will generate `<go_source_file_name>.s.cbe.s`. Edit this and remote the `#include <APInt-C.h>` - or find the file and add it to the include path, seeing note above.
 
+### Compilation weirdness
+
+I ran into this problem when compiling on a new 32-core AWS instance:
+
+```
+ubuntu@ip-172-31-28-222:~/llvm-37-build$ ninja
+[277/2419] Building CXX object projects/llvm-cbe/lib/Target/CBackend/CMakeFiles/LLVMCBackendCodeGen.dir/CBackend.cpp.o
+FAILED: /usr/bin/c++   -DGTEST_HAS_RTTI=0 -D_GNU_SOURCE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -Iprojects/llvm-cbe/lib/Target/CBackend -I/home/ubuntu/llvm-37/projects/llvm-cbe/lib/Target/CBackend -Iinclude -I/home/ubuntu/llvm-37/include -fPIC -fvisibility-inlines-hidden -Wall -W -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wno-missing-field-initializers -pedantic -Wno-long-long -Wno-maybe-uninitialized -Wnon-virtual-dtor -Wno-comment -std=c++11 -ffunction-sections -fdata-sections   -fno-exceptions -fno-rtti -MMD -MT projects/llvm-cbe/lib/Target/CBackend/CMakeFiles/LLVMCBackendCodeGen.dir/CBackend.cpp.o -MF projects/llvm-cbe/lib/Target/CBackend/CMakeFiles/LLVMCBackendCodeGen.dir/CBackend.cpp.o.d -o projects/llvm-cbe/lib/Target/CBackend/CMakeFiles/LLVMCBackendCodeGen.dir/CBackend.cpp.o -c /home/ubuntu/llvm-37/projects/llvm-cbe/lib/Target/CBackend/CBackend.cpp
+In file included from /home/ubuntu/llvm-37/include/llvm/CodeGen/IntrinsicLowering.h:19:0,
+                 from /home/ubuntu/llvm-37/projects/llvm-cbe/lib/Target/CBackend/CBackend.h:7,
+                 from /home/ubuntu/llvm-37/projects/llvm-cbe/lib/Target/CBackend/CBackend.cpp:15:
+/home/ubuntu/llvm-37/include/llvm/IR/Intrinsics.h:40:34: fatal error: llvm/IR/Intrinsics.gen: No such file or directory
+compilation terminated.
+[277/2419] Building CXX object utils/unittest/CMakeFiles/gtest.dir/googletest/src/gtest-all.cc.o
+ninja: build stopped: subcommand failed.
+```
+
+But limiting ninja to use 12 jobs fixed it:
+```
+ubuntu@ip-172-31-28-222:~/llvm-37-build$ ninja -j 12
+[2419/2419] Creating executable symlink bin/clang
+```
+
+I assume this is because some dependency isn't correctly computed.
+
 ### Outstanding problems
 
 `gcc -w <go_source_file_name>.s.cbe.c` will dump errors because the following symbols are undefined:
@@ -106,7 +131,7 @@ three.s.cbe.c:310:208: error: ‘tmp__44’ undeclared here (not in a function)
   = { { 23, 8, 8, UINT64_C(24), 30, (&__go_type_hash_error_descriptor), (&__go_type_equal_error_descriptor), ((uint8_t*)(&__go_td_AIee_EC_gc)), (&tmp__44), (
 ```
 
-They seem related to garbage collection, but this works when we compile LLVM ourselves, so what are they being linked against? How do we make sure they're declared?
+These functions are defined by the Go libraries, e.g. llgo/third_party/gotools. We don't care about fully linking against them so we can ignore them.
 
 ### Go Runtime APIs
 APIs: 
