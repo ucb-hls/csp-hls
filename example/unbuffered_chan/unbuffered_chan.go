@@ -19,7 +19,7 @@ func main() {
     time.Sleep(time.Second * 2)
 
     fmt.Println("Main goroutine begins receiving data")
-    d := <- ch
+    d := <-ch
     fmt.Println("Main goroutine received data:", d)
 
     time.Sleep(time.Second)
