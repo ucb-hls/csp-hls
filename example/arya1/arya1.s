@@ -107,14 +107,14 @@ declare void @__go_go(i8* nest, i8*, i8*)
 ; Function Attrs: nounwind
 declare i8* @__go_new(i8* nest, i8*, i64) #0
 
-declare i8* @fifo_malloc(i8* nest, i8 zeroext, i64)
+declare i8* @fifo_malloc(i8 zeroext, i64)
 
 declare i8* @runtime.newselect(i8* nest, i32)
 
 ; Function Attrs: noreturn
 declare void @__go_panic(i8* nest, i8*, i8*) #1
 
-declare i64 @fifo_read(i8* nest, i8*)
+declare i64 @fifo_read(i8*)
 
 declare void @runtime.selectdefault(i8* nest, i8*, i32)
 
@@ -124,7 +124,7 @@ declare void @runtime.selectrecv2(i8* nest, i8*, i8*, i8*, i8*, i32)
 
 declare void @runtime.selectsend(i8* nest, i8*, i8*, i8*, i32)
 
-declare void @fifo_write(i8* nest, i8*, i64)
+declare void @fifo_write(i8*, i64)
 
 declare i64 @__go_type_hash_empty_interface(i8*, i64)
 
@@ -320,9 +320,9 @@ prologue:
   br label %.0.entry
 
 .0.entry:                                         ; preds = %prologue
-  %9 = call i8* @fifo_malloc(i8* nest undef, i8 zeroext 8, i64 10)
-  %10 = call i8* @fifo_malloc(i8* nest undef, i8 zeroext 8, i64 0)
-  %11 = call i8* @fifo_malloc(i8* nest undef, i8 zeroext 8, i64 0)
+  %9 = call i8* @fifo_malloc(i8 zeroext 8, i64 10)
+  %10 = call i8* @fifo_malloc(i8 zeroext 8, i64 0)
+  %11 = call i8* @fifo_malloc(i8 zeroext 8, i64 0)
   %12 = call i8* @__go_new(i8* nest undef, i8* getelementptr inbounds (%structType, %structType* @__go_td_S0_CN3_intsre0_CN4_boolsree, i32 0, i32 0, i32 0), i64 16)
   %13 = bitcast i8* %12 to { i8*, i8* }*
   %14 = getelementptr inbounds { i8*, i8* }, { i8*, i8* }* %13, i32 0, i32 0
@@ -354,7 +354,7 @@ prologue:
   br label %.3.for.loop
 
 .1.for.body:                                      ; preds = %.3.for.loop
-  %29 = call i64 @fifo_read(i8* nest undef, i8* %11)
+  %29 = call i64 @fifo_read(i8* %11)
   store i64 %29, i64* %1
   %30 = load i64, i64* %1
   %31 = call i8* @__go_new(i8* nest undef, i8* getelementptr inbounds (%arrayType, %arrayType* @__go_td_AIe1e, i32 0, i32 0, i32 0), i64 16)
@@ -380,7 +380,7 @@ prologue:
   %46 = load i64, i64* %45
   %47 = getelementptr inbounds { i64, { i8*, i8* } }, { i64, { i8*, i8* } }* %3, i32 0, i32 1
   %48 = load { i8*, i8* }, { i8*, i8* }* %47
-  %49 = call i64 @fifo_read(i8* nest undef, i8* %11)
+  %49 = call i64 @fifo_read(i8* %11)
   store i64 %49, i64* %4
   %50 = load i64, i64* %4
   %51 = call i8* @__go_new(i8* nest undef, i8* getelementptr inbounds (%arrayType, %arrayType* @__go_td_AIe1e, i32 0, i32 0, i32 0), i64 16)
@@ -424,7 +424,7 @@ prologue:
   %73 = bitcast i8** %8 to i64*
   store i8* %7, i8** %8
   %74 = load i64, i64* %73
-  call void @fifo_write(i8* nest undef, i8* %9, i64 %74)
+  call void @fifo_write(i8* %9, i64 %74)
   %75 = add i64 %i2, 1
   br label %.6.for.loop
 
