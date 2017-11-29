@@ -1,0 +1,10 @@
+load_lib legup.exp
+
+set test "FIFO_tests/one_to_many_FIFO"
+cd $test
+
+set expected {PASS}
+
+run-test $test $expected
+
+cd ../..
