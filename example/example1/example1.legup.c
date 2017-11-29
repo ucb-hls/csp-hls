@@ -5,6 +5,7 @@
 #include "legup/streaming.h"
 #include <stdio.h>
 #include <pthread.h>
+typedef struct {FIFO *in; FIFO *out;} FIFO_ARGS;
 
 /*func process1(in, out chan int) {
   for i := 0; i < 10; i++ {
@@ -13,13 +14,13 @@
   }
 }*/
 
-void *process1(FIFO **arg) {
+void *process1(void *arg) {
 	int i;
 	int item;
-
+	FIFO_ARGS *arg1 = (FIFO_ARGS *)arg;
 	for (i = 0; i < 10; i++) {
-		item = fifo_read((FIFO*)arg[0]);
-		fifo_write((FIFO*)arg[1], item * 2 + 1);
+		item = fifo_read((FIFO*)arg1->in);
+		fifo_write((FIFO*)arg1->out, item * 2 + 1);
 	}
     pthread_exit(NULL);
 
@@ -32,11 +33,12 @@ void *process1(FIFO **arg) {
   }
 }*/
 
-void *process2(FIFO **arg) {
+void *process2(void *arg) {
 	int i, item;
+	FIFO_ARGS *arg1 = (FIFO_ARGS *)arg;
 	for (i = 0; i < 10; i++) {
-		item = fifo_read((FIFO*)arg[0]);
-		fifo_write((FIFO*)arg[1], (item - 1) / 2);
+		item = fifo_read((FIFO*)arg1->in);
+		fifo_write((FIFO*)arg1->out, (item - 1) / 2);
 
 	}
     pthread_exit(NULL);
@@ -72,10 +74,11 @@ int main() {
 	}
 
     pthread_t process1_t, process2_t;
-    FIFO * arg1[2] = {c1, c2};
-    FIFO * arg2[2] = {c2, c3};
-    pthread_create(&process1_t, NULL, process1, arg1);
-    pthread_create(&process2_t, NULL, process2, arg2);
+
+    FIFO_ARGS arg1 = {c1, c2};
+    FIFO_ARGS arg2 = {c2, c3};
+    pthread_create(&process1_t, NULL, process1, &arg1);
+    pthread_create(&process2_t, NULL, process2, &arg2);
 
 	for(i = 0; i < 10; i++) {
         int x = fifo_read(c3);
