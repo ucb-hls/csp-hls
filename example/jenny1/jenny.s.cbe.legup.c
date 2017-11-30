@@ -22,27 +22,27 @@ struct l_unnamed_3 {
 //static void main_OC_main_KD_main_OC_main_EC_1(uint8_t* llvm_cbe_tmp__32) {
 void* main_OC_main_KD_main_OC_main_EC_1(void *llvm_cbe_tmp__32) {
   uint64_t llvm_cbe_tmp__33;    /* Address-exposed local */
-  uint8_t* llvm_cbe_tmp__34;
-  //FIFO* llvm_cbe_tmp__34;
-  uint8_t* llvm_cbe_tmp__35;
+  //uint8_t* llvm_cbe_tmp__34;
+  FIFO* llvm_cbe_tmp__34;
+  FIFO* llvm_cbe_tmp__35;
 
   //printf("read\n");
 //  llvm_cbe_tmp__34 = *((&(((struct l_unnamed_3*)llvm_cbe_tmp__32))->field1));
   llvm_cbe_tmp__34 = ((struct l_unnamed_3*)llvm_cbe_tmp__32) -> field1;
-  if ((((llvm_cbe_tmp__34 == ((uint8_t*)/*NULL*/0))&1))) {
+  //  if ((((llvm_cbe_tmp__34 == ((uint8_t*)/*NULL*/0))&1))) {
+  if (llvm_cbe_tmp__34 == NULL) {
     goto llvm_cbe_tmp__36;
   } else {
     goto llvm_cbe_tmp__37;
   }
 
-  llvm_cbe_tmp__36:
+llvm_cbe_tmp__36:
 //  __go_runtime_error(/*UNDEF*/((uint8_t*)/*NULL*/0), 6);
 //  __builtin_unreachable();
   //printf("a");
   pthread_exit(NULL);
 
-
-  llvm_cbe_tmp__37:
+llvm_cbe_tmp__37:
 // JENNY: We need to get rid of the dereference operation here and probably change the type of uint8_t to FIFO*
 //  llvm_cbe_tmp__35 = *(((uint8_t**)llvm_cbe_tmp__34));
   llvm_cbe_tmp__35 = llvm_cbe_tmp__34;
@@ -79,7 +79,8 @@ int main (void) {
   uint64_t llvm_cbe_tmp__13;
 //  uint8_t* llvm_cbe_tmp__14;
   FIFO * llvm_cbe_tmp__14;
-  uint8_t* llvm_cbe_tmp__15;
+  //uint8_t* llvm_cbe_tmp__15;
+  struct l_unnamed_3 * llvm_cbe_tmp__15;
   struct l_unnamed_3* llvm_cbe_tmp__16;
 //  uint8_t* llvm_cbe_tmp__17;
 //  struct l_unnamed_4* llvm_cbe_tmp__18;
@@ -119,6 +120,7 @@ int main (void) {
   *((&llvm_cbe_tmp__16->field1)) = llvm_cbe_tmp__11;
   // JENNY: New Closure
   pthread_t run;
+
   pthread_create(&run, NULL, main_OC_main_KD_main_OC_main_EC_1, (void *)llvm_cbe_tmp__16);
 
   // JENNY: Closure ref to tmp__31
