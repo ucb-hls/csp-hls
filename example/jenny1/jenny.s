@@ -1,5 +1,5 @@
 ; ModuleID = 'main'
-;source_filename = "main"
+; TODO(growly): Does commenting this out break anything?; source_filename = "main"
 target datalayout = "e-m:e-i64:64-f80:128-n8:16:32:64-S128"
 target triple = "x86_64-unknown-linux-gnu"
 
@@ -33,10 +33,10 @@ target triple = "x86_64-unknown-linux-gnu"
 @__go_td_CN3_intsre = linkonce_odr constant %chanType { %commonType { i8 18, i8 8, i8 8, i64 8, i32 1610653383, %funcVal* @__go_type_hash_identity_descriptor, %funcVal* @__go_type_equal_identity_descriptor, i8* bitcast ([5 x i8*]* @"__go_td_CN3_intsre$gc" to i8*), { i8*, i64 }* @3, %uncommonType* null, %commonType* null }, %commonType* @__go_tdn_int, i64 3 }
 @__go_td_S1__Fe1__pCN3_intsree = linkonce_odr constant %structType { %commonType { i8 25, i8 8, i8 8, i64 16, i32 2601520, %funcVal* @__go_type_hash_error_descriptor, %funcVal* @__go_type_equal_error_descriptor, i8* bitcast ([7 x i8*]* @"__go_td_S1__Fe1__pCN3_intsree$gc" to i8*), { i8*, i64 }* @10, %uncommonType* null, %commonType* getelementptr inbounds (%ptrType, %ptrType* @__go_td_pS1__Fe1__pCN3_intsree, i32 0, i32 0) }, %structFieldSlice { %structField* getelementptr inbounds ([2 x %structField], [2 x %structField]* @15, i32 0, i32 0), i64 2, i64 2 } }
 @__go_td_S0_Fee = linkonce_odr constant %structType { %commonType { i8 25, i8 8, i8 8, i64 8, i32 44, %funcVal* @__go_type_hash_error_descriptor, %funcVal* @__go_type_equal_error_descriptor, i8* bitcast ([4 x i8*]* @"__go_td_S0_Fee$gc" to i8*), { i8*, i64 }* @17, %uncommonType* null, %commonType* getelementptr inbounds (%ptrType, %ptrType* @__go_td_pS0_Fee, i32 0, i32 0) }, %structFieldSlice { %structField* getelementptr inbounds ([1 x %structField], [1 x %structField]* @18, i32 0, i32 0), i64 1, i64 1 } }
-@__go_td_AIe1e = linkonce_odr constant %arrayType { %commonType { i8 17, i8 8, i8 8, i64 16, i32 30, %funcVal* @__go_type_hash_AIe1e_descriptor, %funcVal* @__go_type_hash_AIe1e_descriptor.3, i8* bitcast ([9 x i8*]* @"__go_td_AIe1e$gc" to i8*), { i8*, i64 }* @1, %uncommonType* null, %commonType* null }, %commonType* getelementptr inbounds (%interfaceType, %interfaceType* @__go_td_Ie, i32 0, i32 0), %commonType* getelementptr inbounds (%sliceType, %sliceType* @__go_td_AIee, i32 0, i32 0), i64 1 }
+@__go_td_AIe1e = linkonce_odr constant %arrayType { %commonType { i8 17, i8 8, i8 8, i64 16, i32 30, %funcVal* @__go_type_hash_AIe1e_descriptor, %funcVal* @__go_type_hash_AIe1e_descriptor.2, i8* bitcast ([9 x i8*]* @"__go_td_AIe1e$gc" to i8*), { i8*, i64 }* @1, %uncommonType* null, %commonType* null }, %commonType* getelementptr inbounds (%interfaceType, %interfaceType* @__go_td_Ie, i32 0, i32 0), %commonType* getelementptr inbounds (%sliceType, %sliceType* @__go_td_AIee, i32 0, i32 0), i64 1 }
 @__go_tdn_int = linkonce_odr constant %commonType { i8 -126, i8 8, i8 8, i64 8, i32 50332917, %funcVal* @__go_type_hash_identity_descriptor, %funcVal* @__go_type_equal_identity_descriptor, i8* bitcast ([2 x i8*]* @"__go_tdn_int$gc" to i8*), { i8*, i64 }* @5, %uncommonType* @8, %commonType* null }
 @__go_type_hash_AIe1e_descriptor = linkonce_odr constant %funcVal { void ()* bitcast (i64 (i8*, i64)* @__go_type_hash_AIe1e to void ()*) }
-@__go_type_hash_AIe1e_descriptor.3 = linkonce_odr constant %funcVal { void ()* bitcast (i8 (i8*, i8*, i64)* @__go_type_hash_AIe1e.2 to void ()*) }
+@__go_type_hash_AIe1e_descriptor.2 = linkonce_odr constant %funcVal { void ()* bitcast (i8 (i8*, i8*, i64)* @__go_type_hash_AIe1e.1 to void ()*) }
 @0 = internal constant [15 x i8] c"[1]interface {}"
 @1 = internal constant { i8*, i64 } { i8* getelementptr inbounds ([15 x i8], [15 x i8]* @0, i32 0, i32 0), i64 15 }
 @__go_td_Ie = linkonce_odr constant %interfaceType { %commonType { i8 20, i8 8, i8 8, i64 16, i32 16, %funcVal* @__go_type_hash_empty_interface_descriptor, %funcVal* @__go_type_equal_empty_interface_descriptor, i8* bitcast ([4 x i8*]* @"__go_td_Ie$gc" to i8*), { i8*, i64 }* @30, %uncommonType* null, %commonType* null }, %imethodSlice zeroinitializer }
@@ -91,14 +91,14 @@ declare void @__go_go(i8* nest, i8*, i8*)
 ; Function Attrs: nounwind
 declare i8* @__go_new(i8* nest, i8*, i64) #0
 
-declare i8* @fifo_malloc(i8* nest, i64, i64)
+declare i8* @fifo_malloc(i8 zeroext, i64)
 
-declare void @__go_receive(i8* nest, i8*, i8*, i8*)
+declare i64 @fifo_read(i8*)
 
 ; Function Attrs: noreturn
 declare void @__go_runtime_error(i8* nest, i32) #1
 
-declare void @__go_send_big(i8* nest, i8*, i8*, i8*)
+declare void @fifo_write(i8*, i64)
 
 declare i64 @__go_type_hash_empty_interface(i8*, i64)
 
@@ -125,92 +125,88 @@ declare void @fmt..import(i8*)
 
 define void @main.main(i8* nest) #2 {
 prologue:
-  %1 = alloca i32
-  %2 = alloca i32
-  %3 = alloca i64
-  %4 = alloca { i8*, i64, i64 }
-  %5 = alloca { i64, { i8*, i8* } }
+  %1 = alloca i64
+  %2 = alloca { i8*, i64, i64 }
+  %3 = alloca { i64, { i8*, i8* } }
   br label %.0.entry
 
 .0.entry:                                         ; preds = %prologue
-  %6 = call i8* @__go_new(i8* nest undef, i8* getelementptr inbounds (%chanType, %chanType* @__go_td_CN3_intsre, i32 0, i32 0, i32 0), i64 8)
-  %messages = bitcast i8* %6 to i8**
-  %7 = bitcast i8** %messages to i8*
-  %8 = bitcast i32* %1 to i64*
-  store i32 1010, i32* %1
-  %9 = load i64, i64* %8
-  %10 = bitcast i32* %2 to i64*
-  store i32 30, i32* %2
-  %11 = load i64, i64* %10
-  %12 = call i8* @fifo_malloc(i8* nest undef, i64 %9, i64 %11)
-  %13 = bitcast i8* %7 to i8**
-  store i8* %12, i8** %13
-  %14 = call i8* @__go_new(i8* nest undef, i8* getelementptr inbounds (%structType, %structType* @__go_td_S1__Fe1__pCN3_intsree, i32 0, i32 0, i32 0), i64 16)
-  %15 = bitcast i8* %14 to { i8*, i8* }*
-  %16 = getelementptr inbounds { i8*, i8* }, { i8*, i8* }* %15, i32 0, i32 0
-  store i8* bitcast (void (i8*)* @"main.main:main.main$1" to i8*), i8** %16
-  %17 = getelementptr inbounds { i8*, i8* }, { i8*, i8* }* %15, i32 0, i32 1
-  store i8* %7, i8** %17
-  %18 = bitcast { i8*, i8* }* %15 to i8*
-  %19 = call i8* @__go_new(i8* nest undef, i8* getelementptr inbounds (%structType, %structType* @__go_td_S0_Fee, i32 0, i32 0, i32 0), i64 8)
-  %20 = bitcast i8* %19 to { i8* }*
-  %21 = getelementptr inbounds { i8* }, { i8* }* %20, i32 0, i32 0
-  store i8* %18, i8** %21
-  %22 = bitcast { i8* }* %20 to i8*
-  call void @__go_go(i8* nest undef, i8* bitcast (void (i8*)* @31 to i8*), i8* %22)
-  %23 = bitcast i8* %7 to i8**
-  %24 = load i8*, i8** %23
-  %25 = bitcast i64* %3 to i8*
-  call void @__go_receive(i8* nest undef, i8* getelementptr inbounds (%chanType, %chanType* @__go_td_CN3_intsre, i32 0, i32 0, i32 0), i8* %24, i8* %25)
-  %26 = load i64, i64* %3
-  %27 = call i8* @__go_new(i8* nest undef, i8* getelementptr inbounds (%arrayType, %arrayType* @__go_td_AIe1e, i32 0, i32 0, i32 0), i64 16)
-  %varargs = bitcast i8* %27 to [1 x { i8*, i8* }]*
-  %28 = bitcast [1 x { i8*, i8* }]* %varargs to i8*
-  %29 = bitcast i8* %28 to { i8*, i8* }*
-  %30 = getelementptr { i8*, i8* }, { i8*, i8* }* %29, i64 0
-  %31 = bitcast { i8*, i8* }* %30 to i8*
-  %32 = call i8* @__go_new(i8* nest undef, i8* getelementptr inbounds (%commonType, %commonType* @__go_tdn_int, i32 0, i32 0), i64 8)
-  %33 = bitcast i8* %32 to i64*
-  store i64 %26, i64* %33
-  %34 = bitcast i64* %33 to i8*
-  %35 = insertvalue { i8*, i8* } { i8* getelementptr inbounds (%commonType, %commonType* @__go_tdn_int, i32 0, i32 0), i8* undef }, i8* %34, 1
-  %36 = bitcast i8* %31 to { i8*, i8* }*
-  store { i8*, i8* } %35, { i8*, i8* }* %36
-  %37 = getelementptr inbounds i8, i8* %28, i64 0
-  %38 = insertvalue { i8*, i64, i64 } undef, i8* %37, 0
-  %39 = insertvalue { i8*, i64, i64 } %38, i64 1, 1
-  %40 = insertvalue { i8*, i64, i64 } %39, i64 1, 2
-  store { i8*, i64, i64 } %40, { i8*, i64, i64 }* %4
-  call void @fmt.Println({ i64, { i8*, i8* } }* sret %5, i8* nest undef, { i8*, i64, i64 }* byval %4)
-  %41 = getelementptr inbounds { i64, { i8*, i8* } }, { i64, { i8*, i8* } }* %5, i32 0, i32 0
-  %42 = load i64, i64* %41
-  %43 = getelementptr inbounds { i64, { i8*, i8* } }, { i64, { i8*, i8* } }* %5, i32 0, i32 1
-  %44 = load { i8*, i8* }, { i8*, i8* }* %43
+  %4 = call i8* @__go_new(i8* nest undef, i8* getelementptr inbounds (%chanType, %chanType* @__go_td_CN3_intsre, i32 0, i32 0, i32 0), i64 8)
+  %messages = bitcast i8* %4 to i8**
+  %5 = bitcast i8** %messages to i8*
+  %6 = call i8* @fifo_malloc(i8 zeroext 8, i64 0)
+  %7 = bitcast i8* %5 to i8**
+  store i8* %6, i8** %7
+  %8 = call i8* @__go_new(i8* nest undef, i8* getelementptr inbounds (%structType, %structType* @__go_td_S1__Fe1__pCN3_intsree, i32 0, i32 0, i32 0), i64 16)
+  %9 = bitcast i8* %8 to { i8*, i8* }*
+  %10 = getelementptr inbounds { i8*, i8* }, { i8*, i8* }* %9, i32 0, i32 0
+  store i8* bitcast (void (i8*)* @"main.main:main.main$1" to i8*), i8** %10
+  %11 = getelementptr inbounds { i8*, i8* }, { i8*, i8* }* %9, i32 0, i32 1
+  store i8* %5, i8** %11
+  %12 = bitcast { i8*, i8* }* %9 to i8*
+  %13 = call i8* @__go_new(i8* nest undef, i8* getelementptr inbounds (%structType, %structType* @__go_td_S0_Fee, i32 0, i32 0, i32 0), i64 8)
+  %14 = bitcast i8* %13 to { i8* }*
+  %15 = getelementptr inbounds { i8* }, { i8* }* %14, i32 0, i32 0
+  store i8* %12, i8** %15
+  %16 = bitcast { i8* }* %14 to i8*
+  call void @__go_go(i8* nest undef, i8* bitcast (void (i8*)* @31 to i8*), i8* %16)
+  %17 = bitcast i8* %5 to i8**
+  %18 = load i8*, i8** %17
+  %19 = call i64 @fifo_read(i8* %18)
+  store i64 %19, i64* %1
+  %20 = load i64, i64* %1
+  %21 = call i8* @__go_new(i8* nest undef, i8* getelementptr inbounds (%arrayType, %arrayType* @__go_td_AIe1e, i32 0, i32 0, i32 0), i64 16)
+  %varargs = bitcast i8* %21 to [1 x { i8*, i8* }]*
+  %22 = bitcast [1 x { i8*, i8* }]* %varargs to i8*
+  %23 = bitcast i8* %22 to { i8*, i8* }*
+  %24 = getelementptr { i8*, i8* }, { i8*, i8* }* %23, i64 0
+  %25 = bitcast { i8*, i8* }* %24 to i8*
+  %26 = call i8* @__go_new(i8* nest undef, i8* getelementptr inbounds (%commonType, %commonType* @__go_tdn_int, i32 0, i32 0), i64 8)
+  %27 = bitcast i8* %26 to i64*
+  store i64 %20, i64* %27
+  %28 = bitcast i64* %27 to i8*
+  %29 = insertvalue { i8*, i8* } { i8* getelementptr inbounds (%commonType, %commonType* @__go_tdn_int, i32 0, i32 0), i8* undef }, i8* %28, 1
+  %30 = bitcast i8* %25 to { i8*, i8* }*
+  store { i8*, i8* } %29, { i8*, i8* }* %30
+  %31 = getelementptr inbounds i8, i8* %22, i64 0
+  %32 = insertvalue { i8*, i64, i64 } undef, i8* %31, 0
+  %33 = insertvalue { i8*, i64, i64 } %32, i64 1, 1
+  %34 = insertvalue { i8*, i64, i64 } %33, i64 1, 2
+  store { i8*, i64, i64 } %34, { i8*, i64, i64 }* %2
+  call void @fmt.Println({ i64, { i8*, i8* } }* sret %3, i8* nest undef, { i8*, i64, i64 }* byval %2)
+  %35 = getelementptr inbounds { i64, { i8*, i8* } }, { i64, { i8*, i8* } }* %3, i32 0, i32 0
+  %36 = load i64, i64* %35
+  %37 = getelementptr inbounds { i64, { i8*, i8* } }, { i64, { i8*, i8* } }* %3, i32 0, i32 1
+  %38 = load { i8*, i8* }, { i8*, i8* }* %37
   ret void
 }
 
 define internal void @"main.main:main.main$1"(i8* nest) #2 {
 prologue:
   %1 = alloca i64
-  %2 = bitcast i8* %0 to { i8*, i8* }*
-  %3 = getelementptr inbounds { i8*, i8* }, { i8*, i8* }* %2, i32 0, i32 1
-  %4 = load i8*, i8** %3
+  %2 = alloca i8*
+  %3 = bitcast i8* %0 to { i8*, i8* }*
+  %4 = getelementptr inbounds { i8*, i8* }, { i8*, i8* }* %3, i32 0, i32 1
+  %5 = load i8*, i8** %4
   br label %.0.entry
 
 .0.entry:                                         ; preds = %prologue
-  %5 = icmp eq i8* %4, null
-  br i1 %5, label %6, label %7, !prof !0
+  %6 = icmp eq i8* %5, null
+  br i1 %6, label %7, label %8, !prof !0
 
-; <label>:6:                                      ; preds = %.0.entry
+; <label>:7:                                      ; preds = %.0.entry
   call void @__go_runtime_error(i8* nest undef, i32 6)
   unreachable
 
-; <label>:7:                                      ; preds = %.0.entry
-  %8 = bitcast i8* %4 to i8**
-  %9 = load i8*, i8** %8
+; <label>:8:                                      ; preds = %.0.entry
+  %9 = bitcast i8* %5 to i8**
+  %10 = load i8*, i8** %9
   store i64 7, i64* %1
-  %10 = bitcast i64* %1 to i8*
-  call void @__go_send_big(i8* nest undef, i8* getelementptr inbounds (%chanType, %chanType* @__go_td_CN3_intsre, i32 0, i32 0, i32 0), i8* %9, i8* %10)
+  %11 = bitcast i64* %1 to i8*
+  %12 = bitcast i8** %2 to i64*
+  store i8* %11, i8** %2
+  %13 = load i64, i64* %12
+  call void @fifo_write(i8* %10, i64 %13)
   ret void
 }
 
@@ -252,7 +248,7 @@ exit:                                             ; preds = %loop
   ret i64 %9
 }
 
-define linkonce_odr i8 @__go_type_hash_AIe1e.2(i8*, i8*, i64) {
+define linkonce_odr i8 @__go_type_hash_AIe1e.1(i8*, i8*, i64) {
 entry:
   %3 = bitcast i8* %0 to { i8*, i8* }*
   %4 = bitcast i8* %1 to { i8*, i8* }*
