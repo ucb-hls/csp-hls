@@ -1,3 +1,6 @@
 [submodule "llgo"]
 	path = llgo
 	url = https://github.com/ucb-hls/llgo.git
+[submodule "llvm-cbe"]
+	path = llvm-cbe
+	url = https://github.com/ucb-hls/llvm-cbe.git
