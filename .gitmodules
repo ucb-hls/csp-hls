@@ -1,0 +1,3 @@
+[submodule "llgo"]
+	path = llgo
+	url = https://github.com/ucb-hls/llgo.git
