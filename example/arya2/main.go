@@ -3,19 +3,24 @@ package main
 import "fmt"
 import "time"
 
-func producer(output chan int) {
+type Bogus struct {
+	field int
+}
+
+func producer(output chan Bogus) {
 	for {
-		output <- 1
+		b := Bogus{ 2 }
+		output <- b
 	}
 }
 
-func consumer(name string, input chan int) {
-	i := <-input
-	fmt.Println(name, "got", i)
+func consumer(name string, input chan Bogus) {
+	b := <-input
+	fmt.Println(name, "got", b.field)
 }
 
 func main() {
-	c := make(chan int)
+	c := make(chan Bogus)
 
 	go consumer("steve", c)
 	go consumer("jane", c)
