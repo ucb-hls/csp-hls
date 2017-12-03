@@ -4,7 +4,10 @@
 #include <limits.h>
 #include <stdint.h>
 #include <math.h>
-#include <APInt-C.h>
+// NOTE(growly): Removed for UCB-HLS.
+//#include <APInt-C.h>
+// NOTE(growly): Added for UCB-HLS.
+#include <pthread.h>
 #ifndef __cplusplus
 typedef unsigned char bool;
 #endif
