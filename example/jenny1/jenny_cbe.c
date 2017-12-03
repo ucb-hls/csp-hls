@@ -234,8 +234,8 @@ struct l_unnamed_4 {
 
 /* Function definitions */
 
-
 typedef void l_fptr_1(uint8_t*);
+
 
 /* External Global Variable Declarations */
 extern struct l_struct_funcVal __go_type_hash_identity_descriptor;
@@ -250,7 +250,7 @@ void main_OC__OC_import(uint8_t*);
 void fmt_OC__OC_import(uint8_t*);
 void main_OC_main(uint8_t*);
 static void main_OC_main_KD_main_OC_main_EC_1(uint8_t*);
-static uint8_t* tmp__39(uint8_t*);
+static uint8_t* tmp__29(uint8_t*);
 struct l_unnamed_4 fmt_OC_Println(uint8_t*, struct l_unnamed_3);
 void __go_init_main(uint8_t*);
 
@@ -258,16 +258,13 @@ void __go_init_main(uint8_t*);
 /* Global Variable Definitions and Initialization */
 uint8_t* main_OC__OC_import_EC_descriptor = ((uint8_t*)main_OC__OC_import);
 static bool init_EC_guard;
-
-//JENNY
 //uint8_t* main_OC_main_EC_descriptor = ((uint8_t*)main_OC_main);
-//JENNY
-//struct l_struct_commonType __go_tdn_int __attribute__((common)) = { 130u, 8, 8, UINT64_C(8), 50332917, (&__go_type_hash_identity_descriptor), (&__go_type_equal_identity_descriptor), ((uint8_t*)(&__go_tdn_int_EC_gc)), (&tmp__50), (&tmp__51), ((struct l_struct_commonType*)/*NULL*/0) };
-static struct l_array_3_uint8_t tmp__52 = { { 105u, 110u, 116u } };
-static struct l_unnamed_5 tmp__50 = { ((&tmp__52.array[((int32_t)0)])), UINT64_C(3) };
-static struct l_array_3_uint8_t tmp__53 = { { 105u, 110u, 116u } };
-static struct l_unnamed_5 tmp__54 = { ((&tmp__53.array[((int32_t)0)])), UINT64_C(3) };
-static struct l_struct_uncommonType tmp__51 = { (&tmp__54), ((struct l_unnamed_5*)/*NULL*/0), { ((struct l_struct_method*)/*NULL*/0), UINT64_C(0), UINT64_C(0) } };
+//struct l_struct_commonType __go_tdn_int __attribute__((common)) = { 130u, 8, 8, UINT64_C(8), 50332917, (&__go_type_hash_identity_descriptor), (&__go_type_equal_identity_descriptor), ((uint8_t*)(&__go_tdn_int_EC_gc)), (&tmp__41), (&tmp__42), ((struct l_struct_commonType*)/*NULL*/0) };
+static struct l_array_3_uint8_t tmp__43 = { { 105u, 110u, 116u } };
+static struct l_unnamed_5 tmp__41 = { ((&tmp__43.array[((int32_t)0)])), UINT64_C(3) };
+static struct l_array_3_uint8_t tmp__44 = { { 105u, 110u, 116u } };
+static struct l_unnamed_5 tmp__45 = { ((&tmp__44.array[((int32_t)0)])), UINT64_C(3) };
+static struct l_struct_uncommonType tmp__42 = { (&tmp__45), ((struct l_unnamed_5*)/*NULL*/0), { ((struct l_struct_method*)/*NULL*/0), UINT64_C(0), UINT64_C(0) } };
 struct l_array_2_uint8_t_KC_ __go_tdn_int_EC_gc __attribute__((common)) = { { ((uint8_t*)(uintptr_t)UINT64_C(8)), ((uint8_t*)/*NULL*/0) } };
 
 
@@ -319,7 +316,6 @@ llvm_cbe__2e_0_2e_entry:
   return;
 llvm_cbe_tmp__3:
   init_EC_guard = ((1) & 1);
-  // JENNY remove it
   //fmt_OC__OC_import(/*UNDEF*/((uint8_t*)/*NULL*/0));
   goto llvm_cbe__2e_0_2e_entry;
 
@@ -327,132 +323,112 @@ llvm_cbe_tmp__3:
 
 
 void main(uint8_t* llvm_cbe_tmp__4) {
-  uint8_t* llvm_cbe_tmp__5;    /* Address-exposed local */
-  uint8_t** llvm_cbe_tmp__6;    /* Address-exposed local */
-  struct l_unnamed_1 llvm_cbe_tmp__7;    /* Address-exposed local */
-  struct l_unnamed_1* llvm_cbe_tmp__8;    /* Address-exposed local */
-  struct l_unnamed_2 llvm_cbe_tmp__9;    /* Address-exposed local */
-  struct l_unnamed_2* llvm_cbe_tmp__10;    /* Address-exposed local */
+  uint8_t* llvm_cbe_messages;    /* Address-exposed local */
+  struct l_unnamed_1 llvm_cbe_tmp__5;    /* Address-exposed local */
+  struct l_unnamed_2 llvm_cbe_tmp__6;    /* Address-exposed local */
   uint32_t llvm_cbe_p;    /* Address-exposed local */
-  uint32_t* llvm_cbe_tmp__11;    /* Address-exposed local */
-  uint32_t* llvm_cbe_tmp__12;    /* Address-exposed local */
-  uint32_t** llvm_cbe_tmp__13;    /* Address-exposed local */
-  uint32_t** llvm_cbe_tmp__14;    /* Address-exposed local */
-  uint64_t llvm_cbe_tmp__15;    /* Address-exposed local */
-  struct l_array_1_struct_AC_l_unnamed_1 llvm_cbe_tmp__16;    /* Address-exposed local */
-  struct l_array_1_struct_AC_l_unnamed_1* llvm_cbe_tmp__17;    /* Address-exposed local */
-  uint64_t llvm_cbe_tmp__18;    /* Address-exposed local */
-  uint64_t* llvm_cbe_tmp__19;    /* Address-exposed local */
-  struct l_unnamed_3 llvm_cbe_tmp__20;    /* Address-exposed local */
-  struct l_unnamed_4 llvm_cbe_tmp__21;    /* Address-exposed local */
+  uint32_t* llvm_cbe_tmp__7;    /* Address-exposed local */
+  uint32_t* llvm_cbe_tmp__8;    /* Address-exposed local */
+  uint32_t** llvm_cbe_tmp__9;    /* Address-exposed local */
+  uint32_t** llvm_cbe_tmp__10;    /* Address-exposed local */
+  uint64_t llvm_cbe_tmp__11;    /* Address-exposed local */
+  struct l_array_1_struct_AC_l_unnamed_1 llvm_cbe_varargs;    /* Address-exposed local */
+  uint64_t llvm_cbe_tmp__12;    /* Address-exposed local */
+  struct l_unnamed_3 llvm_cbe_tmp__13;    /* Address-exposed local */
+  struct l_unnamed_4 llvm_cbe_tmp__14;    /* Address-exposed local */
+  uint8_t* llvm_cbe_tmp__15;
+  uint8_t* llvm_cbe_tmp__16;
+  uint8_t* llvm_cbe_tmp__17;
+  uint8_t* llvm_cbe_tmp__18;
+  uint8_t* llvm_cbe_tmp__19;
+  uint64_t llvm_cbe_tmp__20;
+  uint64_t llvm_cbe_tmp__21;
   uint8_t* llvm_cbe_tmp__22;
-  uint8_t* llvm_cbe_tmp__23;
-  struct l_unnamed_1* llvm_cbe_tmp__24;
-  struct l_unnamed_2* llvm_cbe_tmp__25;
-  uint8_t* llvm_cbe_tmp__26;
-  uint8_t* llvm_cbe_tmp__27;
-  uint8_t* llvm_cbe_tmp__28;
-  uint64_t llvm_cbe_tmp__29;
-  uint64_t llvm_cbe_tmp__30;
-  uint8_t* llvm_cbe_tmp__31;
-  uint64_t* llvm_cbe_tmp__32;
-  struct l_unnamed_1 llvm_cbe_tmp__33;
-  struct l_unnamed_3 llvm_cbe_tmp__34;
-  struct l_unnamed_3 llvm_cbe_tmp__35;
-  struct l_unnamed_3 llvm_cbe_tmp__36;
-  uint64_t llvm_cbe_tmp__37;
-  struct l_unnamed_1 llvm_cbe_tmp__38;
+  struct l_unnamed_1 llvm_cbe_tmp__23;
+  struct l_unnamed_3 llvm_cbe_tmp__24;
+  struct l_unnamed_3 llvm_cbe_tmp__25;
+  struct l_unnamed_3 llvm_cbe_tmp__26;
+  uint64_t llvm_cbe_tmp__27;
+  struct l_unnamed_1 llvm_cbe_tmp__28;
 
-  llvm_cbe_tmp__6 = (&llvm_cbe_tmp__5);
-  llvm_cbe_tmp__22 = ((uint8_t*)(((uint8_t**)(&llvm_cbe_tmp__6))));
-  llvm_cbe_tmp__23 = fifo_malloc(64u, UINT64_C(10));
-  *(((uint8_t**)llvm_cbe_tmp__22)) = llvm_cbe_tmp__23;
-  llvm_cbe_tmp__8 = (&llvm_cbe_tmp__7);
-  //JENNY this pointer is wrong
-  //llvm_cbe_tmp__24 = ((struct l_unnamed_1*)(&llvm_cbe_tmp__8));
-  llvm_cbe_tmp__24 = ((struct l_unnamed_1*)(llvm_cbe_tmp__8));
-  *((&llvm_cbe_tmp__24->field0)) = ((uint8_t*)main_OC_main_KD_main_OC_main_EC_1);
-  *((&llvm_cbe_tmp__24->field1)) = llvm_cbe_tmp__22;
-  //llvm_cbe_tmp__24->field1 = llvm_cbe_tmp__22;
-  llvm_cbe_tmp__10 = (&llvm_cbe_tmp__9);
-  llvm_cbe_tmp__25 = ((struct l_unnamed_2*)(&llvm_cbe_tmp__10));
-  *((&llvm_cbe_tmp__25->field0)) = (((uint8_t*)llvm_cbe_tmp__24));
-  llvm_cbe_tmp__11 = (&llvm_cbe_p);
-  llvm_cbe_tmp__12 = ((uint32_t*)/*NULL*/0);
-  llvm_cbe_tmp__13 = (&llvm_cbe_tmp__11);
-  llvm_cbe_tmp__26 = *(((uint8_t**)(&llvm_cbe_tmp__13)));
-  llvm_cbe_tmp__14 = (&llvm_cbe_tmp__12);
-  llvm_cbe_tmp__27 = *(((uint8_t**)(&llvm_cbe_tmp__14)));
-  printf("pthread_create %x %x %x %x %x %x\n", llvm_cbe_tmp__23, *((uint64_t*)llvm_cbe_tmp__22), llvm_cbe_tmp__22,\
-		  ((uint64_t*)(llvm_cbe_tmp__24->field1)), llvm_cbe_tmp__24->field1, llvm_cbe_tmp__25->field0);
-  //pthread_create(llvm_cbe_tmp__26, llvm_cbe_tmp__27, ((uint8_t*)tmp__39), (((uint8_t*)llvm_cbe_tmp__25)));
-  pthread_create(llvm_cbe_tmp__26, NULL, ((uint8_t*)tmp__39), llvm_cbe_tmp__25);
+  llvm_cbe_tmp__15 = ((uint8_t*)(&llvm_cbe_messages));
+  llvm_cbe_tmp__16 = fifo_malloc(64u, UINT64_C(8));
+  *(((uint8_t**)llvm_cbe_tmp__15)) = llvm_cbe_tmp__16;
+  *((&llvm_cbe_tmp__5.field0)) = ((uint8_t*)main_OC_main_KD_main_OC_main_EC_1);
+  *((&llvm_cbe_tmp__5.field1)) = llvm_cbe_tmp__15;
+  *((&llvm_cbe_tmp__6.field0)) = (((uint8_t*)(&llvm_cbe_tmp__5)));
+  llvm_cbe_tmp__7 = (&llvm_cbe_p);
+  llvm_cbe_tmp__8 = ((uint32_t*)/*NULL*/0);
+  llvm_cbe_tmp__9 = (&llvm_cbe_tmp__7);
+  llvm_cbe_tmp__17 = *(((uint8_t**)(&llvm_cbe_tmp__9)));
+  llvm_cbe_tmp__10 = (&llvm_cbe_tmp__8);
+  llvm_cbe_tmp__18 = *(((uint8_t**)(&llvm_cbe_tmp__10)));
+  printf("pthread_create\n");
+  // JENNY: the second arg must be null
+  //pthread_create(llvm_cbe_tmp__17, llvm_cbe_tmp__18, ((uint8_t*)tmp__29), (((uint8_t*)(&llvm_cbe_tmp__6))));
+  pthread_create(llvm_cbe_tmp__17, NULL, ((uint8_t*)tmp__29), (((uint8_t*)(&llvm_cbe_tmp__6))));
   printf("pthread_create_end\n");
-  llvm_cbe_tmp__28 = *(((uint8_t**)llvm_cbe_tmp__22));
-  printf("fifo_read\n");
-  llvm_cbe_tmp__29 = fifo_read(llvm_cbe_tmp__28);
-  printf("fifo_read_end\n");
 
-  llvm_cbe_tmp__15 = llvm_cbe_tmp__29;
-  llvm_cbe_tmp__30 = llvm_cbe_tmp__15;
-  llvm_cbe_tmp__17 = (&llvm_cbe_tmp__16);
-  llvm_cbe_tmp__31 = ((uint8_t*)(((struct l_array_1_struct_AC_l_unnamed_1*)(&llvm_cbe_tmp__17))));
-  llvm_cbe_tmp__19 = (&llvm_cbe_tmp__18);
-  llvm_cbe_tmp__32 = ((uint64_t*)(&llvm_cbe_tmp__19));
-  *llvm_cbe_tmp__32 = llvm_cbe_tmp__30;
-  // JENNY tdn? remove it
-  //llvm_cbe_tmp__33 = llvm_ctor_unnamed_1(((&__go_tdn_int.field0)), /*UNDEF*/((uint8_t*)/*NULL*/0));
-  llvm_cbe_tmp__33 = llvm_ctor_unnamed_1(0, /*UNDEF*/((uint8_t*)/*NULL*/0));
-  llvm_cbe_tmp__33.field1 = (((uint8_t*)llvm_cbe_tmp__32));
-  *(((struct l_unnamed_1*)(((uint8_t*)((&(*(((struct l_unnamed_1*)llvm_cbe_tmp__31))))))))) = llvm_cbe_tmp__33;
-  llvm_cbe_tmp__34 = llvm_ctor_unnamed_3(((uint8_t*)/*NULL*/0), UINT64_C(0), UINT64_C(0));
-  llvm_cbe_tmp__34.field0 = ((&(*llvm_cbe_tmp__31)));
-  llvm_cbe_tmp__35 = llvm_cbe_tmp__34;
-  llvm_cbe_tmp__35.field1 = UINT64_C(1);
-  llvm_cbe_tmp__36 = llvm_cbe_tmp__35;
-  llvm_cbe_tmp__36.field2 = UINT64_C(1);
-  llvm_cbe_tmp__20 = llvm_cbe_tmp__36;
-  // JENNY turn this into a printf
-  printf("fifo_read %d\n", llvm_cbe_tmp__30);
-  //llvm_cbe_tmp__21 = fmt_OC_Println(/*UNDEF*/((uint8_t*)/*NULL*/0), llvm_cbe_tmp__20);
-  //llvm_cbe_tmp__37 = *((&llvm_cbe_tmp__21.field0));
-  //llvm_cbe_tmp__38 = *((&llvm_cbe_tmp__21.field1));
+  llvm_cbe_tmp__19 = *(((uint8_t**)llvm_cbe_tmp__15));
+  llvm_cbe_tmp__20 = fifo_read(llvm_cbe_tmp__19);
+  printf("fifo_read %d\n", llvm_cbe_tmp__20);
+  llvm_cbe_tmp__11 = llvm_cbe_tmp__20;
+  llvm_cbe_tmp__21 = llvm_cbe_tmp__11;
+  llvm_cbe_tmp__22 = ((uint8_t*)(&llvm_cbe_varargs));
+  llvm_cbe_tmp__12 = llvm_cbe_tmp__21;
+//  llvm_cbe_tmp__23 = llvm_ctor_unnamed_1(((&__go_tdn_int.field0)), /*UNDEF*/((uint8_t*)/*NULL*/0));
+//  llvm_cbe_tmp__23.field1 = (((uint8_t*)(&llvm_cbe_tmp__12)));
+//  *(((struct l_unnamed_1*)(((uint8_t*)((&(*(((struct l_unnamed_1*)llvm_cbe_tmp__22))))))))) = llvm_cbe_tmp__23;
+  llvm_cbe_tmp__24 = llvm_ctor_unnamed_3(((uint8_t*)/*NULL*/0), UINT64_C(0), UINT64_C(0));
+  llvm_cbe_tmp__24.field0 = ((&(*llvm_cbe_tmp__22)));
+  llvm_cbe_tmp__25 = llvm_cbe_tmp__24;
+  llvm_cbe_tmp__25.field1 = UINT64_C(1);
+  llvm_cbe_tmp__26 = llvm_cbe_tmp__25;
+  llvm_cbe_tmp__26.field2 = UINT64_C(1);
+  llvm_cbe_tmp__13 = llvm_cbe_tmp__26;
+  //llvm_cbe_tmp__14 = fmt_OC_Println(/*UNDEF*/((uint8_t*)/*NULL*/0), llvm_cbe_tmp__13);
+  //llvm_cbe_tmp__27 = *((&llvm_cbe_tmp__14.field0));
+  //llvm_cbe_tmp__28 = *((&llvm_cbe_tmp__14.field1));
 }
 
 
-static void main_OC_main_KD_main_OC_main_EC_1(uint8_t* llvm_cbe_tmp__40) {
-  uint64_t llvm_cbe_tmp__41;    /* Address-exposed local */
-  uint8_t* llvm_cbe_tmp__42;    /* Address-exposed local */
-  uint8_t* llvm_cbe_tmp__43;
-  uint8_t* llvm_cbe_tmp__44;
-  uint64_t llvm_cbe_tmp__45;
+static void main_OC_main_KD_main_OC_main_EC_1(uint8_t* llvm_cbe_tmp__30) {
+  uint64_t llvm_cbe_tmp__31;    /* Address-exposed local */
+  uint64_t llvm_cbe_tmp__32;    /* Address-exposed local */
+  //uint8_t llvm_cbe_tmp__32;    /* Address-exposed local */
+  uint8_t* llvm_cbe_tmp__33;
+  uint8_t* llvm_cbe_tmp__34;
+  uint8_t llvm_cbe_tmp__35;
+  uint64_t llvm_cbe_tmp__36;
+  // JENNY: Shouldn't deref to uint8 before passing the number to fifo_write
+  printf("main_OC_main_KD_main_OC_main_EC_1\n");
+  llvm_cbe_tmp__33 = *((&(((struct l_unnamed_1*)llvm_cbe_tmp__30))->field1));
+  llvm_cbe_tmp__34 = *(((uint8_t**)llvm_cbe_tmp__33));
+  llvm_cbe_tmp__31 = UINT64_C(7);
+  llvm_cbe_tmp__35 = *(((uint64_t*)(&llvm_cbe_tmp__31)));
+  printf("fifo_write %d", llvm_cbe_tmp__35);
 
-  llvm_cbe_tmp__43 = *((uint64_t*)(&(((struct l_unnamed_1*)llvm_cbe_tmp__40))->field1));
-  llvm_cbe_tmp__44 = *(((uint8_t**)llvm_cbe_tmp__43));
-  llvm_cbe_tmp__41 = UINT64_C(7);
-  llvm_cbe_tmp__42 = (((uint8_t*)(&llvm_cbe_tmp__41)));
-  // JENNY send value intead of pointer
-  //llvm_cbe_tmp__45 = *(((uint64_t*)(&llvm_cbe_tmp__42)));
-  llvm_cbe_tmp__45 = *(((uint64_t*)(llvm_cbe_tmp__42)));
-
-  printf("main_OC_main_KD_main_OC_main_EC_1 %x %d\n", *((uint64_t*)llvm_cbe_tmp__44), llvm_cbe_tmp__45);
-
-  fifo_write(llvm_cbe_tmp__44, llvm_cbe_tmp__45);
+  llvm_cbe_tmp__32 = llvm_cbe_tmp__35;
+  llvm_cbe_tmp__36 = *(((uint64_t*)(&llvm_cbe_tmp__32)));
+  printf("fifo_write %d", llvm_cbe_tmp__36);
+  fifo_write(llvm_cbe_tmp__34, llvm_cbe_tmp__36);
 }
 
 
-static uint8_t* tmp__39(uint8_t* llvm_cbe_tmp__46) {
-  uint8_t* llvm_cbe_tmp__47;
-  uint8_t* llvm_cbe_tmp__48;
-  printf("tmp_39\n");
-  llvm_cbe_tmp__47 = *((&(((struct l_unnamed_2*)llvm_cbe_tmp__46))->field0));
-  llvm_cbe_tmp__48 = *(((uint8_t**)llvm_cbe_tmp__47));
-  (((l_fptr_1*)llvm_cbe_tmp__48))(llvm_cbe_tmp__47);
+static uint8_t* tmp__29(uint8_t* llvm_cbe_tmp__37) {
+  uint8_t* llvm_cbe_tmp__38;
+  uint8_t* llvm_cbe_tmp__39;
+  printf("tmp__29\n");
+
+
+  llvm_cbe_tmp__38 = *((&(((struct l_unnamed_2*)llvm_cbe_tmp__37))->field0));
+  llvm_cbe_tmp__39 = *(((uint8_t**)llvm_cbe_tmp__38));
+  (((l_fptr_1*)llvm_cbe_tmp__39))(llvm_cbe_tmp__38);
   return ((uint8_t*)/*NULL*/0);
 }
 
 
-void __go_init_main(uint8_t* llvm_cbe_tmp__49) {
+void __go_init_main(uint8_t* llvm_cbe_tmp__40) {
   main_OC__OC_import(/*UNDEF*/((uint8_t*)/*NULL*/0));
 }
 
