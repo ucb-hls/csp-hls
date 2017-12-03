@@ -17,10 +17,11 @@ typedef struct {FIFO *in; FIFO *out;} FIFO_ARGS;
 void *process1(void *arg) {
 	int i;
 	int item;
-	FIFO_ARGS *arg1 = (FIFO_ARGS *)arg;
+	FIFO *in = ((FIFO_ARGS *)arg)->in;
+	FIFO *out = ((FIFO_ARGS *)arg)->out;
 	for (i = 0; i < 10; i++) {
-		item = fifo_read((FIFO*)arg1->in);
-		fifo_write((FIFO*)arg1->out, item * 2 + 1);
+		item = fifo_read(in);
+		fifo_write(out, item * 2 + 1);
 	}
     pthread_exit(NULL);
 
@@ -35,10 +36,11 @@ void *process1(void *arg) {
 
 void *process2(void *arg) {
 	int i, item;
-	FIFO_ARGS *arg1 = (FIFO_ARGS *)arg;
+	FIFO *in = ((FIFO_ARGS *)arg)->in;
+	FIFO *out = ((FIFO_ARGS *)arg)->out;
 	for (i = 0; i < 10; i++) {
-		item = fifo_read((FIFO*)arg1->in);
-		fifo_write((FIFO*)arg1->out, (item - 1) / 2);
+		item = fifo_read(in);
+		fifo_write(out, (item - 1) / 2);
 
 	}
     pthread_exit(NULL);
