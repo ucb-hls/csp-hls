@@ -1,4 +1,8 @@
 /* Provide Declarations */
+#include "legup/streaming.h"
+#include <pthread.h>
+#include <stdio.h>
+
 #include <stdarg.h>
 #include <setjmp.h>
 #include <limits.h>
@@ -238,10 +242,10 @@ extern struct l_struct_funcVal __go_type_hash_identity_descriptor;
 extern struct l_struct_funcVal __go_type_equal_identity_descriptor;
 
 /* Function Declarations */
-void pthread_create(uint8_t*, uint8_t*, uint8_t*, uint8_t*);
-uint8_t* fifo_malloc(uint8_t, uint64_t);
-uint64_t fifo_read(uint8_t*);
-void fifo_write(uint8_t*, uint64_t);
+//void pthread_create(uint8_t*, uint8_t*, uint8_t*, uint8_t*);
+//uint8_t* fifo_malloc(uint8_t, uint64_t);
+//uint64_t fifo_read(uint8_t*);
+//void fifo_write(uint8_t*, uint64_t);
 void main_OC__OC_import(uint8_t*);
 void fmt_OC__OC_import(uint8_t*);
 void main_OC_main(uint8_t*);
@@ -364,9 +368,12 @@ void main(uint8_t* llvm_cbe_tmp__4) {
   llvm_cbe_tmp__23 = fifo_malloc(64u, UINT64_C(10));
   *(((uint8_t**)llvm_cbe_tmp__22)) = llvm_cbe_tmp__23;
   llvm_cbe_tmp__8 = (&llvm_cbe_tmp__7);
-  llvm_cbe_tmp__24 = ((struct l_unnamed_1*)(&llvm_cbe_tmp__8));
+  //JENNY this pointer is wrong
+  //llvm_cbe_tmp__24 = ((struct l_unnamed_1*)(&llvm_cbe_tmp__8));
+  llvm_cbe_tmp__24 = ((struct l_unnamed_1*)(llvm_cbe_tmp__8));
   *((&llvm_cbe_tmp__24->field0)) = ((uint8_t*)main_OC_main_KD_main_OC_main_EC_1);
   *((&llvm_cbe_tmp__24->field1)) = llvm_cbe_tmp__22;
+  //llvm_cbe_tmp__24->field1 = llvm_cbe_tmp__22;
   llvm_cbe_tmp__10 = (&llvm_cbe_tmp__9);
   llvm_cbe_tmp__25 = ((struct l_unnamed_2*)(&llvm_cbe_tmp__10));
   *((&llvm_cbe_tmp__25->field0)) = (((uint8_t*)llvm_cbe_tmp__24));
@@ -376,9 +383,16 @@ void main(uint8_t* llvm_cbe_tmp__4) {
   llvm_cbe_tmp__26 = *(((uint8_t**)(&llvm_cbe_tmp__13)));
   llvm_cbe_tmp__14 = (&llvm_cbe_tmp__12);
   llvm_cbe_tmp__27 = *(((uint8_t**)(&llvm_cbe_tmp__14)));
-  pthread_create(llvm_cbe_tmp__26, llvm_cbe_tmp__27, ((uint8_t*)tmp__39), (((uint8_t*)llvm_cbe_tmp__25)));
+  printf("pthread_create %x %x %x %x %x %x\n", llvm_cbe_tmp__23, *((uint64_t*)llvm_cbe_tmp__22), llvm_cbe_tmp__22,\
+		  ((uint64_t*)(llvm_cbe_tmp__24->field1)), llvm_cbe_tmp__24->field1, llvm_cbe_tmp__25->field0);
+  //pthread_create(llvm_cbe_tmp__26, llvm_cbe_tmp__27, ((uint8_t*)tmp__39), (((uint8_t*)llvm_cbe_tmp__25)));
+  pthread_create(llvm_cbe_tmp__26, NULL, ((uint8_t*)tmp__39), llvm_cbe_tmp__25);
+  printf("pthread_create_end\n");
   llvm_cbe_tmp__28 = *(((uint8_t**)llvm_cbe_tmp__22));
+  printf("fifo_read\n");
   llvm_cbe_tmp__29 = fifo_read(llvm_cbe_tmp__28);
+  printf("fifo_read_end\n");
+
   llvm_cbe_tmp__15 = llvm_cbe_tmp__29;
   llvm_cbe_tmp__30 = llvm_cbe_tmp__15;
   llvm_cbe_tmp__17 = (&llvm_cbe_tmp__16);
@@ -399,6 +413,7 @@ void main(uint8_t* llvm_cbe_tmp__4) {
   llvm_cbe_tmp__36.field2 = UINT64_C(1);
   llvm_cbe_tmp__20 = llvm_cbe_tmp__36;
   // JENNY turn this into a printf
+  printf("fifo_read %d\n", llvm_cbe_tmp__30);
   //llvm_cbe_tmp__21 = fmt_OC_Println(/*UNDEF*/((uint8_t*)/*NULL*/0), llvm_cbe_tmp__20);
   //llvm_cbe_tmp__37 = *((&llvm_cbe_tmp__21.field0));
   //llvm_cbe_tmp__38 = *((&llvm_cbe_tmp__21.field1));
@@ -412,11 +427,16 @@ static void main_OC_main_KD_main_OC_main_EC_1(uint8_t* llvm_cbe_tmp__40) {
   uint8_t* llvm_cbe_tmp__44;
   uint64_t llvm_cbe_tmp__45;
 
-  llvm_cbe_tmp__43 = *((&(((struct l_unnamed_1*)llvm_cbe_tmp__40))->field1));
+  llvm_cbe_tmp__43 = *((uint64_t*)(&(((struct l_unnamed_1*)llvm_cbe_tmp__40))->field1));
   llvm_cbe_tmp__44 = *(((uint8_t**)llvm_cbe_tmp__43));
   llvm_cbe_tmp__41 = UINT64_C(7);
   llvm_cbe_tmp__42 = (((uint8_t*)(&llvm_cbe_tmp__41)));
-  llvm_cbe_tmp__45 = *(((uint64_t*)(&llvm_cbe_tmp__42)));
+  // JENNY send value intead of pointer
+  //llvm_cbe_tmp__45 = *(((uint64_t*)(&llvm_cbe_tmp__42)));
+  llvm_cbe_tmp__45 = *(((uint64_t*)(llvm_cbe_tmp__42)));
+
+  printf("main_OC_main_KD_main_OC_main_EC_1 %x %d\n", *((uint64_t*)llvm_cbe_tmp__44), llvm_cbe_tmp__45);
+
   fifo_write(llvm_cbe_tmp__44, llvm_cbe_tmp__45);
 }
 
@@ -424,7 +444,7 @@ static void main_OC_main_KD_main_OC_main_EC_1(uint8_t* llvm_cbe_tmp__40) {
 static uint8_t* tmp__39(uint8_t* llvm_cbe_tmp__46) {
   uint8_t* llvm_cbe_tmp__47;
   uint8_t* llvm_cbe_tmp__48;
-
+  printf("tmp_39\n");
   llvm_cbe_tmp__47 = *((&(((struct l_unnamed_2*)llvm_cbe_tmp__46))->field0));
   llvm_cbe_tmp__48 = *(((uint8_t**)llvm_cbe_tmp__47));
   (((l_fptr_1*)llvm_cbe_tmp__48))(llvm_cbe_tmp__47);
