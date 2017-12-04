@@ -1,0 +1,72 @@
+#include "legup/streaming.h"
+#include <pthread.h>
+
+#include <stdarg.h>
+#include <setjmp.h>
+#include <limits.h>
+#include <stdint.h>
+#include <math.h>
+#include <stdio.h>
+//#include <APInt-C.h>
+#ifndef __cplusplus
+typedef unsigned char bool;
+#endif
+
+struct l_unnamed_3 {
+  uint8_t* field0;
+  // FIFO*
+  //  uint8_t* field1;
+  FIFO* field1;
+};
+
+void* main_OC_main_KD_main_OC_main_EC_1(void *llvm_cbe_tmp__32) {
+  uint64_t llvm_cbe_tmp__33;    /* Address-exposed local */
+  FIFO* llvm_cbe_tmp__34;
+  FIFO* llvm_cbe_tmp__35;
+
+  llvm_cbe_tmp__34 = ((struct l_unnamed_3*)llvm_cbe_tmp__32) -> field1;
+      llvm_cbe_tmp__35 = llvm_cbe_tmp__34;
+      llvm_cbe_tmp__33 = 7;
+      fifo_write((FIFO*) llvm_cbe_tmp__35, llvm_cbe_tmp__33);
+
+      //JENNY
+      pthread_exit(NULL);
+}
+
+//void main_OC_main(uint8_t* llvm_cbe_tmp__4) {
+int main (void) {
+  uint32_t llvm_cbe_tmp__5;    /* Address-exposed local */
+  uint32_t llvm_cbe_tmp__6;    /* Address-exposed local */
+  uint64_t llvm_cbe_tmp__7;    /* Address-exposed local */
+  FIFO* llvm_cbe_tmp__11;
+  uint64_t llvm_cbe_tmp__12;
+  uint64_t llvm_cbe_tmp__13;
+  FIFO * llvm_cbe_tmp__14;
+  struct l_unnamed_3 * llvm_cbe_tmp__15;
+  struct l_unnamed_3* llvm_cbe_tmp__16;
+  uint8_t* llvm_cbe_tmp__19;
+  
+  llvm_cbe_tmp__5 = 1010;
+  llvm_cbe_tmp__12 = *(((uint64_t*)(&llvm_cbe_tmp__5)));
+  llvm_cbe_tmp__6 = 30;
+  llvm_cbe_tmp__13 = *(((uint64_t*)(&llvm_cbe_tmp__6)));
+  llvm_cbe_tmp__14 = fifo_malloc(32, llvm_cbe_tmp__13);
+
+  // this is actually for closure, the pointer thing needs to be fixed
+  llvm_cbe_tmp__11 = llvm_cbe_tmp__14;
+
+  //llvm_cbe_tmp__15 = __go_new(/*UNDEF*/((uint8_t*)/*NULL*/0), ((&__go_td_S1__Fe1__pCN3_intsree.field0.field0)), UINT64_C(16));
+  // JENNY: Init new static struct
+  struct l_unnamed_3 llvm_cbe_tmp__15_struct;
+  llvm_cbe_tmp__15 = & llvm_cbe_tmp__15_struct;
+
+  llvm_cbe_tmp__16 = ((struct l_unnamed_3*)llvm_cbe_tmp__15);
+  *((&llvm_cbe_tmp__16->field1)) = llvm_cbe_tmp__11;
+  pthread_t run;
+
+  pthread_create(&run, NULL, main_OC_main_KD_main_OC_main_EC_1, (void *)llvm_cbe_tmp__16);
+
+  llvm_cbe_tmp__7 = fifo_read((FIFO*)llvm_cbe_tmp__14);
+  printf("%d\n", llvm_cbe_tmp__7);
+  return 0;
+}
