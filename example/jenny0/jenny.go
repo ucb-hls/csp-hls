@@ -1,6 +1,9 @@
 package main
 
 //import "fmt"
+func process(out chan int) {
+	out <- 7
+}
 
 func main() {
 
@@ -11,7 +14,9 @@ func main() {
 	// _Send_ a value into a channel using the `channel <-`
 	// syntax. Here we send `"ping"`  to the `messages`
 	// channel we made above, from a new goroutine.
-	go func() { messages <- 7 }()
+	//go func() { messages <- 7 }()
+
+	go process(messages)
 	//b := 2
 	//go func(a int) { messages <- a}(b)
 

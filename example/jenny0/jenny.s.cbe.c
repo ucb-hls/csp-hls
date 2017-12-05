@@ -158,28 +158,21 @@ typedef union {
 
 /* Types Declarations */
 struct l_unnamed_1;
-struct l_unnamed_2;
 
 /* Types Definitions */
 struct l_unnamed_1 {
   uint8_t* field0;
-  uint8_t* field1;
-};
-struct l_unnamed_2 {
-  uint8_t* field0;
 };
 
 /* Function definitions */
-
-typedef void l_fptr_1(uint8_t*);
 
 /* External Global Variable Declarations */
 
 /* Function Declarations */
 void main_OC__OC_import(uint8_t*);
 void main_OC_main(uint8_t*);
-static void main_OC_main_KD_main_OC_main_EC_1(uint8_t*);
-static void tmp__19(uint8_t*);
+static void tmp__13(uint8_t*);
+static void main_OC_process(uint8_t*, uint8_t*);
 static uint8_t* auto_pthread_wrapper(uint8_t*);
 void __go_init_main(uint8_t*);
 
@@ -231,65 +224,49 @@ llvm_cbe_tmp__3:
 
 
 void main_OC_main(uint8_t* llvm_cbe_tmp__4) {
-  uint8_t* llvm_cbe_messages;    /* Address-exposed local */
   struct l_unnamed_1 llvm_cbe_tmp__5;    /* Address-exposed local */
-  struct l_unnamed_2 llvm_cbe_tmp__6;    /* Address-exposed local */
   uint32_t llvm_cbe_p;    /* Address-exposed local */
-  uint32_t* llvm_cbe_tmp__7;    /* Address-exposed local */
-  uint32_t** llvm_cbe_tmp__8;    /* Address-exposed local */
-  uint64_t llvm_cbe_tmp__9;    /* Address-exposed local */
+  uint32_t* llvm_cbe_tmp__6;    /* Address-exposed local */
+  uint32_t** llvm_cbe_tmp__7;    /* Address-exposed local */
+  uint64_t llvm_cbe_tmp__8;    /* Address-exposed local */
+  uint8_t* llvm_cbe_tmp__9;
   uint8_t* llvm_cbe_tmp__10;
-  uint8_t* llvm_cbe_tmp__11;
-  uint8_t* llvm_cbe_tmp__12;
-  uint8_t* llvm_cbe_tmp__13;
-  uint64_t llvm_cbe_tmp__14;
-  uint64_t llvm_cbe_tmp__15;
+  uint64_t llvm_cbe_tmp__11;
+  uint64_t llvm_cbe_tmp__12;
 
-  llvm_cbe_tmp__10 = ((uint8_t*)(&llvm_cbe_messages));
-  llvm_cbe_tmp__11 = fifo_malloc(64u, UINT64_C(0));
-  *(((uint8_t**)llvm_cbe_tmp__10)) = llvm_cbe_tmp__11;
-  *((&llvm_cbe_tmp__5.field0)) = ((uint8_t*)main_OC_main_KD_main_OC_main_EC_1);
-  *((&llvm_cbe_tmp__5.field1)) = llvm_cbe_tmp__10;
-  *((&llvm_cbe_tmp__6.field0)) = (((uint8_t*)(&llvm_cbe_tmp__5)));
-  llvm_cbe_tmp__7 = (&llvm_cbe_p);
-  llvm_cbe_tmp__8 = (&llvm_cbe_tmp__7);
-  llvm_cbe_tmp__12 = *(((uint8_t**)(&llvm_cbe_tmp__8)));
-  pthread_create(llvm_cbe_tmp__12, ((uint8_t*)/*NULL*/0), ((uint8_t*)auto_pthread_wrapper), (((uint8_t*)(&llvm_cbe_tmp__6))));
-  llvm_cbe_tmp__13 = *(((uint8_t**)llvm_cbe_tmp__10));
-  llvm_cbe_tmp__14 = fifo_read(llvm_cbe_tmp__13);
-  llvm_cbe_tmp__9 = llvm_cbe_tmp__14;
-  llvm_cbe_tmp__15 = llvm_cbe_tmp__9;
+  llvm_cbe_tmp__9 = fifo_malloc(64u, UINT64_C(0));
+  *((&llvm_cbe_tmp__5.field0)) = llvm_cbe_tmp__9;
+  llvm_cbe_tmp__6 = (&llvm_cbe_p);
+  llvm_cbe_tmp__7 = (&llvm_cbe_tmp__6);
+  llvm_cbe_tmp__10 = *(((uint8_t**)(&llvm_cbe_tmp__7)));
+  pthread_create(llvm_cbe_tmp__10, ((uint8_t*)/*NULL*/0), ((uint8_t*)auto_pthread_wrapper), (((uint8_t*)(&llvm_cbe_tmp__5))));
+  llvm_cbe_tmp__11 = fifo_read(llvm_cbe_tmp__9);
+  llvm_cbe_tmp__8 = llvm_cbe_tmp__11;
+  llvm_cbe_tmp__12 = llvm_cbe_tmp__8;
 }
 
 
-static void main_OC_main_KD_main_OC_main_EC_1(uint8_t* llvm_cbe_tmp__16) {
-  uint8_t* llvm_cbe_tmp__17;
-  uint8_t* llvm_cbe_tmp__18;
+static void tmp__13(uint8_t* llvm_cbe_tmp__14) {
+  uint8_t* llvm_cbe_tmp__15;
 
-  llvm_cbe_tmp__17 = *((&(((struct l_unnamed_1*)llvm_cbe_tmp__16))->field1));
-  llvm_cbe_tmp__18 = *(((uint8_t**)llvm_cbe_tmp__17));
-  fifo_write(llvm_cbe_tmp__18, UINT64_C(7));
+  llvm_cbe_tmp__15 = *((&(((struct l_unnamed_1*)llvm_cbe_tmp__14))->field0));
+  main_OC_process(/*UNDEF*/((uint8_t*)/*NULL*/0), llvm_cbe_tmp__15);
 }
 
 
-static void tmp__19(uint8_t* llvm_cbe_tmp__20) {
-  uint8_t* llvm_cbe_tmp__21;
-  uint8_t* llvm_cbe_tmp__22;
-
-  llvm_cbe_tmp__21 = *((&(((struct l_unnamed_2*)llvm_cbe_tmp__20))->field0));
-  llvm_cbe_tmp__22 = *(((uint8_t**)llvm_cbe_tmp__21));
-  (((l_fptr_1*)llvm_cbe_tmp__22))(llvm_cbe_tmp__21);
+static void main_OC_process(uint8_t* llvm_cbe_tmp__16, uint8_t* llvm_cbe_tmp__17) {
+  fifo_write(llvm_cbe_tmp__17, UINT64_C(7));
 }
 
 
-static uint8_t* auto_pthread_wrapper(uint8_t* llvm_cbe_tmp__23) {
-  tmp__19(llvm_cbe_tmp__23);
+static uint8_t* auto_pthread_wrapper(uint8_t* llvm_cbe_tmp__18) {
+  tmp__13(llvm_cbe_tmp__18);
   pthread_exit(((uint8_t*)/*NULL*/0));
   return ((uint8_t*)/*NULL*/0);
 }
 
 
-void __go_init_main(uint8_t* llvm_cbe_tmp__24) {
+void __go_init_main(uint8_t* llvm_cbe_tmp__19) {
   return;
 }
 
