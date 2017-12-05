@@ -171,3 +171,10 @@ its own function main_OC_worker
 
 More go examples:
 [https://github.com/avelino/awesome-go#benchmarks](https://github.com/avelino/awesome-go#benchmarks)
+
+
+###Go Debuggging
+In llgo, add: 
+fr.module.Module.Dump()
+fn.Dump()
+
