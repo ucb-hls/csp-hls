@@ -161,7 +161,7 @@ struct l_unnamed_1;
 
 /* Types Definitions */
 struct l_unnamed_1 {
-  uint8_t* field0;
+  FIFO* field0;
 };
 
 /* Function definitions */
@@ -172,14 +172,16 @@ struct l_unnamed_1 {
 void main_OC__OC_import(uint8_t*);
 void main_OC_main(uint8_t*);
 static void tmp__13(uint8_t*);
-static void main_OC_process(uint8_t*, uint8_t*);
+static void main_OC_process(uint8_t*, FIFO*);
 static uint8_t* auto_pthread_wrapper(uint8_t*);
 void __go_init_main(uint8_t*);
 uint32_t main(void);
 
 
 /* Global Variable Definitions and Initialization */
+uint8_t* main_OC__OC_import_EC_descriptor = ((uint8_t*)main_OC__OC_import);
 static bool init_EC_guard;
+uint8_t* main_OC_main_EC_descriptor = ((uint8_t*)main_OC_main);
 
 
 /* LLVM Intrinsic Builtin Function Bodies */
@@ -228,7 +230,7 @@ void main_OC_main(uint8_t* llvm_cbe_tmp__4) {
   uint32_t* llvm_cbe_tmp__6;    /* Address-exposed local */
   uint32_t** llvm_cbe_tmp__7;    /* Address-exposed local */
   uint64_t llvm_cbe_tmp__8;    /* Address-exposed local */
-  uint8_t* llvm_cbe_tmp__9;
+  FIFO* llvm_cbe_tmp__9;
   uint8_t* llvm_cbe_tmp__10;
   uint64_t llvm_cbe_tmp__11;
   uint64_t llvm_cbe_tmp__12;
@@ -246,14 +248,14 @@ void main_OC_main(uint8_t* llvm_cbe_tmp__4) {
 
 
 static void tmp__13(uint8_t* llvm_cbe_tmp__14) {
-  uint8_t* llvm_cbe_tmp__15;
+  FIFO* llvm_cbe_tmp__15;
 
   llvm_cbe_tmp__15 = *((&(((struct l_unnamed_1*)llvm_cbe_tmp__14))->field0));
   main_OC_process(/*UNDEF*/((uint8_t*)/*NULL*/0), llvm_cbe_tmp__15);
 }
 
 
-static void main_OC_process(uint8_t* llvm_cbe_tmp__16, uint8_t* llvm_cbe_tmp__17) {
+static void main_OC_process(uint8_t* llvm_cbe_tmp__16, FIFO* llvm_cbe_tmp__17) {
   fifo_write(llvm_cbe_tmp__17, UINT64_C(7));
 }
 
