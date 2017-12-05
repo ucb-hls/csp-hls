@@ -1,11 +1,9 @@
 ; ModuleID = 'main'
-;source_filename = "main"
+;;;;;;;;source_filename = "main"
 target datalayout = "e-m:e-i64:64-f80:128-n8:16:32:64-S128"
 target triple = "x86_64-unknown-linux-gnu"
 
-@"main..import$descriptor" = constant i8* bitcast (void (i8*)* @main..import to i8*)
 @"init$guard" = internal global i1 false
-@"main.main$descriptor" = constant i8* bitcast (void (i8*)* @main.main to i8*)
 
 declare void @pthread_create(i8*, i8*, i8*, i8*)
 

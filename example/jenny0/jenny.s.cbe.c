@@ -175,12 +175,11 @@ static void tmp__13(uint8_t*);
 static void main_OC_process(uint8_t*, uint8_t*);
 static uint8_t* auto_pthread_wrapper(uint8_t*);
 void __go_init_main(uint8_t*);
+uint32_t main(void);
 
 
 /* Global Variable Definitions and Initialization */
-uint8_t* main_OC__OC_import_EC_descriptor = ((uint8_t*)main_OC__OC_import);
 static bool init_EC_guard;
-uint8_t* main_OC_main_EC_descriptor = ((uint8_t*)main_OC_main);
 
 
 /* LLVM Intrinsic Builtin Function Bodies */
@@ -268,5 +267,11 @@ static uint8_t* auto_pthread_wrapper(uint8_t* llvm_cbe_tmp__18) {
 
 void __go_init_main(uint8_t* llvm_cbe_tmp__19) {
   return;
+}
+
+
+uint32_t main(void) {
+  main_OC_main(((uint8_t*)/*NULL*/0));
+  return 0;
 }
 
