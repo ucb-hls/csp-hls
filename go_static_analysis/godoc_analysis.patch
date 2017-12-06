@@ -1,0 +1,264 @@
+diff --git a/godoc/analysis/analysis.go b/godoc/analysis/analysis.go
+index b79286c..9b1de9c 100644
+--- a/godoc/analysis/analysis.go
++++ b/godoc/analysis/analysis.go
+@@ -44,7 +44,7 @@ package analysis // import "golang.org/x/tools/godoc/analysis"
+ 
+ import (
+ 	"fmt"
+-	"go/build"
++  //"go/build"
+ 	"go/scanner"
+ 	"go/token"
+ 	"go/types"
+@@ -323,6 +323,7 @@ func (a *analysis) posURL(pos token.Pos, len int) string {
+ 	}
+ 	posn := a.prog.Fset.Position(pos)
+ 	url := a.path2url[posn.Filename]
++
+ 	return fmt.Sprintf("%s?s=%d:%d#L%d",
+ 		url, posn.Offset, posn.Offset+len, posn.Line)
+ }
+@@ -334,7 +335,9 @@ func (a *analysis) posURL(pos token.Pos, len int) string {
+ // information then later with pointer analysis information if
+ // enabled by the pta flag.
+ //
+-func Run(pta bool, result *Result) {
++func Run(pta bool, arg string) {
++
++  //arg := os.Args[1] // path to benchmark code
+ 	conf := loader.Config{
+ 		AllowErrors: true,
+ 	}
+@@ -344,22 +347,24 @@ func Run(pta bool, result *Result) {
+ 	// one per errant package later.
+ 	conf.TypeChecker.Error = func(e error) {}
+ 
+-	var roots, args []string // roots[i] ends with os.PathSeparator
+-
++	//var roots, args []string // roots[i] ends with os.PathSeparator
++  var args []string
++  fmt.Println(arg)
+ 	// Enumerate packages in $GOROOT.
+-	root := filepath.Join(build.Default.GOROOT, "src") + string(os.PathSeparator)
+-	roots = append(roots, root)
+-	args = allPackages(root)
+-	log.Printf("GOROOT=%s: %s\n", root, args)
++	//root := filepath.Join(build.Default.GOROOT, "src") + string(os.PathSeparator)
++	//roots = append(roots, root)
++	//args = allPackages(root)
++  args = append(args, arg)
++	//log.Printf("GOROOT=%s: %s\n", root, args)
+ 
+ 	// Enumerate packages in $GOPATH.
+-	for i, dir := range filepath.SplitList(build.Default.GOPATH) {
+-		root := filepath.Join(dir, "src") + string(os.PathSeparator)
+-		roots = append(roots, root)
+-		pkgs := allPackages(root)
+-		log.Printf("GOPATH[%d]=%s: %s\n", i, root, pkgs)
+-		args = append(args, pkgs...)
+-	}
++	//for i, dir := range filepath.SplitList(build.Default.GOPATH) {
++	//	root := filepath.Join(dir, "src") + string(os.PathSeparator)
++	//	roots = append(roots, root)
++	//	pkgs := allPackages(root)
++	//	log.Printf("GOPATH[%d]=%s: %s\n", i, root, pkgs)
++	//	args = append(args, pkgs...)
++	//}
+ 
+ 	// Uncomment to make startup quicker during debugging.
+ 	//args = []string{"golang.org/x/tools/cmd/godoc"}
+@@ -368,11 +373,13 @@ func Run(pta bool, result *Result) {
+ 	if _, err := conf.FromArgs(args, true); err != nil {
+ 		// TODO(adonovan): degrade gracefully, not fail totally.
+ 		// (The crippling case is a parse error in an external test file.)
+-		result.setStatusf("Analysis failed: %s.", err) // import error
++		//result.setStatusf("Analysis failed: %s.", err) // import error
++    log.Printf("Analysis failed")
+ 		return
+ 	}
+ 
+-	result.setStatusf("Loading and type-checking packages...")
++	//result.setStatusf("Loading and type-checking packages...")
++  log.Printf("Loading and type-checking packages...")
+ 	iprog, err := conf.Load()
+ 	if iprog != nil {
+ 		// Report only the first error of each package.
+@@ -382,10 +389,12 @@ func Run(pta bool, result *Result) {
+ 				break
+ 			}
+ 		}
+-		log.Printf("Loaded %d packages.", len(iprog.AllPackages))
++		//log.Printf("Loaded %d packages.", len(iprog.AllPackages))
++    log.Printf("Loaded %d packages.", len(iprog.AllPackages))
+ 	}
+ 	if err != nil {
+-		result.setStatusf("Loading failed: %s.\n", err)
++		//result.setStatusf("Loading failed: %s.\n", err)
++    log.Printf("Loading failed: %s.\n", err)
+ 		return
+ 	}
+ 
+@@ -396,17 +405,21 @@ func Run(pta bool, result *Result) {
+ 	// Create a "testmain" package for each package with tests.
+ 	for _, pkg := range prog.AllPackages() {
+ 		if testmain := prog.CreateTestMainPackage(pkg); testmain != nil {
+-			log.Printf("Adding tests for %s", pkg.Pkg.Path())
++			//log.Printf("Adding tests for %s", pkg.Pkg.Path())
++      log.Printf("Adding tests for %s", pkg.Pkg.Path())
+ 		}
+ 	}
+ 
+ 	// Build SSA code for bodies of all functions in the whole program.
+-	result.setStatusf("Constructing SSA form...")
++	//result.setStatusf("Constructing SSA form...")
++  log.Printf("Constructing SSA form...")
+ 	prog.Build()
+-	log.Print("SSA construction complete")
++	//log.Print("SSA construction complete")
++  log.Printf("SSA construction complete")
+ 
++  var new_result Result
+ 	a := analysis{
+-		result: result,
++		result: &new_result,
+ 		prog:   prog,
+ 		pcgs:   make(map[*ssa.Package]*packageCallGraph),
+ 	}
+@@ -414,26 +427,30 @@ func Run(pta bool, result *Result) {
+ 	// Build a mapping from openable filenames to godoc file URLs,
+ 	// i.e. "/src/" plus path relative to GOROOT/src or GOPATH[i]/src.
+ 	a.path2url = make(map[string]string)
+-	for _, info := range iprog.AllPackages {
+-	nextfile:
+-		for _, f := range info.Files {
+-			if f.Pos() == 0 {
+-				continue // e.g. files generated by cgo
+-			}
+-			abs := iprog.Fset.File(f.Pos()).Name()
+-			// Find the root to which this file belongs.
+-			for _, root := range roots {
+-				rel := strings.TrimPrefix(abs, root)
+-				if len(rel) < len(abs) {
+-					a.path2url[abs] = "/src/" + filepath.ToSlash(rel)
+-					continue nextfile
+-				}
+-			}
+ 
+-			log.Printf("Can't locate file %s (package %q) beneath any root",
+-				abs, info.Pkg.Path())
+-		}
+-	}
++//	for _, info := range iprog.AllPackages {
++//	nextfile:
++//		for _, f := range info.Files {
++//			if f.Pos() == 0 {
++//				continue // e.g. files generated by cgo
++//			}
++//			abs := iprog.Fset.File(f.Pos()).Name()
++//			// Find the root to which this file belongs.
++//			for _, root := range roots {
++//				rel := strings.TrimPrefix(abs, root)
++//        log.Printf("rel ", rel)
++//        log.Printf("abs ", abs)
++//        log.Printf("root", root)
++//				if len(rel) < len(abs) {
++//					a.path2url[abs] = "/src/" + filepath.ToSlash(rel)
++//					continue nextfile
++//				}
++//			}
++//
++//			log.Printf("Can't locate file %s (package %q) beneath any root",
++//				abs, info.Pkg.Path())
++//		}
++//	}
+ 
+ 	// Add links for scanner, parser, type-checker errors.
+ 	// TODO(adonovan): fix: these links can overlap with
+@@ -489,22 +506,27 @@ func Run(pta bool, result *Result) {
+ 	for _, info := range iprog.AllPackages {
+ 		a.doTypeInfo(info, facts)
+ 	}
++  mainPkg := ssautil.MainPackages(prog.AllPackages())[0]
++	a.visitInstrs(pta, mainPkg)
+ 
+-	a.visitInstrs(pta)
+-
+-	result.setStatusf("Type analysis complete.")
++	//result.setStatusf("Type analysis complete.")
++  log.Printf("Type analysis complete.")
+ 
+ 	if pta {
+-		mainPkgs := ssautil.MainPackages(prog.AllPackages())
++ 		mainPkgs := ssautil.MainPackages(prog.AllPackages())
+ 		log.Print("Transitively error-free main packages: ", mainPkgs)
+ 		a.pointer(mainPkgs)
+ 	}
+ }
+ 
+ // visitInstrs visits all SSA instructions in the program.
+-func (a *analysis) visitInstrs(pta bool) {
++func (a *analysis) visitInstrs(pta bool, pkg *ssa.Package) {
+ 	log.Print("Visit instructions...")
+ 	for fn := range ssautil.AllFunctions(a.prog) {
++    if fn.Pkg != pkg {
++      continue  
++    }
++    log.Printf("visting func %s in %s", fn, fn.Pkg)
+ 		for _, b := range fn.Blocks {
+ 			for _, instr := range b.Instrs {
+ 				// CALLEES (static)
+@@ -516,7 +538,7 @@ func (a *analysis) visitInstrs(pta bool) {
+ 				//
+ 				//   defer func(){}()      // static call to anon function
+ 				//   f := func(){}; f()    // static call to anon function
+-				//   f := fmt.Println; f() // static call to named function
++				//   f := log.Printf; f() // static call to named function
+ 				//
+ 				// The downside is that we get no static callee information
+ 				// for packages that (transitively) contain errors.
+@@ -533,8 +555,7 @@ func (a *analysis) visitInstrs(pta bool) {
+ 				if !pta {
+ 					continue
+ 				}
+-
+-				// CHANNEL PEERS
++ 				// CHANNEL PEERS
+ 				// Collect send/receive/close instructions in the whole ssa.Program.
+ 				for _, op := range chanOps(instr) {
+ 					a.ops = append(a.ops, op)
+diff --git a/godoc/analysis/peers.go b/godoc/analysis/peers.go
+index a742f06..86a6f5c 100644
+--- a/godoc/analysis/peers.go
++++ b/godoc/analysis/peers.go
+@@ -13,6 +13,7 @@ package analysis
+ 
+ import (
+ 	"fmt"
++  "os"
+ 	"go/token"
+ 	"go/types"
+ 
+@@ -91,6 +92,13 @@ func (a *analysis) doChannelPeers(ptsets map[ssa.Value]pointer.Pointer) {
+ 			onclick: fmt.Sprintf("onClickComm(%d)", fi.addData(v)),
+ 		})
+ 	}
++
++  f, err := os.Create("chan.txt")
++  if err != nil {
++    panic(err)
++  }
++  defer f.Close()
++
+ 	// Add links for makechan ops themselves.
+ 	for makechan, ops := range aliasedOps {
+ 		v := commJSON{
+@@ -107,6 +115,8 @@ func (a *analysis) doChannelPeers(ptsets map[ssa.Value]pointer.Pointer) {
+ 			title:   "show channel ops",
+ 			onclick: fmt.Sprintf("onClickComm(%d)", fi.addData(v)),
+ 		})
++    str := fmt.Sprintf("%s %s %s\n", makechan.Size, makechan.Parent(), v)
++    f.WriteString(str)
+ 	}
+ }
+ 
