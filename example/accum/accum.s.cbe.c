@@ -157,62 +157,10 @@ typedef union {
 } llvmBitCastUnion;
 
 /* Types Declarations */
-struct l_struct_funcVal;
-struct l_unnamed_5;
-struct l_struct_method;
-struct l_struct_methodSlice;
-struct l_struct_uncommonType;
-struct l_struct_commonType;
 struct l_unnamed_1;
 struct l_unnamed_2;
-struct l_unnamed_3;
-struct l_unnamed_4;
-typedef void l_fptr_1(void);
 
 /* Types Definitions */
-struct l_struct_funcVal {
-  l_fptr_1* field0;
-};
-struct l_unnamed_5 {
-  uint8_t* field0;
-  uint64_t field1;
-};
-struct l_struct_method {
-  struct l_unnamed_5* field0;
-  struct l_unnamed_5* field1;
-  struct l_struct_commonType* field2;
-  struct l_struct_commonType* field3;
-  uint8_t* field4;
-};
-struct l_struct_methodSlice {
-  struct l_struct_method* field0;
-  uint64_t field1;
-  uint64_t field2;
-};
-struct l_struct_uncommonType {
-  struct l_unnamed_5* field0;
-  struct l_unnamed_5* field1;
-  struct l_struct_methodSlice field2;
-};
-struct l_struct_commonType {
-  uint8_t field0;
-  uint8_t field1;
-  uint8_t field2;
-  uint64_t field3;
-  uint32_t field4;
-  struct l_struct_funcVal* field5;
-  struct l_struct_funcVal* field6;
-  uint8_t* field7;
-  struct l_unnamed_5* field8;
-  struct l_struct_uncommonType* field9;
-  struct l_struct_commonType* field10;
-};
-struct l_array_2_uint8_t_KC_ {
-  uint8_t* array[2];
-};
-struct l_array_3_uint8_t {
-  uint8_t array[3];
-};
 struct l_array_6_uint64_t {
   uint64_t array[6];
 };
@@ -224,46 +172,24 @@ struct l_unnamed_1 {
 struct l_unnamed_2 {
   FIFO* field0;
 };
-struct l_unnamed_3 {
-  uint8_t* field0;
-  uint8_t* field1;
-};
-struct l_array_1_struct_AC_l_unnamed_3 {
-  struct l_unnamed_3 array[1];
-};
-struct l_unnamed_4 {
-  uint64_t field0;
-  struct l_unnamed_3 field1;
-};
 
 /* Function definitions */
 
-
 /* External Global Variable Declarations */
-struct l_struct_funcVal __go_type_hash_identity_descriptor;
-struct l_struct_funcVal __go_type_equal_identity_descriptor;
 
 /* Function Declarations */
 static void main_OC_accum(uint8_t*, FIFO*);
 void main_OC__OC_import(uint8_t*);
-void fmt_OC__OC_import(uint8_t*);
 void main_OC_main(uint8_t*);
-static void tmp__34(uint8_t*);
+static void tmp__25(uint8_t*);
 static uint8_t* auto_pthread_wrapper(uint8_t*);
-struct l_unnamed_4 fmt_OC_Println(uint8_t*, struct l_unnamed_1);
 void __go_init_main(uint8_t*);
+uint8_t* memset(uint8_t*, uint32_t, uint64_t);
 uint32_t main(void);
 
 
 /* Global Variable Definitions and Initialization */
 static bool init_EC_guard;
-struct l_struct_commonType __go_tdn_int __attribute__((common)) = { 130u, 8, 8, UINT64_C(8), 50332917, (&__go_type_hash_identity_descriptor), (&__go_type_equal_identity_descriptor), ((uint8_t*)(&__go_tdn_int_EC_gc)), (&tmp__39), (&tmp__40), ((struct l_struct_commonType*)/*NULL*/0) };
-static struct l_array_3_uint8_t tmp__41 = { { 105u, 110u, 116u } };
-static struct l_unnamed_5 tmp__39 = { ((&tmp__41.array[((int32_t)0)])), UINT64_C(3) };
-static struct l_array_3_uint8_t tmp__42 = { { 105u, 110u, 116u } };
-static struct l_unnamed_5 tmp__43 = { ((&tmp__42.array[((int32_t)0)])), UINT64_C(3) };
-static struct l_struct_uncommonType tmp__40 = { (&tmp__43), ((struct l_unnamed_5*)/*NULL*/0), { ((struct l_struct_method*)/*NULL*/0), UINT64_C(0), UINT64_C(0) } };
-struct l_array_2_uint8_t_KC_ __go_tdn_int_EC_gc __attribute__((common)) = { { ((uint8_t*)(uintptr_t)UINT64_C(8)), ((uint8_t*)/*NULL*/0) } };
 
 
 /* LLVM Intrinsic Builtin Function Bodies */
@@ -294,55 +220,53 @@ static __forceinline struct l_unnamed_1 llvm_ctor_unnamed_1(uint8_t* x0, uint64_
   r.field2 = x2;
   return r;
 }
-static __forceinline struct l_unnamed_3 llvm_ctor_unnamed_3(uint8_t* x0, uint8_t* x1) {
-  struct l_unnamed_3 r;
-  r.field0 = x0;
-  r.field1 = x1;
-  return r;
-}
 
 
 /* Function Bodies */
 
-static void main_OC_accum(uint8_t* llvm_cbe_tmp__1, FIFO* llvm_cbe_tmp__2) {
+static void main_OC_accum(uint8_t* llvm_cbe_tmp__1, FIFO* llvm_cbe_c) {
   struct l_array_6_uint64_t llvm_cbe_slicelit;    /* Address-exposed local */
+  uint8_t* llvm_cbe_tmp__2;
   uint8_t* llvm_cbe_tmp__3;
-  struct l_unnamed_1 llvm_cbe_tmp__4;
+  uint8_t* llvm_cbe_tmp__4;
   struct l_unnamed_1 llvm_cbe_tmp__5;
   struct l_unnamed_1 llvm_cbe_tmp__6;
-  uint64_t llvm_cbe_tmp__7;
+  struct l_unnamed_1 llvm_cbe_tmp__7;
+  uint64_t llvm_cbe_tmp__8;
   uint64_t llvm_cbe_accum;
   uint64_t llvm_cbe_accum__PHI_TEMPORARY;
-  uint64_t llvm_cbe_tmp__8;
-  uint64_t llvm_cbe_tmp__8__PHI_TEMPORARY;
   uint64_t llvm_cbe_tmp__9;
+  uint64_t llvm_cbe_tmp__9__PHI_TEMPORARY;
   uint64_t llvm_cbe_tmp__10;
   uint64_t llvm_cbe_tmp__11;
+  uint64_t llvm_cbe_tmp__12;
 
+  llvm_cbe_tmp__2 = memset((((uint8_t*)(&llvm_cbe_slicelit))), 0, (((uint64_t)(((uint64_t)((uint64_t)(uintptr_t)((&((uint64_t*)/*NULL*/0)[((int32_t)1)])))) * ((uint64_t)UINT64_C(6))))));
   llvm_cbe_tmp__3 = ((uint8_t*)(&llvm_cbe_slicelit));
+  llvm_cbe_tmp__4 = memset(llvm_cbe_tmp__3, 0, (((uint64_t)(((uint64_t)((uint64_t)(uintptr_t)((&((uint64_t*)/*NULL*/0)[((int32_t)1)])))) * ((uint64_t)UINT64_C(6))))));
   *(((uint64_t*)(((uint8_t*)((&(*(((uint64_t*)llvm_cbe_tmp__3))))))))) = UINT64_C(7);
   *(((uint64_t*)(((uint8_t*)((&(((uint64_t*)llvm_cbe_tmp__3))[((int64_t)UINT64_C(1))])))))) = UINT64_C(2);
   *(((uint64_t*)(((uint8_t*)((&(((uint64_t*)llvm_cbe_tmp__3))[((int64_t)UINT64_C(2))])))))) = UINT64_C(8);
   *(((uint64_t*)(((uint8_t*)((&(((uint64_t*)llvm_cbe_tmp__3))[((int64_t)UINT64_C(3))])))))) = UINT64_C(18446744073709551607);
   *(((uint64_t*)(((uint8_t*)((&(((uint64_t*)llvm_cbe_tmp__3))[((int64_t)UINT64_C(4))])))))) = UINT64_C(4);
   *(((uint64_t*)(((uint8_t*)((&(((uint64_t*)llvm_cbe_tmp__3))[((int64_t)UINT64_C(5))])))))) = UINT64_C(0);
-  llvm_cbe_tmp__4 = llvm_ctor_unnamed_1(((uint8_t*)/*NULL*/0), UINT64_C(0), UINT64_C(0));
-  llvm_cbe_tmp__4.field0 = ((&(*llvm_cbe_tmp__3)));
-  llvm_cbe_tmp__5 = llvm_cbe_tmp__4;
-  llvm_cbe_tmp__5.field1 = UINT64_C(6);
+  llvm_cbe_tmp__5 = llvm_ctor_unnamed_1(((uint8_t*)/*NULL*/0), UINT64_C(0), UINT64_C(0));
+  llvm_cbe_tmp__5.field0 = ((&(*llvm_cbe_tmp__3)));
   llvm_cbe_tmp__6 = llvm_cbe_tmp__5;
-  llvm_cbe_tmp__6.field2 = UINT64_C(6);
-  llvm_cbe_tmp__7 = (llvm_cbe_tmp__6.field1);
+  llvm_cbe_tmp__6.field1 = UINT64_C(6);
+  llvm_cbe_tmp__7 = llvm_cbe_tmp__6;
+  llvm_cbe_tmp__7.field2 = UINT64_C(6);
+  llvm_cbe_tmp__8 = (llvm_cbe_tmp__7.field1);
   llvm_cbe_accum__PHI_TEMPORARY = UINT64_C(0);   /* for PHI node */
-  llvm_cbe_tmp__8__PHI_TEMPORARY = UINT64_C(18446744073709551615);   /* for PHI node */
+  llvm_cbe_tmp__9__PHI_TEMPORARY = UINT64_C(18446744073709551615);   /* for PHI node */
   goto llvm_cbe__2e_1_2e_rangeindex_2e_loop;
 
   do {     /* Syntactic loop '.1.rangeindex.loop' to make GCC happy */
 llvm_cbe__2e_1_2e_rangeindex_2e_loop: {
   llvm_cbe_accum = llvm_cbe_accum__PHI_TEMPORARY;
-  llvm_cbe_tmp__8 = llvm_cbe_tmp__8__PHI_TEMPORARY;
-  llvm_cbe_tmp__9 = llvm_add_u64(llvm_cbe_tmp__8, UINT64_C(1));
-  if ((((((bool)(((uint8_t)(bool)(((((int64_t)llvm_cbe_tmp__9) < ((int64_t)llvm_cbe_tmp__7))&1))))&1u))&1))) {
+  llvm_cbe_tmp__9 = llvm_cbe_tmp__9__PHI_TEMPORARY;
+  llvm_cbe_tmp__10 = llvm_add_u64(llvm_cbe_tmp__9, UINT64_C(1));
+  if ((((((bool)(((uint8_t)(bool)(((((int64_t)llvm_cbe_tmp__10) < ((int64_t)llvm_cbe_tmp__8))&1))))&1u))&1))) {
     goto llvm_cbe__2e_2_2e_rangeindex_2e_body;
   } else {
     goto llvm_cbe__2e_3_2e_rangeindex_2e_done;
@@ -350,107 +274,80 @@ llvm_cbe__2e_1_2e_rangeindex_2e_loop: {
 
 }
 llvm_cbe__2e_2_2e_rangeindex_2e_body: {
-  llvm_cbe_tmp__10 = *(((uint64_t*)(((uint8_t*)((&(((uint64_t*)((llvm_cbe_tmp__6.field0))))[((int64_t)llvm_cbe_tmp__9)]))))));
-  llvm_cbe_tmp__11 = llvm_add_u64(llvm_cbe_accum, llvm_cbe_tmp__10);
-  llvm_cbe_accum__PHI_TEMPORARY = llvm_cbe_tmp__11;   /* for PHI node */
-  llvm_cbe_tmp__8__PHI_TEMPORARY = llvm_cbe_tmp__9;   /* for PHI node */
+  llvm_cbe_tmp__11 = *(((uint64_t*)(((uint8_t*)((&(((uint64_t*)((llvm_cbe_tmp__7.field0))))[((int64_t)llvm_cbe_tmp__10)]))))));
+  llvm_cbe_tmp__12 = llvm_add_u64(llvm_cbe_accum, llvm_cbe_tmp__11);
+  llvm_cbe_accum__PHI_TEMPORARY = llvm_cbe_tmp__12;   /* for PHI node */
+  llvm_cbe_tmp__9__PHI_TEMPORARY = llvm_cbe_tmp__10;   /* for PHI node */
   goto llvm_cbe__2e_1_2e_rangeindex_2e_loop;
 
 }
   } while (1); /* end of syntactic loop '.1.rangeindex.loop' */
 llvm_cbe__2e_3_2e_rangeindex_2e_done: {
-  fifo_write(llvm_cbe_tmp__2, llvm_cbe_accum);
+  fifo_write(llvm_cbe_c, llvm_cbe_accum);
 }
 }
 
 
-void main_OC__OC_import(uint8_t* llvm_cbe_tmp__12) {
-  bool llvm_cbe_tmp__13;
+void main_OC__OC_import(uint8_t* llvm_cbe_tmp__13) {
+  bool llvm_cbe_tmp__14;
 
-  llvm_cbe_tmp__13 = ((init_EC_guard)&1);
-  if (llvm_cbe_tmp__13) {
+  llvm_cbe_tmp__14 = ((init_EC_guard)&1);
+  if (llvm_cbe_tmp__14) {
     goto llvm_cbe__2e_0_2e_entry;
   } else {
-    goto llvm_cbe_tmp__14;
+    goto llvm_cbe_tmp__15;
   }
 
 llvm_cbe__2e_0_2e_entry: {
   return;
 }
-llvm_cbe_tmp__14: {
+llvm_cbe_tmp__15: {
   init_EC_guard = ((1) & 1);
-  fmt_OC__OC_import(/*UNDEF*/((uint8_t*)/*NULL*/0));
   goto llvm_cbe__2e_0_2e_entry;
 
 }
 }
 
 
-void main_OC_main(uint8_t* llvm_cbe_tmp__15) {
-  struct l_unnamed_2 llvm_cbe_tmp__16;    /* Address-exposed local */
-  uint32_t llvm_cbe_p;    /* Address-exposed local */
-  uint32_t* llvm_cbe_tmp__17;    /* Address-exposed local */
-  uint32_t** llvm_cbe_tmp__18;    /* Address-exposed local */
-  uint64_t llvm_cbe_tmp__19;    /* Address-exposed local */
-  struct l_array_1_struct_AC_l_unnamed_3 llvm_cbe_varargs;    /* Address-exposed local */
+void main_OC_main(uint8_t* llvm_cbe_tmp__16) {
+  struct l_unnamed_2 llvm_cbe_tmp__17;    /* Address-exposed local */
+  uint32_t llvm_cbe_thread_id;    /* Address-exposed local */
+  uint32_t* llvm_cbe_tmp__18;    /* Address-exposed local */
+  uint32_t** llvm_cbe_tmp__19;    /* Address-exposed local */
   uint64_t llvm_cbe_tmp__20;    /* Address-exposed local */
-  struct l_unnamed_1 llvm_cbe_tmp__21;    /* Address-exposed local */
-  struct l_unnamed_4 llvm_cbe_tmp__22;    /* Address-exposed local */
-  FIFO* llvm_cbe_tmp__23;
-  uint8_t* llvm_cbe_tmp__24;
-  uint64_t llvm_cbe_tmp__25;
-  uint64_t llvm_cbe_tmp__26;
-  uint8_t* llvm_cbe_tmp__27;
-  struct l_unnamed_3 llvm_cbe_tmp__28;
-  struct l_unnamed_1 llvm_cbe_tmp__29;
-  struct l_unnamed_1 llvm_cbe_tmp__30;
-  struct l_unnamed_1 llvm_cbe_tmp__31;
-  uint64_t llvm_cbe_tmp__32;
-  struct l_unnamed_3 llvm_cbe_tmp__33;
+  FIFO* llvm_cbe_tmp__21;
+  uint8_t* llvm_cbe_tmp__22;
+  uint64_t llvm_cbe_tmp__23;
+  uint64_t llvm_cbe_tmp__24;
 
-  llvm_cbe_tmp__23 = fifo_malloc(64u, UINT64_C(0));
-  *((&llvm_cbe_tmp__16.field0)) = llvm_cbe_tmp__23;
-  llvm_cbe_tmp__17 = (&llvm_cbe_p);
-  llvm_cbe_tmp__18 = (&llvm_cbe_tmp__17);
-  llvm_cbe_tmp__24 = *(((uint8_t**)(&llvm_cbe_tmp__18)));
-  pthread_create(llvm_cbe_tmp__24, ((uint8_t*)/*NULL*/0), ((uint8_t*)auto_pthread_wrapper), (((uint8_t*)(&llvm_cbe_tmp__16))));
-  llvm_cbe_tmp__25 = fifo_read(llvm_cbe_tmp__23);
-  llvm_cbe_tmp__19 = llvm_cbe_tmp__25;
-  llvm_cbe_tmp__26 = llvm_cbe_tmp__19;
-  llvm_cbe_tmp__27 = ((uint8_t*)(&llvm_cbe_varargs));
-  llvm_cbe_tmp__20 = llvm_cbe_tmp__26;
-  llvm_cbe_tmp__28 = llvm_ctor_unnamed_3(((&__go_tdn_int.field0)), /*UNDEF*/((uint8_t*)/*NULL*/0));
-  llvm_cbe_tmp__28.field1 = (((uint8_t*)(&llvm_cbe_tmp__20)));
-  *(((struct l_unnamed_3*)(((uint8_t*)((&(*(((struct l_unnamed_3*)llvm_cbe_tmp__27))))))))) = llvm_cbe_tmp__28;
-  llvm_cbe_tmp__29 = llvm_ctor_unnamed_1(((uint8_t*)/*NULL*/0), UINT64_C(0), UINT64_C(0));
-  llvm_cbe_tmp__29.field0 = ((&(*llvm_cbe_tmp__27)));
-  llvm_cbe_tmp__30 = llvm_cbe_tmp__29;
-  llvm_cbe_tmp__30.field1 = UINT64_C(1);
-  llvm_cbe_tmp__31 = llvm_cbe_tmp__30;
-  llvm_cbe_tmp__31.field2 = UINT64_C(1);
-  llvm_cbe_tmp__21 = llvm_cbe_tmp__31;
-  llvm_cbe_tmp__22 = fmt_OC_Println(/*UNDEF*/((uint8_t*)/*NULL*/0), llvm_cbe_tmp__21);
-  llvm_cbe_tmp__32 = *((&llvm_cbe_tmp__22.field0));
-  llvm_cbe_tmp__33 = *((&llvm_cbe_tmp__22.field1));
+  llvm_cbe_tmp__21 = fifo_malloc(64u, UINT64_C(0));
+  *((&llvm_cbe_tmp__17.field0)) = llvm_cbe_tmp__21;
+  llvm_cbe_tmp__18 = (&llvm_cbe_thread_id);
+  llvm_cbe_tmp__19 = (&llvm_cbe_tmp__18);
+  llvm_cbe_tmp__22 = *(((uint8_t**)(&llvm_cbe_tmp__19)));
+  pthread_create(llvm_cbe_tmp__22, ((uint8_t*)/*NULL*/0), ((uint8_t*)auto_pthread_wrapper), (((uint8_t*)(&llvm_cbe_tmp__17))));
+  llvm_cbe_tmp__23 = fifo_read(llvm_cbe_tmp__21);
+  llvm_cbe_tmp__20 = llvm_cbe_tmp__23;
+  llvm_cbe_tmp__24 = llvm_cbe_tmp__20;
 }
 
 
-static void tmp__34(uint8_t* llvm_cbe_tmp__35) {
-  FIFO* llvm_cbe_tmp__36;
+static void tmp__25(uint8_t* llvm_cbe_tmp__26) {
+  FIFO* llvm_cbe_tmp__27;
 
-  llvm_cbe_tmp__36 = *((&(((struct l_unnamed_2*)llvm_cbe_tmp__35))->field0));
-  main_OC_accum(/*UNDEF*/((uint8_t*)/*NULL*/0), llvm_cbe_tmp__36);
+  llvm_cbe_tmp__27 = *((&(((struct l_unnamed_2*)llvm_cbe_tmp__26))->field0));
+  main_OC_accum(/*UNDEF*/((uint8_t*)/*NULL*/0), llvm_cbe_tmp__27);
 }
 
 
-static uint8_t* auto_pthread_wrapper(uint8_t* llvm_cbe_tmp__37) {
-  tmp__34(llvm_cbe_tmp__37);
+static uint8_t* auto_pthread_wrapper(uint8_t* llvm_cbe_tmp__28) {
+  tmp__25(llvm_cbe_tmp__28);
   pthread_exit(((uint8_t*)/*NULL*/0));
   return ((uint8_t*)/*NULL*/0);
 }
 
 
-void __go_init_main(uint8_t* llvm_cbe_tmp__38) {
+void __go_init_main(uint8_t* llvm_cbe_tmp__29) {
   return;
 }
 
