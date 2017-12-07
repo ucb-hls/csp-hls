@@ -233,12 +233,14 @@ void main_OC__OC_import(uint8_t* llvm_cbe_tmp__1) {
     goto llvm_cbe_tmp__3;
   }
 
-llvm_cbe__2e_0_2e_entry:
+llvm_cbe__2e_0_2e_entry: {
   return;
-llvm_cbe_tmp__3:
+}
+llvm_cbe_tmp__3: {
   init_EC_guard = ((1) & 1);
   goto llvm_cbe__2e_0_2e_entry;
 
+}
 }
 
 
@@ -272,7 +274,7 @@ void main_OC_main(uint8_t* llvm_cbe_tmp__4) {
   llvm_cbe_i__PHI_TEMPORARY = UINT64_C(0);   /* for PHI node */
   goto llvm_cbe__2e_3_2e_for_2e_loop;
 
-llvm_cbe__2e_2_2e_for_2e_done:
+llvm_cbe__2e_2_2e_for_2e_done: {
   *((&llvm_cbe_tmp__5.field0)) = llvm_cbe_tmp__12;
   *((&llvm_cbe_tmp__5.field1)) = llvm_cbe_tmp__13;
   llvm_cbe_tmp__6 = (&llvm_cbe_p);
@@ -288,8 +290,9 @@ llvm_cbe__2e_2_2e_for_2e_done:
   llvm_cbe_i2__PHI_TEMPORARY = UINT64_C(0);   /* for PHI node */
   goto llvm_cbe__2e_6_2e_for_2e_loop;
 
+}
   do {     /* Syntactic loop '.3.for.loop' to make GCC happy */
-llvm_cbe__2e_3_2e_for_2e_loop:
+llvm_cbe__2e_3_2e_for_2e_loop: {
   llvm_cbe_i = llvm_cbe_i__PHI_TEMPORARY;
   if ((((((bool)(((uint8_t)(bool)(((((int64_t)llvm_cbe_i) < ((int64_t)UINT64_C(10)))&1))))&1u))&1))) {
     goto llvm_cbe__2e_1_2e_for_2e_body;
@@ -297,17 +300,20 @@ llvm_cbe__2e_3_2e_for_2e_loop:
     goto llvm_cbe__2e_2_2e_for_2e_done;
   }
 
-llvm_cbe__2e_1_2e_for_2e_body:
+}
+llvm_cbe__2e_1_2e_for_2e_body: {
   fifo_write(llvm_cbe_tmp__12, (llvm_mul_u64(llvm_cbe_i, llvm_cbe_i)));
   llvm_cbe_tmp__15 = llvm_add_u64(llvm_cbe_i, UINT64_C(1));
   llvm_cbe_i__PHI_TEMPORARY = llvm_cbe_tmp__15;   /* for PHI node */
   goto llvm_cbe__2e_3_2e_for_2e_loop;
 
+}
   } while (1); /* end of syntactic loop '.3.for.loop' */
-llvm_cbe__2e_5_2e_for_2e_done:
+llvm_cbe__2e_5_2e_for_2e_done: {
   return;
+}
   do {     /* Syntactic loop '.6.for.loop' to make GCC happy */
-llvm_cbe__2e_6_2e_for_2e_loop:
+llvm_cbe__2e_6_2e_for_2e_loop: {
   llvm_cbe_i2 = llvm_cbe_i2__PHI_TEMPORARY;
   if ((((((bool)(((uint8_t)(bool)(((((int64_t)llvm_cbe_i2) < ((int64_t)UINT64_C(10)))&1))))&1u))&1))) {
     goto llvm_cbe__2e_4_2e_for_2e_body;
@@ -315,7 +321,8 @@ llvm_cbe__2e_6_2e_for_2e_loop:
     goto llvm_cbe__2e_5_2e_for_2e_done;
   }
 
-llvm_cbe__2e_4_2e_for_2e_body:
+}
+llvm_cbe__2e_4_2e_for_2e_body: {
   llvm_cbe_tmp__18 = fifo_read(llvm_cbe_tmp__14);
   llvm_cbe_tmp__11 = llvm_cbe_tmp__18;
   llvm_cbe_tmp__19 = llvm_cbe_tmp__11;
@@ -323,6 +330,7 @@ llvm_cbe__2e_4_2e_for_2e_body:
   llvm_cbe_i2__PHI_TEMPORARY = llvm_cbe_tmp__20;   /* for PHI node */
   goto llvm_cbe__2e_6_2e_for_2e_loop;
 
+}
   } while (1); /* end of syntactic loop '.6.for.loop' */
 }
 
@@ -350,10 +358,11 @@ static void main_OC_process1(uint8_t* llvm_cbe_tmp__26, FIFO* llvm_cbe_tmp__27, 
   llvm_cbe_i__PHI_TEMPORARY = UINT64_C(0);   /* for PHI node */
   goto llvm_cbe__2e_3_2e_for_2e_loop;
 
-llvm_cbe__2e_2_2e_for_2e_done:
+llvm_cbe__2e_2_2e_for_2e_done: {
   return;
+}
   do {     /* Syntactic loop '.3.for.loop' to make GCC happy */
-llvm_cbe__2e_3_2e_for_2e_loop:
+llvm_cbe__2e_3_2e_for_2e_loop: {
   llvm_cbe_i = llvm_cbe_i__PHI_TEMPORARY;
   if ((((((bool)(((uint8_t)(bool)(((((int64_t)llvm_cbe_i) < ((int64_t)UINT64_C(10)))&1))))&1u))&1))) {
     goto llvm_cbe__2e_1_2e_for_2e_body;
@@ -361,7 +370,8 @@ llvm_cbe__2e_3_2e_for_2e_loop:
     goto llvm_cbe__2e_2_2e_for_2e_done;
   }
 
-llvm_cbe__2e_1_2e_for_2e_body:
+}
+llvm_cbe__2e_1_2e_for_2e_body: {
   llvm_cbe_tmp__30 = fifo_read(llvm_cbe_tmp__27);
   llvm_cbe_tmp__29 = llvm_cbe_tmp__30;
   llvm_cbe_tmp__31 = llvm_cbe_tmp__29;
@@ -370,6 +380,7 @@ llvm_cbe__2e_1_2e_for_2e_body:
   llvm_cbe_i__PHI_TEMPORARY = llvm_cbe_tmp__32;   /* for PHI node */
   goto llvm_cbe__2e_3_2e_for_2e_loop;
 
+}
   } while (1); /* end of syntactic loop '.3.for.loop' */
 }
 
@@ -404,10 +415,11 @@ static void main_OC_process2(uint8_t* llvm_cbe_tmp__39, FIFO* llvm_cbe_tmp__40, 
   llvm_cbe_i__PHI_TEMPORARY = UINT64_C(0);   /* for PHI node */
   goto llvm_cbe__2e_3_2e_for_2e_loop;
 
-llvm_cbe__2e_2_2e_for_2e_done:
+llvm_cbe__2e_2_2e_for_2e_done: {
   return;
+}
   do {     /* Syntactic loop '.3.for.loop' to make GCC happy */
-llvm_cbe__2e_3_2e_for_2e_loop:
+llvm_cbe__2e_3_2e_for_2e_loop: {
   llvm_cbe_i = llvm_cbe_i__PHI_TEMPORARY;
   if ((((((bool)(((uint8_t)(bool)(((((int64_t)llvm_cbe_i) < ((int64_t)UINT64_C(10)))&1))))&1u))&1))) {
     goto llvm_cbe__2e_1_2e_for_2e_body;
@@ -415,7 +427,8 @@ llvm_cbe__2e_3_2e_for_2e_loop:
     goto llvm_cbe__2e_2_2e_for_2e_done;
   }
 
-llvm_cbe__2e_1_2e_for_2e_body:
+}
+llvm_cbe__2e_1_2e_for_2e_body: {
   llvm_cbe_tmp__43 = fifo_read(llvm_cbe_tmp__40);
   llvm_cbe_tmp__42 = llvm_cbe_tmp__43;
   llvm_cbe_tmp__44 = llvm_cbe_tmp__42;
@@ -424,6 +437,7 @@ llvm_cbe__2e_1_2e_for_2e_body:
   llvm_cbe_i__PHI_TEMPORARY = llvm_cbe_tmp__45;   /* for PHI node */
   goto llvm_cbe__2e_3_2e_for_2e_loop;
 
+}
   } while (1); /* end of syntactic loop '.3.for.loop' */
 }
 
