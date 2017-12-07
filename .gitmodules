@@ -7,3 +7,6 @@
 [submodule "llvm"]
 	path = llvm
 	url = https://github.com/ucb-hls/llvm.git
+[submodule "go_tools"]
+	path = go_tools
+	url = https://github.com/ucb-hls/tools.git
