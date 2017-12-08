@@ -228,7 +228,7 @@ index b79286c..9b1de9c 100644
  				for _, op := range chanOps(instr) {
  					a.ops = append(a.ops, op)
 diff --git a/godoc/analysis/peers.go b/godoc/analysis/peers.go
-index a742f06..86a6f5c 100644
+index a742f06..eb53159 100644
 --- a/godoc/analysis/peers.go
 +++ b/godoc/analysis/peers.go
 @@ -13,6 +13,7 @@ package analysis
@@ -239,26 +239,55 @@ index a742f06..86a6f5c 100644
  	"go/token"
  	"go/types"
  
-@@ -91,6 +92,13 @@ func (a *analysis) doChannelPeers(ptsets map[ssa.Value]pointer.Pointer) {
- 			onclick: fmt.Sprintf("onClickComm(%d)", fi.addData(v)),
- 		})
+@@ -59,6 +60,12 @@ func (a *analysis) doChannelPeers(ptsets map[ssa.Value]pointer.Pointer) {
+ 		opToMakes[op] = makes
  	}
-+
+ 
 +  f, err := os.Create("chan.txt")
 +  if err != nil {
 +    panic(err)
 +  }
 +  defer f.Close()
 +
- 	// Add links for makechan ops themselves.
- 	for makechan, ops := range aliasedOps {
+ 	// Now that complete relation is built, build links for ops.
+ 	for _, op := range a.ops {
  		v := commJSON{
-@@ -107,6 +115,8 @@ func (a *analysis) doChannelPeers(ptsets map[ssa.Value]pointer.Pointer) {
+@@ -69,8 +76,9 @@ func (a *analysis) doChannelPeers(ptsets map[ssa.Value]pointer.Pointer) {
+ 			v.Ops = append(v.Ops, commOpJSON{
+ 				Op: anchorJSON{
+ 					Text: "made",
+-					Href: a.posURL(makechan.Pos()-token.Pos(len("make")),
+-						len("make")),
++					//Href: a.posURL(makechan.Pos()-token.Pos(len("make")),
++					//	len("make")),
++          Href: fmt.Sprintf("%s %s", makechan.Size, makechan.Name()),
+ 				},
+ 				Fn: makechan.Parent().RelString(op.fn.Package().Pkg),
+ 			})
+@@ -90,7 +98,17 @@ func (a *analysis) doChannelPeers(ptsets map[ssa.Value]pointer.Pointer) {
  			title:   "show channel ops",
  			onclick: fmt.Sprintf("onClickComm(%d)", fi.addData(v)),
  		})
-+    str := fmt.Sprintf("%s %s %s\n", makechan.Size, makechan.Parent(), v)
++    //str := fmt.Sprintf("{\"channel\": \"%s\", \"function\": \"%s\", \"operation\": \"%s\"}\n", op.ch, op.fn, v.Ops[2].Op.Text)
++    str := fmt.Sprintf("{\"channel\": \"%s\", \"function\": \"%s\", \"operation\": ", op.ch, op.fn)
++    str = str + "\"["
++    for i := range v.Ops {
++      s := fmt.Sprintf("(\\\"%s\\\", \\\"%s\\\", \\\"%s\\\"), ", v.Ops[i].Fn, v.Ops[i].Op.Text, v.Ops[i].Op.Href)
++      str = str + s
++    }
++    str = str + "]\"}\n"
 +    f.WriteString(str)
+ 	}
++
+ 	// Add links for makechan ops themselves.
+ 	for makechan, ops := range aliasedOps {
+ 		v := commJSON{
+@@ -107,6 +125,8 @@ func (a *analysis) doChannelPeers(ptsets map[ssa.Value]pointer.Pointer) {
+ 			title:   "show channel ops",
+ 			onclick: fmt.Sprintf("onClickComm(%d)", fi.addData(v)),
+ 		})
++    //str := fmt.Sprintf("%s %s %s\n", makechan.Size, makechan.Parent(), v)
++    //f.WriteString(str)
  	}
  }
  
