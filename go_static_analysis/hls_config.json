@@ -1,0 +1,4 @@
+{ "hls_func" : ["main.process1", "main.process2"],
+  "clock_period": 10,
+  "device" : "abcd"
+}
