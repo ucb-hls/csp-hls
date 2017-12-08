@@ -140,6 +140,9 @@ APIs:
 Implementation:
 [https://github.com/llvm-mirror/llgo/blob/de4db9f8144f40014e8b32d263a91478e6f1a21f/third_party/gofrontend/libgo/runtime/chan.goc#L1](https://github.com/llvm-mirror/llgo/blob/de4db9f8144f40014e8b32d263a91478e6f1a21f/third_party/gofrontend/libgo/runtime/chan.goc#L1)
 
+LLVM Go Binding:
+https://github.com/go-llvm/llvm/blob/c8914dc5244584970ee28d046064ce246890cd69/core.go 
+
 Go SSA Viewer:
 https://golang-ssaview.herokuapp.com/
 
