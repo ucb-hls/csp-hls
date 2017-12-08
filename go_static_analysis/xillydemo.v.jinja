@@ -216,7 +216,7 @@ module xillydemo
 			    litearray0[user_addr[6:2]] };
      end
 
-   wire reset = !user_w_write0_32_open && && !user_r_read0_32_open;
+   wire reset = !user_w_write0_32_open && !user_r_read0_32_open;
 
    {%- for x in range(0, fifos|count) %}
    wire {{ fifos[x]["name"] }}_full_n;
@@ -252,7 +252,7 @@ module xillydemo
    wire {{ processes[x]["name"] .replace(".", "_OC_") }}_{{ port["name"] }}_V_read;
    wire {{ processes[x]["name"] .replace(".", "_OC_") }}_{{ port["name"] }}_V_empty_n;
    {% elif port["direction"] == "write" %}
-   wire [{{ port["bitwidth"] }}-1 : 0] {{ processes[x]["name"].replace(".", "_oc_") }}_{{ port["name"] }}_V_din;
+   wire [{{ port["bitwidth"] }}-1 : 0] {{ processes[x]["name"].replace(".", "_OC_") }}_{{ port["name"] }}_V_din;
    wire {{ processes[x]["name"].replace(".", "_OC_") }}_{{ port["name"] }}_V_write;
    wire {{ processes[x]["name"].replace(".", "_OC_") }}_{{ port["name"] }}_V_full_n;
    {% endif %}
@@ -260,13 +260,13 @@ module xillydemo
    {{ processes[x]["name"].replace(".", "_OC_") }} P{{ x }}(
      {% for port in processes[x]["list_param"] %}
      {% if port["direction"] == "read" %}
-     .llvm_cbe_{{ port["name"] }}_V_dout({{ processes[x]["name"].replace(".", "_oc_") }}_{{ port["name"] }}_V_dout),
-     .llvm_cbe_{{ port["name"] }}_V_read({{ processes[x]["name"].replace(".", "_oc_") }}_{{ port["name"] }}_V_read),
-     .llvm_cbe_{{ port["name"] }}_V_empty({{ processes[x]["name"].replace(".", "_oc_") }}_{{ port["name"] }}_V_empty_n),
+     .llvm_cbe_{{ port["name"] }}_V_dout({{ processes[x]["name"].replace(".", "_OC_") }}_{{ port["name"] }}_V_dout),
+     .llvm_cbe_{{ port["name"] }}_V_read({{ processes[x]["name"].replace(".", "_OC_") }}_{{ port["name"] }}_V_read),
+     .llvm_cbe_{{ port["name"] }}_V_empty_n({{ processes[x]["name"].replace(".", "_OC_") }}_{{ port["name"] }}_V_empty_n),
      {% elif port["direction"] == "write" %}
-     .llvm_cbe_{{ port["name"] }}_V_din({{ processes[x]["name"].replace(".", "_oc_") }}_{{ port["name"] }}_V_din),
-     .llvm_cbe_{{ port["name"] }}_V_write({{ processes[x]["name"].replace(".", "_oc_") }}_{{ port["name"] }}_V_write),
-     .llvm_cbe_{{ port["name"] }}_V_full({{ processes[x]["name"].replace(".", "_oc_") }}_{{ port["name"] }}_V_full_n),
+     .llvm_cbe_{{ port["name"] }}_V_din({{ processes[x]["name"].replace(".", "_OC_") }}_{{ port["name"] }}_V_din),
+     .llvm_cbe_{{ port["name"] }}_V_write({{ processes[x]["name"].replace(".", "_OC_") }}_{{ port["name"] }}_V_write),
+     .llvm_cbe_{{ port["name"] }}_V_full_n({{ processes[x]["name"].replace(".", "_OC_") }}_{{ port["name"] }}_V_full_n),
      {% endif %}
      {% endfor %}
      .ap_clk(bus_clk),
@@ -279,9 +279,9 @@ module xillydemo
    assign {{ port["fifo"] }}_read = {{ processes[x]["name"] .replace(".", "_OC_")}}_{{ port["name"] }}_V_read;
    assign {{ processes[x]["name"] .replace(".", "_OC_")}}_{{ port["name"] }}_V_empty_n = {{ port["fifo"] }}_empty_n;
    {% elif port["direction"] == "write" %}
-   assign {{ port["fifo"] }}_din =  {{ processes[x]["name"].replace(".", "_oc_") }}_{{ port["name"] }}_V_din;
-   assign {{ port["fifo"] }}_write = {{ processes[x]["name"].replace(".", "_oc_") }}_{{ port["name"] }}_V_write;
-   assign {{ processes[x]["name"].replace(".", "_oc_") }}_{{ port["name"] }}_V_full_n = {{ port["fifo"] }}_full_n;
+   assign {{ port["fifo"] }}_din =  {{ processes[x]["name"].replace(".", "_OC_") }}_{{ port["name"] }}_V_din;
+   assign {{ port["fifo"] }}_write = {{ processes[x]["name"].replace(".", "_OC_") }}_{{ port["name"] }}_V_write;
+   assign {{ processes[x]["name"].replace(".", "_OC_") }}_{{ port["name"] }}_V_full_n = {{ port["fifo"] }}_full_n;
    {% endif %}
    {% endfor %} 
    {% endfor %}
@@ -299,9 +299,9 @@ module xillydemo
    assign user_r_{{ fifos[x]["read"][0]["device_file"] }}_{{ fifos[x]["bitwidth"] }}_data = {{ fifos[x]["name"] }}_dout_reg;
    {% endif %}
    {% if fifos[x]["write"][0]["is_hardware"] == False %}
-   assign user_w_{{ fifos[x]["write"][0]["device_file"] }}_{{ fifos[x]["bitwidth"] }}_empty = ~{{ fifos[x]["name"] }}_full_n;
-   assign {{ fifos[x]["name"] }}_write = user_r_{{ fifos[x]["write"][0]["device_file"] }}_{{ fifos[x]["bitwidth"] }}_wren;
-   assign {{ fifos[x]["name"] }}_din = user_r_{{ fifos[x]["write"][0]["device_file"] }}_{{ fifos[x]["bitwidth"] }}_data;
+   assign user_w_{{ fifos[x]["write"][0]["device_file"] }}_{{ fifos[x]["bitwidth"] }}_full = ~{{ fifos[x]["name"] }}_full_n;
+   assign {{ fifos[x]["name"] }}_write = user_w_{{ fifos[x]["write"][0]["device_file"] }}_{{ fifos[x]["bitwidth"] }}_wren;
+   assign {{ fifos[x]["name"] }}_din = user_w_{{ fifos[x]["write"][0]["device_file"] }}_{{ fifos[x]["bitwidth"] }}_data;
    {% endif %}
    {% endfor %}
 
