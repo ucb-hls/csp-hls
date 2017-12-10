@@ -4,34 +4,10 @@
 target datalayout = "e-m:e-i64:64-f80:128-n8:16:32:64-S128"
 target triple = "x86_64-unknown-linux-gnu"
 
-%funcVal = type { void ()* }
-%commonType = type { i8, i8, i8, i64, i32, %funcVal*, %funcVal*, i8*, { i8*, i64 }*, %uncommonType*, %commonType* }
-%uncommonType = type { { i8*, i64 }*, { i8*, i64 }*, %methodSlice }
-%methodSlice = type { %method*, i64, i64 }
-%method = type { { i8*, i64 }*, { i8*, i64 }*, %commonType*, %commonType*, i8* }
 %FIFO = type {}
 
-@__go_type_hash_string_descriptor = external global %funcVal
-@__go_type_equal_string_descriptor = external global %funcVal
-@__go_type_hash_identity_descriptor = external global %funcVal
-@__go_type_equal_identity_descriptor = external global %funcVal
 @"init$guard" = internal global i1 false
 @main.array = external global [1024 x [1024 x i64]]
-@0 = internal global [10 x i8] c"checksum: "
-@__go_tdn_string = linkonce_odr constant %commonType { i8 24, i8 8, i8 8, i64 16, i32 100666096, %funcVal* @__go_type_hash_string_descriptor, %funcVal* @__go_type_equal_string_descriptor, i8* bitcast ([4 x i8*]* @"__go_tdn_string$gc" to i8*), { i8*, i64 }* @7, %uncommonType* @10, %commonType* null }
-@__go_tdn_int = linkonce_odr constant %commonType { i8 -126, i8 8, i8 8, i64 8, i32 50332917, %funcVal* @__go_type_hash_identity_descriptor, %funcVal* @__go_type_equal_identity_descriptor, i8* bitcast ([2 x i8*]* @"__go_tdn_int$gc" to i8*), { i8*, i64 }* @2, %uncommonType* @5, %commonType* null }
-@1 = internal constant [3 x i8] c"int"
-@2 = internal constant { i8*, i64 } { i8* getelementptr inbounds ([3 x i8], [3 x i8]* @1, i32 0, i32 0), i64 3 }
-@3 = internal constant [3 x i8] c"int"
-@4 = internal constant { i8*, i64 } { i8* getelementptr inbounds ([3 x i8], [3 x i8]* @3, i32 0, i32 0), i64 3 }
-@5 = internal constant %uncommonType { { i8*, i64 }* @4, { i8*, i64 }* null, %methodSlice zeroinitializer }
-@"__go_tdn_int$gc" = linkonce_odr constant [2 x i8*] [i8* inttoptr (i64 8 to i8*), i8* null]
-@6 = internal constant [6 x i8] c"string"
-@7 = internal constant { i8*, i64 } { i8* getelementptr inbounds ([6 x i8], [6 x i8]* @6, i32 0, i32 0), i64 6 }
-@8 = internal constant [6 x i8] c"string"
-@9 = internal constant { i8*, i64 } { i8* getelementptr inbounds ([6 x i8], [6 x i8]* @8, i32 0, i32 0), i64 6 }
-@10 = internal constant %uncommonType { { i8*, i64 }* @9, { i8*, i64 }* null, %methodSlice zeroinitializer }
-@"__go_tdn_string$gc" = linkonce_odr constant [4 x i8*] [i8* inttoptr (i64 16 to i8*), i8* inttoptr (i64 7 to i8*), i8* null, i8* null]
 
 declare void @pthread_create(i8*, i8*, i8*, i8*)
 
@@ -225,129 +201,124 @@ prologue:
   %20 = alloca i32*
   %21 = alloca i32**
   %22 = alloca i64
-  %varargs = alloca [2 x { i8*, i8* }]
-  %23 = alloca { i8*, i64 }
-  %24 = alloca i64
-  %25 = alloca { i8*, i64, i64 }
-  %26 = alloca { i64, { i8*, i8* } }
   %result = alloca [1022 x [1022 x i64]]
-  %27 = bitcast [1022 x [1022 x i64]]* %result to i8*
+  %23 = bitcast [1022 x [1022 x i64]]* %result to i8*
   br label %.0.entry
 
 .0.entry:                                         ; preds = %prologue
+  %24 = call %FIFO* @fifo_malloc(i8 zeroext 64, i64 10)
+  %25 = call %FIFO* @fifo_malloc(i8 zeroext 64, i64 10)
+  %26 = call %FIFO* @fifo_malloc(i8 zeroext 64, i64 10)
+  %27 = call %FIFO* @fifo_malloc(i8 zeroext 64, i64 10)
   %28 = call %FIFO* @fifo_malloc(i8 zeroext 64, i64 10)
   %29 = call %FIFO* @fifo_malloc(i8 zeroext 64, i64 10)
-  %30 = call %FIFO* @fifo_malloc(i8 zeroext 64, i64 10)
-  %31 = call %FIFO* @fifo_malloc(i8 zeroext 64, i64 10)
-  %32 = call %FIFO* @fifo_malloc(i8 zeroext 64, i64 10)
-  %33 = call %FIFO* @fifo_malloc(i8 zeroext 64, i64 10)
-  %34 = call %FIFO* @fifo_malloc(i8 zeroext 64, i64 1)
+  %30 = call %FIFO* @fifo_malloc(i8 zeroext 64, i64 1)
   br label %.3.for.loop
 
 .1.for.body:                                      ; preds = %.3.for.loop
   br label %.6.for.loop
 
 .2.for.done:                                      ; preds = %.3.for.loop
-  %35 = getelementptr inbounds { %FIFO* }, { %FIFO* }* %1, i32 0, i32 0
-  store %FIFO* %28, %FIFO** %35
-  %36 = bitcast { %FIFO* }* %1 to i8*
+  %31 = getelementptr inbounds { %FIFO* }, { %FIFO* }* %1, i32 0, i32 0
+  store %FIFO* %24, %FIFO** %31
+  %32 = bitcast { %FIFO* }* %1 to i8*
   store i32* %thread_id, i32** %2
-  %37 = bitcast i32*** %3 to i8**
+  %33 = bitcast i32*** %3 to i8**
   store i32** %2, i32*** %3
-  %38 = load i8*, i8** %37
-  call void @pthread_create(i8* %38, i8* null, i8* bitcast (i8* (i8*)* @auto_pthread_wrapper to i8*), i8* %36)
-  %39 = getelementptr inbounds { %FIFO* }, { %FIFO* }* %4, i32 0, i32 0
-  store %FIFO* %29, %FIFO** %39
-  %40 = bitcast { %FIFO* }* %4 to i8*
+  %34 = load i8*, i8** %33
+  call void @pthread_create(i8* %34, i8* null, i8* bitcast (i8* (i8*)* @auto_pthread_wrapper to i8*), i8* %32)
+  %35 = getelementptr inbounds { %FIFO* }, { %FIFO* }* %4, i32 0, i32 0
+  store %FIFO* %25, %FIFO** %35
+  %36 = bitcast { %FIFO* }* %4 to i8*
   store i32* %thread_id1, i32** %5
-  %41 = bitcast i32*** %6 to i8**
+  %37 = bitcast i32*** %6 to i8**
   store i32** %5, i32*** %6
-  %42 = load i8*, i8** %41
-  call void @pthread_create(i8* %42, i8* null, i8* bitcast (i8* (i8*)* @auto_pthread_wrapper.1 to i8*), i8* %40)
-  %43 = getelementptr inbounds { %FIFO* }, { %FIFO* }* %7, i32 0, i32 0
-  store %FIFO* %30, %FIFO** %43
-  %44 = bitcast { %FIFO* }* %7 to i8*
+  %38 = load i8*, i8** %37
+  call void @pthread_create(i8* %38, i8* null, i8* bitcast (i8* (i8*)* @auto_pthread_wrapper.1 to i8*), i8* %36)
+  %39 = getelementptr inbounds { %FIFO* }, { %FIFO* }* %7, i32 0, i32 0
+  store %FIFO* %26, %FIFO** %39
+  %40 = bitcast { %FIFO* }* %7 to i8*
   store i32* %thread_id2, i32** %8
-  %45 = bitcast i32*** %9 to i8**
+  %41 = bitcast i32*** %9 to i8**
   store i32** %8, i32*** %9
-  %46 = load i8*, i8** %45
-  call void @pthread_create(i8* %46, i8* null, i8* bitcast (i8* (i8*)* @auto_pthread_wrapper.2 to i8*), i8* %44)
-  %47 = getelementptr inbounds { %FIFO*, %FIFO* }, { %FIFO*, %FIFO* }* %10, i32 0, i32 0
-  store %FIFO* %28, %FIFO** %47
-  %48 = getelementptr inbounds { %FIFO*, %FIFO* }, { %FIFO*, %FIFO* }* %10, i32 0, i32 1
-  store %FIFO* %31, %FIFO** %48
-  %49 = bitcast { %FIFO*, %FIFO* }* %10 to i8*
+  %42 = load i8*, i8** %41
+  call void @pthread_create(i8* %42, i8* null, i8* bitcast (i8* (i8*)* @auto_pthread_wrapper.2 to i8*), i8* %40)
+  %43 = getelementptr inbounds { %FIFO*, %FIFO* }, { %FIFO*, %FIFO* }* %10, i32 0, i32 0
+  store %FIFO* %24, %FIFO** %43
+  %44 = getelementptr inbounds { %FIFO*, %FIFO* }, { %FIFO*, %FIFO* }* %10, i32 0, i32 1
+  store %FIFO* %27, %FIFO** %44
+  %45 = bitcast { %FIFO*, %FIFO* }* %10 to i8*
   store i32* %thread_id3, i32** %11
-  %50 = bitcast i32*** %12 to i8**
+  %46 = bitcast i32*** %12 to i8**
   store i32** %11, i32*** %12
-  %51 = load i8*, i8** %50
-  call void @pthread_create(i8* %51, i8* null, i8* bitcast (i8* (i8*)* @auto_pthread_wrapper.3 to i8*), i8* %49)
-  %52 = getelementptr inbounds { %FIFO*, %FIFO* }, { %FIFO*, %FIFO* }* %13, i32 0, i32 0
-  store %FIFO* %29, %FIFO** %52
-  %53 = getelementptr inbounds { %FIFO*, %FIFO* }, { %FIFO*, %FIFO* }* %13, i32 0, i32 1
-  store %FIFO* %32, %FIFO** %53
-  %54 = bitcast { %FIFO*, %FIFO* }* %13 to i8*
+  %47 = load i8*, i8** %46
+  call void @pthread_create(i8* %47, i8* null, i8* bitcast (i8* (i8*)* @auto_pthread_wrapper.3 to i8*), i8* %45)
+  %48 = getelementptr inbounds { %FIFO*, %FIFO* }, { %FIFO*, %FIFO* }* %13, i32 0, i32 0
+  store %FIFO* %25, %FIFO** %48
+  %49 = getelementptr inbounds { %FIFO*, %FIFO* }, { %FIFO*, %FIFO* }* %13, i32 0, i32 1
+  store %FIFO* %28, %FIFO** %49
+  %50 = bitcast { %FIFO*, %FIFO* }* %13 to i8*
   store i32* %thread_id4, i32** %14
-  %55 = bitcast i32*** %15 to i8**
+  %51 = bitcast i32*** %15 to i8**
   store i32** %14, i32*** %15
-  %56 = load i8*, i8** %55
-  call void @pthread_create(i8* %56, i8* null, i8* bitcast (i8* (i8*)* @auto_pthread_wrapper.4 to i8*), i8* %54)
-  %57 = getelementptr inbounds { %FIFO*, %FIFO* }, { %FIFO*, %FIFO* }* %16, i32 0, i32 0
-  store %FIFO* %30, %FIFO** %57
-  %58 = getelementptr inbounds { %FIFO*, %FIFO* }, { %FIFO*, %FIFO* }* %16, i32 0, i32 1
-  store %FIFO* %33, %FIFO** %58
-  %59 = bitcast { %FIFO*, %FIFO* }* %16 to i8*
+  %52 = load i8*, i8** %51
+  call void @pthread_create(i8* %52, i8* null, i8* bitcast (i8* (i8*)* @auto_pthread_wrapper.4 to i8*), i8* %50)
+  %53 = getelementptr inbounds { %FIFO*, %FIFO* }, { %FIFO*, %FIFO* }* %16, i32 0, i32 0
+  store %FIFO* %26, %FIFO** %53
+  %54 = getelementptr inbounds { %FIFO*, %FIFO* }, { %FIFO*, %FIFO* }* %16, i32 0, i32 1
+  store %FIFO* %29, %FIFO** %54
+  %55 = bitcast { %FIFO*, %FIFO* }* %16 to i8*
   store i32* %thread_id5, i32** %17
-  %60 = bitcast i32*** %18 to i8**
+  %56 = bitcast i32*** %18 to i8**
   store i32** %17, i32*** %18
-  %61 = load i8*, i8** %60
-  call void @pthread_create(i8* %61, i8* null, i8* bitcast (i8* (i8*)* @auto_pthread_wrapper.5 to i8*), i8* %59)
-  %62 = getelementptr inbounds { %FIFO*, %FIFO*, %FIFO*, %FIFO* }, { %FIFO*, %FIFO*, %FIFO*, %FIFO* }* %19, i32 0, i32 0
-  store %FIFO* %31, %FIFO** %62
-  %63 = getelementptr inbounds { %FIFO*, %FIFO*, %FIFO*, %FIFO* }, { %FIFO*, %FIFO*, %FIFO*, %FIFO* }* %19, i32 0, i32 1
-  store %FIFO* %32, %FIFO** %63
-  %64 = getelementptr inbounds { %FIFO*, %FIFO*, %FIFO*, %FIFO* }, { %FIFO*, %FIFO*, %FIFO*, %FIFO* }* %19, i32 0, i32 2
-  store %FIFO* %33, %FIFO** %64
-  %65 = getelementptr inbounds { %FIFO*, %FIFO*, %FIFO*, %FIFO* }, { %FIFO*, %FIFO*, %FIFO*, %FIFO* }* %19, i32 0, i32 3
-  store %FIFO* %34, %FIFO** %65
-  %66 = bitcast { %FIFO*, %FIFO*, %FIFO*, %FIFO* }* %19 to i8*
+  %57 = load i8*, i8** %56
+  call void @pthread_create(i8* %57, i8* null, i8* bitcast (i8* (i8*)* @auto_pthread_wrapper.5 to i8*), i8* %55)
+  %58 = getelementptr inbounds { %FIFO*, %FIFO*, %FIFO*, %FIFO* }, { %FIFO*, %FIFO*, %FIFO*, %FIFO* }* %19, i32 0, i32 0
+  store %FIFO* %27, %FIFO** %58
+  %59 = getelementptr inbounds { %FIFO*, %FIFO*, %FIFO*, %FIFO* }, { %FIFO*, %FIFO*, %FIFO*, %FIFO* }* %19, i32 0, i32 1
+  store %FIFO* %28, %FIFO** %59
+  %60 = getelementptr inbounds { %FIFO*, %FIFO*, %FIFO*, %FIFO* }, { %FIFO*, %FIFO*, %FIFO*, %FIFO* }* %19, i32 0, i32 2
+  store %FIFO* %29, %FIFO** %60
+  %61 = getelementptr inbounds { %FIFO*, %FIFO*, %FIFO*, %FIFO* }, { %FIFO*, %FIFO*, %FIFO*, %FIFO* }* %19, i32 0, i32 3
+  store %FIFO* %30, %FIFO** %61
+  %62 = bitcast { %FIFO*, %FIFO*, %FIFO*, %FIFO* }* %19 to i8*
   store i32* %thread_id6, i32** %20
-  %67 = bitcast i32*** %21 to i8**
+  %63 = bitcast i32*** %21 to i8**
   store i32** %20, i32*** %21
-  %68 = load i8*, i8** %67
-  call void @pthread_create(i8* %68, i8* null, i8* bitcast (i8* (i8*)* @auto_pthread_wrapper.6 to i8*), i8* %66)
+  %64 = load i8*, i8** %63
+  call void @pthread_create(i8* %64, i8* null, i8* bitcast (i8* (i8*)* @auto_pthread_wrapper.6 to i8*), i8* %62)
   br label %.9.for.loop
 
 .3.for.loop:                                      ; preds = %.5.for.done, %.0.entry
-  %i = phi i64 [ 0, %.0.entry ], [ %81, %.5.for.done ]
-  %69 = icmp slt i64 %i, 1024
-  %70 = zext i1 %69 to i8
-  %71 = trunc i8 %70 to i1
-  br i1 %71, label %.1.for.body, label %.2.for.done
+  %i = phi i64 [ 0, %.0.entry ], [ %77, %.5.for.done ]
+  %65 = icmp slt i64 %i, 1024
+  %66 = zext i1 %65 to i8
+  %67 = trunc i8 %66 to i1
+  br i1 %67, label %.1.for.body, label %.2.for.done
 
 .4.for.body:                                      ; preds = %.6.for.loop
-  %72 = getelementptr [1024 x i64], [1024 x i64]* getelementptr inbounds ([1024 x [1024 x i64]], [1024 x [1024 x i64]]* @main.array, i32 0, i32 0), i64 %i
-  %73 = bitcast [1024 x i64]* %72 to i8*
-  %74 = bitcast i8* %73 to i64*
-  %75 = getelementptr i64, i64* %74, i64 %j
-  %76 = bitcast i64* %75 to i8*
-  %77 = add i64 %i, %j
-  %78 = srem i64 %77, 10
-  %79 = bitcast i8* %76 to i64*
-  store i64 %78, i64* %79
-  %80 = add i64 %j, 1
+  %68 = getelementptr [1024 x i64], [1024 x i64]* getelementptr inbounds ([1024 x [1024 x i64]], [1024 x [1024 x i64]]* @main.array, i32 0, i32 0), i64 %i
+  %69 = bitcast [1024 x i64]* %68 to i8*
+  %70 = bitcast i8* %69 to i64*
+  %71 = getelementptr i64, i64* %70, i64 %j
+  %72 = bitcast i64* %71 to i8*
+  %73 = add i64 %i, %j
+  %74 = srem i64 %73, 10
+  %75 = bitcast i8* %72 to i64*
+  store i64 %74, i64* %75
+  %76 = add i64 %j, 1
   br label %.6.for.loop
 
 .5.for.done:                                      ; preds = %.6.for.loop
-  %81 = add i64 %i, 1
+  %77 = add i64 %i, 1
   br label %.3.for.loop
 
 .6.for.loop:                                      ; preds = %.4.for.body, %.1.for.body
-  %j = phi i64 [ 0, %.1.for.body ], [ %80, %.4.for.body ]
-  %82 = icmp slt i64 %j, 1024
-  %83 = zext i1 %82 to i8
-  %84 = trunc i8 %83 to i1
-  br i1 %84, label %.4.for.body, label %.5.for.done
+  %j = phi i64 [ 0, %.1.for.body ], [ %76, %.4.for.body ]
+  %78 = icmp slt i64 %j, 1024
+  %79 = zext i1 %78 to i8
+  %80 = trunc i8 %79 to i1
+  br i1 %80, label %.4.for.body, label %.5.for.done
 
 .7.for.body:                                      ; preds = %.9.for.loop
   br label %.12.for.loop
@@ -356,108 +327,81 @@ prologue:
   br label %.15.for.loop
 
 .9.for.loop:                                      ; preds = %.11.for.done, %.2.for.done
-  %i7 = phi i64 [ 0, %.2.for.done ], [ %98, %.11.for.done ]
+  %i7 = phi i64 [ 0, %.2.for.done ], [ %94, %.11.for.done ]
   %item = phi i64 [ 0, %.2.for.done ], [ %item9, %.11.for.done ]
-  %85 = icmp slt i64 %i7, 1022
-  %86 = zext i1 %85 to i8
-  %87 = trunc i8 %86 to i1
-  br i1 %87, label %.7.for.body, label %.8.for.done
+  %81 = icmp slt i64 %i7, 1022
+  %82 = zext i1 %81 to i8
+  %83 = trunc i8 %82 to i1
+  br i1 %83, label %.7.for.body, label %.8.for.done
 
 .10.for.body:                                     ; preds = %.12.for.loop
-  %88 = call i64 @fifo_read(%FIFO* %34)
-  store i64 %88, i64* %22
-  %89 = load i64, i64* %22
-  %90 = bitcast i8* %27 to [1022 x i64]*
-  %91 = getelementptr [1022 x i64], [1022 x i64]* %90, i64 %i7
-  %92 = bitcast [1022 x i64]* %91 to i8*
-  %93 = bitcast i8* %92 to i64*
-  %94 = getelementptr i64, i64* %93, i64 %j8
-  %95 = bitcast i64* %94 to i8*
-  %96 = bitcast i8* %95 to i64*
-  store i64 %89, i64* %96
-  %97 = add i64 %j8, 1
+  %84 = call i64 @fifo_read(%FIFO* %30)
+  store i64 %84, i64* %22
+  %85 = load i64, i64* %22
+  %86 = bitcast i8* %23 to [1022 x i64]*
+  %87 = getelementptr [1022 x i64], [1022 x i64]* %86, i64 %i7
+  %88 = bitcast [1022 x i64]* %87 to i8*
+  %89 = bitcast i8* %88 to i64*
+  %90 = getelementptr i64, i64* %89, i64 %j8
+  %91 = bitcast i64* %90 to i8*
+  %92 = bitcast i8* %91 to i64*
+  store i64 %85, i64* %92
+  %93 = add i64 %j8, 1
   br label %.12.for.loop
 
 .11.for.done:                                     ; preds = %.12.for.loop
-  %98 = add i64 %i7, 1
+  %94 = add i64 %i7, 1
   br label %.9.for.loop
 
 .12.for.loop:                                     ; preds = %.10.for.body, %.7.for.body
-  %j8 = phi i64 [ 0, %.7.for.body ], [ %97, %.10.for.body ]
-  %item9 = phi i64 [ %item, %.7.for.body ], [ %89, %.10.for.body ]
-  %99 = icmp slt i64 %j8, 1022
-  %100 = zext i1 %99 to i8
-  %101 = trunc i8 %100 to i1
-  br i1 %101, label %.10.for.body, label %.11.for.done
+  %j8 = phi i64 [ 0, %.7.for.body ], [ %93, %.10.for.body ]
+  %item9 = phi i64 [ %item, %.7.for.body ], [ %85, %.10.for.body ]
+  %95 = icmp slt i64 %j8, 1022
+  %96 = zext i1 %95 to i8
+  %97 = trunc i8 %96 to i1
+  br i1 %97, label %.10.for.body, label %.11.for.done
 
 .13.for.body:                                     ; preds = %.15.for.loop
   br label %.18.for.loop
 
 .14.for.done:                                     ; preds = %.15.for.loop
-  %102 = bitcast [2 x { i8*, i8* }]* %varargs to i8*
-  %103 = bitcast i8* %102 to { i8*, i8* }*
-  %104 = getelementptr { i8*, i8* }, { i8*, i8* }* %103, i64 0
-  %105 = bitcast { i8*, i8* }* %104 to i8*
-  store { i8*, i64 } { i8* getelementptr inbounds ([10 x i8], [10 x i8]* @0, i32 0, i32 0), i64 10 }, { i8*, i64 }* %23
-  %106 = bitcast { i8*, i64 }* %23 to i8*
-  %107 = insertvalue { i8*, i8* } { i8* getelementptr inbounds (%commonType, %commonType* @__go_tdn_string, i32 0, i32 0), i8* undef }, i8* %106, 1
-  %108 = bitcast i8* %105 to { i8*, i8* }*
-  store { i8*, i8* } %107, { i8*, i8* }* %108
-  %109 = bitcast i8* %102 to { i8*, i8* }*
-  %110 = getelementptr { i8*, i8* }, { i8*, i8* }* %109, i64 1
-  %111 = bitcast { i8*, i8* }* %110 to i8*
-  store i64 %checksum, i64* %24
-  %112 = bitcast i64* %24 to i8*
-  %113 = insertvalue { i8*, i8* } { i8* getelementptr inbounds (%commonType, %commonType* @__go_tdn_int, i32 0, i32 0), i8* undef }, i8* %112, 1
-  %114 = bitcast i8* %111 to { i8*, i8* }*
-  store { i8*, i8* } %113, { i8*, i8* }* %114
-  %115 = getelementptr inbounds i8, i8* %102, i64 0
-  %116 = insertvalue { i8*, i64, i64 } undef, i8* %115, 0
-  %117 = insertvalue { i8*, i64, i64 } %116, i64 2, 1
-  %118 = insertvalue { i8*, i64, i64 } %117, i64 2, 2
-  store { i8*, i64, i64 } %118, { i8*, i64, i64 }* %25
-  call void @fmt.Println({ i64, { i8*, i8* } }* sret %26, i8* nest undef, { i8*, i64, i64 }* byval %25)
-  %119 = getelementptr inbounds { i64, { i8*, i8* } }, { i64, { i8*, i8* } }* %26, i32 0, i32 0
-  %120 = load i64, i64* %119
-  %121 = getelementptr inbounds { i64, { i8*, i8* } }, { i64, { i8*, i8* } }* %26, i32 0, i32 1
-  %122 = load { i8*, i8* }, { i8*, i8* }* %121
   ret void
 
 .15.for.loop:                                     ; preds = %.17.for.done, %.8.for.done
   %checksum = phi i64 [ 0, %.8.for.done ], [ %checksum11, %.17.for.done ]
-  %i10 = phi i64 [ 0, %.8.for.done ], [ %136, %.17.for.done ]
-  %123 = icmp slt i64 %i10, 1022
-  %124 = zext i1 %123 to i8
-  %125 = trunc i8 %124 to i1
-  br i1 %125, label %.13.for.body, label %.14.for.done
+  %i10 = phi i64 [ 0, %.8.for.done ], [ %111, %.17.for.done ]
+  %98 = icmp slt i64 %i10, 1022
+  %99 = zext i1 %98 to i8
+  %100 = trunc i8 %99 to i1
+  br i1 %100, label %.13.for.body, label %.14.for.done
 
 .16.for.body:                                     ; preds = %.18.for.loop
-  %126 = bitcast i8* %27 to [1022 x i64]*
-  %127 = getelementptr [1022 x i64], [1022 x i64]* %126, i64 %i10
-  %128 = bitcast [1022 x i64]* %127 to i8*
-  %129 = bitcast i8* %128 to i64*
-  %130 = getelementptr i64, i64* %129, i64 %j12
-  %131 = bitcast i64* %130 to i8*
-  %132 = bitcast i8* %131 to i64*
-  %133 = load i64, i64* %132
-  %134 = add i64 %checksum11, %133
-  %135 = add i64 %j12, 1
+  %101 = bitcast i8* %23 to [1022 x i64]*
+  %102 = getelementptr [1022 x i64], [1022 x i64]* %101, i64 %i10
+  %103 = bitcast [1022 x i64]* %102 to i8*
+  %104 = bitcast i8* %103 to i64*
+  %105 = getelementptr i64, i64* %104, i64 %j12
+  %106 = bitcast i64* %105 to i8*
+  %107 = bitcast i8* %106 to i64*
+  %108 = load i64, i64* %107
+  %109 = add i64 %checksum11, %108
+  %110 = add i64 %j12, 1
   br label %.18.for.loop
 
 .17.for.done:                                     ; preds = %.18.for.loop
-  %136 = add i64 %i10, 1
+  %111 = add i64 %i10, 1
   br label %.15.for.loop
 
 .18.for.loop:                                     ; preds = %.16.for.body, %.13.for.body
-  %checksum11 = phi i64 [ %checksum, %.13.for.body ], [ %134, %.16.for.body ]
-  %j12 = phi i64 [ 0, %.13.for.body ], [ %135, %.16.for.body ]
-  %137 = icmp slt i64 %j12, 1022
-  %138 = zext i1 %137 to i8
-  %139 = trunc i8 %138 to i1
-  br i1 %139, label %.16.for.body, label %.17.for.done
+  %checksum11 = phi i64 [ %checksum, %.13.for.body ], [ %109, %.16.for.body ]
+  %j12 = phi i64 [ 0, %.13.for.body ], [ %110, %.16.for.body ]
+  %112 = icmp slt i64 %j12, 1022
+  %113 = zext i1 %112 to i8
+  %114 = trunc i8 %113 to i1
+  br i1 %114, label %.16.for.body, label %.17.for.done
 }
 
-define internal void @11(i8*) #0 {
+define internal void @0(i8*) #0 {
 prologue:
   %1 = bitcast i8* %0 to { %FIFO* }*
   %2 = getelementptr inbounds { %FIFO* }, { %FIFO* }* %1, i32 0, i32 0
@@ -471,12 +415,12 @@ entry:                                            ; preds = %prologue
 
 define internal i8* @auto_pthread_wrapper(i8*) #0 {
 entry:
-  call void @11(i8* %0)
+  call void @0(i8* %0)
   call void @pthread_exit(i8* null)
   ret i8* null
 }
 
-define internal void @12(i8*) #0 {
+define internal void @1(i8*) #0 {
 prologue:
   %1 = bitcast i8* %0 to { %FIFO* }*
   %2 = getelementptr inbounds { %FIFO* }, { %FIFO* }* %1, i32 0, i32 0
@@ -490,12 +434,12 @@ entry:                                            ; preds = %prologue
 
 define internal i8* @auto_pthread_wrapper.1(i8*) #0 {
 entry:
-  call void @12(i8* %0)
+  call void @1(i8* %0)
   call void @pthread_exit(i8* null)
   ret i8* null
 }
 
-define internal void @13(i8*) #0 {
+define internal void @2(i8*) #0 {
 prologue:
   %1 = bitcast i8* %0 to { %FIFO* }*
   %2 = getelementptr inbounds { %FIFO* }, { %FIFO* }* %1, i32 0, i32 0
@@ -509,12 +453,12 @@ entry:                                            ; preds = %prologue
 
 define internal i8* @auto_pthread_wrapper.2(i8*) #0 {
 entry:
-  call void @13(i8* %0)
+  call void @2(i8* %0)
   call void @pthread_exit(i8* null)
   ret i8* null
 }
 
-define internal void @14(i8*) #0 {
+define internal void @3(i8*) #0 {
 prologue:
   %1 = bitcast i8* %0 to { %FIFO*, %FIFO* }*
   %2 = getelementptr inbounds { %FIFO*, %FIFO* }, { %FIFO*, %FIFO* }* %1, i32 0, i32 0
@@ -620,12 +564,12 @@ prologue:
 
 define internal i8* @auto_pthread_wrapper.3(i8*) #0 {
 entry:
-  call void @14(i8* %0)
+  call void @3(i8* %0)
   call void @pthread_exit(i8* null)
   ret i8* null
 }
 
-define internal void @15(i8*) #0 {
+define internal void @4(i8*) #0 {
 prologue:
   %1 = bitcast i8* %0 to { %FIFO*, %FIFO* }*
   %2 = getelementptr inbounds { %FIFO*, %FIFO* }, { %FIFO*, %FIFO* }* %1, i32 0, i32 0
@@ -731,12 +675,12 @@ prologue:
 
 define internal i8* @auto_pthread_wrapper.4(i8*) #0 {
 entry:
-  call void @15(i8* %0)
+  call void @4(i8* %0)
   call void @pthread_exit(i8* null)
   ret i8* null
 }
 
-define internal void @16(i8*) #0 {
+define internal void @5(i8*) #0 {
 prologue:
   %1 = bitcast i8* %0 to { %FIFO*, %FIFO* }*
   %2 = getelementptr inbounds { %FIFO*, %FIFO* }, { %FIFO*, %FIFO* }* %1, i32 0, i32 0
@@ -842,12 +786,12 @@ prologue:
 
 define internal i8* @auto_pthread_wrapper.5(i8*) #0 {
 entry:
-  call void @16(i8* %0)
+  call void @5(i8* %0)
   call void @pthread_exit(i8* null)
   ret i8* null
 }
 
-define internal void @17(i8*) #0 {
+define internal void @6(i8*) #0 {
 prologue:
   %1 = bitcast i8* %0 to { %FIFO*, %FIFO*, %FIFO*, %FIFO* }*
   %2 = getelementptr inbounds { %FIFO*, %FIFO*, %FIFO*, %FIFO* }, { %FIFO*, %FIFO*, %FIFO*, %FIFO* }* %1, i32 0, i32 0
@@ -924,12 +868,10 @@ prologue:
 
 define internal i8* @auto_pthread_wrapper.6(i8*) #0 {
 entry:
-  call void @17(i8* %0)
+  call void @6(i8* %0)
   call void @pthread_exit(i8* null)
   ret i8* null
 }
-
-declare void @fmt.Println({ i64, { i8*, i8* } }* sret, i8* nest, { i8*, i64, i64 }* byval)
 
 define void @__go_init_main(i8*) #0 {
 entry:
