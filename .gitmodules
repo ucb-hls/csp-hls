@@ -7,3 +7,6 @@
 [submodule "llvm"]
 	path = llvm
 	url = https://github.com/ucb-hls/llvm.git
+[submodule "example/go-dsp"]
+	path = example/go-dsp
+	url = git@github.com:mjibson/go-dsp.git
