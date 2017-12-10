@@ -1,3 +1,3 @@
-TARGET=conv2d_1
+TARGET=conv2d
 include ../Makefile.common
 
