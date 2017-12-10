@@ -11,8 +11,7 @@ func divide(in chan int, out_left, out_right chan int) {
 			// Order matters:
 			out_left <- -1
 			out_right <- -1
-			return
-			//continue
+			continue
 		}
 		r := <- in
 		//fmt.Printf("splitting %d left and %d right\n", l, r)
@@ -27,14 +26,12 @@ func merge(in_left, in_right chan int, out chan int) {
 	r := <- in_right
 	for {
 		if l == -1 && r == -1 {
-			//fmt.Println("DYING!")
 		   out <- -1
 			//fmt.Println("both channels ended. merge waiting for data...")
-			return
 			l = <- in_left
 			r = <- in_right
 			// discard
-			//continue
+			continue
 		} else if l == -1 {
 			//fmt.Println("left channel ended. fetching right")
 			out <- r
@@ -61,12 +58,12 @@ func checkSort(arr []int) {
 	y := arr[0] 
 	for _, x := range(arr[1:]) {
 		if y > x {
-			//fmt.Println("not sorted,", y, ">", x)
+			fmt.Println("not sorted,", y, ">", x)
 			return
 		}
 		y = x
 	}
-	//fmt.Println("sorted")
+	fmt.Println("sorted")
 	return
 }
 
