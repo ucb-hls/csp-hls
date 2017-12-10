@@ -117,7 +117,7 @@ func main() {
     fmt.Println("Original array")
     for i := 0; i < 8; i++ {
       for j := 0; j < 8; j++ {
-        fmt.Print(array[i][j], " ")
+        fmt.Printf("%4d ", array[i][j])
       }
       fmt.Println()
     }
@@ -125,7 +125,7 @@ func main() {
     fmt.Println("Result array")
     for i := 0; i < 6; i++ {
       for j := 0; j < 6; j++ {
-        fmt.Print(result[i][j], " ")
+        fmt.Printf("%4d ", result[i][j])
       }
       fmt.Println()
     }
