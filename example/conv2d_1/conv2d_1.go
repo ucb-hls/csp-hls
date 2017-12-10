@@ -49,6 +49,14 @@ func process2(in1, in2, in3, out chan int) {
   }
 }
 
+func init(arr [8][8]int, channel chan int) {
+  for i := 0; i < 8; i++ {
+    for j := 0; j < 8; j++ {
+      channel <- arr[i][j];
+    }
+  }
+}
+
 func main() {
     c1 := make(chan int, 100); // Host->FPGA
     c2 := make(chan int, 20); // Host->FPGA
@@ -65,14 +73,7 @@ func main() {
     }
 
     // Host->FPGA
-    go func() {
-      for i := 0; i < 8; i++ {
-        for j := 0; j < 8; j++ {
-          c1 <- array[i][j];
-        }
-      }
-    }()
-
+    go init(array, c1)
 
     go process1(c1, c2, c3, c4) // to FPGA
     go process2(c2, c3, c4, c5) // to FPGA
