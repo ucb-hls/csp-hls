@@ -17,7 +17,7 @@ $(IR): $(SRC)
 	$(LLGO) -S -emit-llvm $<
 
 $(CBE): $(IR) $(SRC)
-	perl -p -i -e 's/source_filename = "main"/;source_filename = "main"/g' $<
+#	perl -p -i -e 's/source_filename = "main"/;source_filename = "main"/g' $<
 	$(LLVM_37_CBE) $< 
 
 #build:

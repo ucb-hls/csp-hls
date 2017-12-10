@@ -101,6 +101,9 @@ def main(argv):
 
             for d in list_processes:
                 if d["name"] == func_name and c[0] == "parameter":
+                    if any(s["name"] == c[1] for s in d["list_param"]):
+                        continue
+
                     new_d = {}
                     new_d["name"] = c[1]
                     new_d["bitwidth"] = get_bitwidth(c[4])
