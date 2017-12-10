@@ -1,0 +1,310 @@
+module xillydemo
+  (
+  input  clk_100,
+  input  otg_oc,   
+  inout [55:0] PS_GPIO,
+  output [3:0] GPIO_LED,
+  output [3:0] vga4_blue,
+  output [3:0] vga4_green,
+  output [3:0] vga4_red,
+  output  vga_hsync,
+  output  vga_vsync,
+
+  output  audio_mclk,
+  output  audio_dac,
+  input   audio_adc,
+  input   audio_bclk,
+  input   audio_lrclk,
+
+  output smb_sclk,
+  inout  smb_sdata,
+  output [1:0] smbus_addr
+
+  ); 
+
+   // Clock and quiesce
+   wire    bus_clk;
+   wire    quiesce;
+
+   
+   reg [7:0] litearray0[0:31];
+   reg [7:0] litearray1[0:31];
+   reg [7:0] litearray2[0:31];
+   reg [7:0] litearray3[0:31];
+
+
+   // Wires related to /dev/xillybus_read0_32
+   wire       user_r_read0_32_rden;
+   wire       user_r_read0_32_empty;
+   wire [31:0] user_r_read0_32_data;
+   wire        user_r_read0_32_eof;
+   wire        user_r_read0_32_open;
+
+   // Wires related to /dev/xillybus_read1_32
+   wire       user_r_read1_32_rden;
+   wire       user_r_read1_32_empty;
+   wire [31:0] user_r_read1_32_data;
+   wire        user_r_read1_32_eof;
+   wire        user_r_read1_32_open;
+
+   // Wires related to /dev/xillybus_read2_32
+   wire       user_r_read2_32_rden;
+   wire       user_r_read2_32_empty;
+   wire [31:0] user_r_read2_32_data;
+   wire        user_r_read2_32_eof;
+   wire        user_r_read2_32_open;
+
+   // Wires related to /dev/xillybus_read3_32
+   wire       user_r_read3_32_rden;
+   wire       user_r_read3_32_empty;
+   wire [31:0] user_r_read3_32_data;
+   wire        user_r_read3_32_eof;
+   wire        user_r_read3_32_open;
+
+   // Wires related to /dev/xillybus_write0_32
+   wire        user_w_write0_32_wren;
+   wire        user_w_write0_32_full;
+   wire [31:0] user_w_write0_32_data;
+   wire        user_w_write0_32_open;
+
+   // Wires related to /dev/xillybus_write1_32
+   wire        user_w_write1_32_wren;
+   wire        user_w_write1_32_full;
+   wire [31:0] user_w_write1_32_data;
+   wire        user_w_write1_32_open;
+
+   // Wires related to /dev/xillybus_write2_32
+   wire        user_w_write2_32_wren;
+   wire        user_w_write2_32_full;
+   wire [31:0] user_w_write2_32_data;
+   wire        user_w_write2_32_open;
+
+   // Wires related to /dev/xillybus_write3_32
+   wire        user_w_write3_32_wren;
+   wire        user_w_write3_32_full;
+   wire [31:0] user_w_write3_32_data;
+   wire        user_w_write3_32_open;
+
+   // Wires related to Xillybus Lite
+   wire        user_clk;
+   wire        user_wren;
+   wire [3:0]  user_wstrb;
+   wire        user_rden;
+   reg [31:0]  user_rd_data;
+   wire [31:0] user_wr_data;
+   wire [31:0] user_addr;
+   wire        user_irq;
+
+   // Note that none of the ARM processor's direct connections to pads is
+   // attached in the instantion below. Normally, they should be connected as
+   // toplevel ports here, but that confuses Vivado 2013.4 to think that
+   // some of these ports are real I/Os, causing an implementation failure.
+   // This detachment results in a lot of warnings during synthesis and
+   // implementation, but has no practical significance, as these pads are
+   // completely unrelated to the FPGA bitstream.
+
+   xillybus xillybus_ins (
+
+    // Ports related to /dev/xillybus_read0_32
+    // FPGA to CPU signals:
+    .user_r_read0_32_rden(user_r_read0_32_rden),
+    .user_r_read0_32_empty(user_r_read0_32_empty),
+    .user_r_read0_32_data(user_r_read0_32_data),
+    .user_r_read0_32_eof(user_r_read0_32_eof),
+    .user_r_read0_32_open(user_r_read0_32_open),
+
+
+    // Ports related to /dev/xillybus_read1_32
+    // FPGA to CPU signals:
+    .user_r_read1_32_rden(user_r_read1_32_rden),
+    .user_r_read1_32_empty(user_r_read1_32_empty),
+    .user_r_read1_32_data(user_r_read1_32_data),
+    .user_r_read1_32_eof(user_r_read1_32_eof),
+    .user_r_read1_32_open(user_r_read1_32_open),
+
+    // Ports related to /dev/xillybus_read2_32
+    // FPGA to CPU signals:
+    .user_r_read2_32_rden(user_r_read2_32_rden),
+    .user_r_read2_32_empty(user_r_read2_32_empty),
+    .user_r_read2_32_data(user_r_read2_32_data),
+    .user_r_read2_32_eof(user_r_read2_32_eof),
+    .user_r_read2_32_open(user_r_read2_32_open),
+
+    // Ports related to /dev/xillybus_read3_32
+    // FPGA to CPU signals:
+    .user_r_read3_32_rden(user_r_read3_32_rden),
+    .user_r_read3_32_empty(user_r_read3_32_empty),
+    .user_r_read3_32_data(user_r_read3_32_data),
+    .user_r_read3_32_eof(user_r_read3_32_eof),
+    .user_r_read3_32_open(user_r_read3_32_open),
+
+    // Ports related to /dev/xillybus_write0_32
+    // CPU to FPGA signals:
+    .user_w_write0_32_wren(user_w_write0_32_wren),
+    .user_w_write0_32_full(user_w_write0_32_full),
+    .user_w_write0_32_data(user_w_write0_32_data),
+    .user_w_write0_32_open(user_w_write0_32_open),
+
+    // Ports related to /dev/xillybus_write1_32
+    // CPU to FPGA signals:
+    .user_w_write1_32_wren(user_w_write1_32_wren),
+    .user_w_write1_32_full(user_w_write1_32_full),
+    .user_w_write1_32_data(user_w_write1_32_data),
+    .user_w_write1_32_open(user_w_write1_32_open),
+
+    // Ports related to /dev/xillybus_write2_32
+    // CPU to FPGA signals:
+    .user_w_write2_32_wren(user_w_write2_32_wren),
+    .user_w_write2_32_full(user_w_write2_32_full),
+    .user_w_write2_32_data(user_w_write2_32_data),
+    .user_w_write2_32_open(user_w_write2_32_open),
+
+    // Ports related to /dev/xillybus_write3_32
+    // CPU to FPGA signals:
+    .user_w_write3_32_wren(user_w_write3_32_wren),
+    .user_w_write3_32_full(user_w_write3_32_full),
+    .user_w_write3_32_data(user_w_write3_32_data),
+    .user_w_write3_32_open(user_w_write3_32_open),
+
+    // Xillybus Lite signals:
+    .user_clk ( user_clk ),
+    .user_wren ( user_wren ),
+    .user_wstrb ( user_wstrb ),
+    .user_rden ( user_rden ),
+    .user_rd_data ( user_rd_data ),
+    .user_wr_data ( user_wr_data ),
+    .user_addr ( user_addr ),
+    .user_irq ( user_irq ),
+			  			  
+    // General signals
+    .clk_100(clk_100),
+    .otg_oc(otg_oc),
+    .PS_GPIO(PS_GPIO),
+    .GPIO_LED(GPIO_LED),
+    .bus_clk(bus_clk),
+    .quiesce(quiesce),
+
+    // VGA port related outputs
+			    
+    .vga4_blue(vga4_blue),
+    .vga4_green(vga4_green),
+    .vga4_red(vga4_red),
+    .vga_hsync(vga_hsync),
+    .vga_vsync(vga_vsync)
+  );
+
+   assign      user_irq = 0; // No interrupts for now
+   
+   always @(posedge user_clk)
+     begin
+	if (user_wstrb[0])
+	  litearray0[user_addr[6:2]] <= user_wr_data[7:0];
+
+	if (user_wstrb[1])
+	  litearray1[user_addr[6:2]] <= user_wr_data[15:8];
+
+	if (user_wstrb[2])
+	  litearray2[user_addr[6:2]] <= user_wr_data[23:16];
+
+	if (user_wstrb[3])
+	  litearray3[user_addr[6:2]] <= user_wr_data[31:24];
+	
+	if (user_rden)
+	  user_rd_data <= { litearray3[user_addr[6:2]],
+			    litearray2[user_addr[6:2]],
+			    litearray1[user_addr[6:2]],
+			    litearray0[user_addr[6:2]] };
+     end
+
+   wire reset = !user_w_write0_32_open && !user_r_read0_32_open;
+
+   {%- for x in range(0, fifos|count) %}
+   wire {{ fifos[x]["name"] }}_full_n;
+   wire {{ fifos[x]["name"] }}_write;
+   wire [{{ fifos[x]["bitwidth"] }}-1:0] {{ fifos[x]["name"] }}_din;
+   wire {{ fifos[x]["name"] }}_empty_n;
+   wire {{ fifos[x]["name"] }}_read;
+   wire [{{ fifos[x]["bitwidth"] }}-1:0] {{ fifos[x]["name"] }}_dout;
+
+   FIFO_Xilinx #(
+     .DEPTH({{ fifos[x]["depth"] }}),
+     .DATA_WIDTH({{ fifos[x]["bitwidth"] }})
+   ) {{ fifos[x]["name"] }}(
+     .clk(bus_clk),
+     .reset(reset),
+
+     .if_full_n({{ fifos[x]["name"] }}_full_n),
+     .if_write_ce(1'b1),
+     .if_write({{ fifos[x]["name"] }}_write),
+     .if_din({{ fifos[x]["name"] }}_din),
+
+     .if_empty_n({{ fifos[x]["name"] }}_empty_n),
+     .if_read_ce(1'b1),
+     .if_read({{ fifos[x]["name"] }}_read),
+     .if_dout({{ fifos[x]["name"] }}_dout)
+   );
+   {% endfor %}
+
+   {%- for x in range(0, processes|count) %}
+   {% for port in processes[x]["list_param"] %}
+   {% if port["direction"] == "read" %}
+   wire [{{ port["bitwidth"] }}-1 : 0] {{ processes[x]["name"] .replace(".", "_OC_") }}_{{ port["name"] }}_V_dout;
+   wire {{ processes[x]["name"] .replace(".", "_OC_") }}_{{ port["name"] }}_V_read;
+   wire {{ processes[x]["name"] .replace(".", "_OC_") }}_{{ port["name"] }}_V_empty_n;
+   {% elif port["direction"] == "write" %}
+   wire [{{ port["bitwidth"] }}-1 : 0] {{ processes[x]["name"].replace(".", "_OC_") }}_{{ port["name"] }}_V_din;
+   wire {{ processes[x]["name"].replace(".", "_OC_") }}_{{ port["name"] }}_V_write;
+   wire {{ processes[x]["name"].replace(".", "_OC_") }}_{{ port["name"] }}_V_full_n;
+   {% endif %}
+   {% endfor %} 
+   {{ processes[x]["name"].replace(".", "_OC_") }} P{{ x }}(
+     {% for port in processes[x]["list_param"] %}
+     {% if port["direction"] == "read" %}
+     .llvm_cbe_{{ port["name"] }}_V_dout({{ processes[x]["name"].replace(".", "_OC_") }}_{{ port["name"] }}_V_dout),
+     .llvm_cbe_{{ port["name"] }}_V_read({{ processes[x]["name"].replace(".", "_OC_") }}_{{ port["name"] }}_V_read),
+     .llvm_cbe_{{ port["name"] }}_V_empty_n({{ processes[x]["name"].replace(".", "_OC_") }}_{{ port["name"] }}_V_empty_n),
+     {% elif port["direction"] == "write" %}
+     .llvm_cbe_{{ port["name"] }}_V_din({{ processes[x]["name"].replace(".", "_OC_") }}_{{ port["name"] }}_V_din),
+     .llvm_cbe_{{ port["name"] }}_V_write({{ processes[x]["name"].replace(".", "_OC_") }}_{{ port["name"] }}_V_write),
+     .llvm_cbe_{{ port["name"] }}_V_full_n({{ processes[x]["name"].replace(".", "_OC_") }}_{{ port["name"] }}_V_full_n),
+     {% endif %}
+     {% endfor %}
+     .ap_clk(bus_clk),
+     .ap_rst(reset)
+   );
+
+   {% for port in processes[x]["list_param"] %}
+   {% if port["direction"] == "read" %}
+   assign {{ processes[x]["name"] .replace(".", "_OC_")}}_{{ port["name"] }}_V_dout = {{ port["fifo"] }}_dout;
+   assign {{ port["fifo"] }}_read = {{ processes[x]["name"] .replace(".", "_OC_")}}_{{ port["name"] }}_V_read;
+   assign {{ processes[x]["name"] .replace(".", "_OC_")}}_{{ port["name"] }}_V_empty_n = {{ port["fifo"] }}_empty_n;
+   {% elif port["direction"] == "write" %}
+   assign {{ port["fifo"] }}_din =  {{ processes[x]["name"].replace(".", "_OC_") }}_{{ port["name"] }}_V_din;
+   assign {{ port["fifo"] }}_write = {{ processes[x]["name"].replace(".", "_OC_") }}_{{ port["name"] }}_V_write;
+   assign {{ processes[x]["name"].replace(".", "_OC_") }}_{{ port["name"] }}_V_full_n = {{ port["fifo"] }}_full_n;
+   {% endif %}
+   {% endfor %} 
+   {% endfor %}
+ 
+   {%- for x in range(0, fifos|count) %}
+   {% if fifos[x]["read"][0]["is_hardware"] == False %}
+   assign user_r_{{ fifos[x]["read"][0]["device_file"] }}_{{ fifos[x]["bitwidth"] }}_empty = ~{{ fifos[x]["name"] }}_empty_n;
+   assign {{ fifos[x]["name"] }}_read = user_r_{{ fifos[x]["read"][0]["device_file"] }}_{{ fifos[x]["bitwidth"] }}_rden;
+
+   // Read from host is synchronous, so we need to delay by one cycle
+   reg [{{ fifos[x]["bitwidth"] }}-1:0] {{ fifos[x]["name"] }}_dout_reg;
+   always @(posedge bus_clk) begin
+     {{ fifos[x]["name"] }}_dout_reg <= {{ fifos[x]["name"] }}_dout;
+   end
+   assign user_r_{{ fifos[x]["read"][0]["device_file"] }}_{{ fifos[x]["bitwidth"] }}_data = {{ fifos[x]["name"] }}_dout_reg;
+   {% endif %}
+   {% if fifos[x]["write"][0]["is_hardware"] == False %}
+   assign user_w_{{ fifos[x]["write"][0]["device_file"] }}_{{ fifos[x]["bitwidth"] }}_full = ~{{ fifos[x]["name"] }}_full_n;
+   assign {{ fifos[x]["name"] }}_write = user_w_{{ fifos[x]["write"][0]["device_file"] }}_{{ fifos[x]["bitwidth"] }}_wren;
+   assign {{ fifos[x]["name"] }}_din = user_w_{{ fifos[x]["write"][0]["device_file"] }}_{{ fifos[x]["bitwidth"] }}_data;
+   {% endif %}
+   {% endfor %}
+
+   assign  user_r_read0_32_eof = 0;
+
+endmodule
