@@ -1,6 +1,6 @@
 package main
 
-//import "fmt"
+import "fmt"
 
 var array [8][8]int
 
@@ -102,35 +102,35 @@ func main() {
 	}
 
 	// Host->FPGA
-	//	go func() {
-	//		for i := 0; i < 6; i++ {
-	//			for j := 0; j < 8; j++ {
-	//				c1_in <- array[i+0][j]
-	//			}
-	//		}
-	//	}()
-	//
-	//	// Host->FPGA
-	//	go func() {
-	//		for i := 0; i < 6; i++ {
-	//			for j := 0; j < 8; j++ {
-	//				c2_in <- array[i+1][j]
-	//			}
-	//		}
-	//	}()
-	//
-	//	// Host->FPGA
-	//	go func() {
-	//		for i := 0; i < 6; i++ {
-	//			for j := 0; j < 8; j++ {
-	//				c3_in <- array[i+2][j]
-	//			}
-	//		}
-	//	}()
+	go func(c chan int) {
+		for i := 0; i < 6; i++ {
+			for j := 0; j < 8; j++ {
+				c <- array[i+0][j]
+			}
+		}
+	}(c1_in)
+	
+	// Host->FPGA
+	go func(c chan int) {
+		for i := 0; i < 6; i++ {
+			for j := 0; j < 8; j++ {
+				c <- array[i+1][j]
+			}
+		}
+	}(c2_in)
+	
+	// Host->FPGA
+	go func(c chan int) {
+		for i := 0; i < 6; i++ {
+			for j := 0; j < 8; j++ {
+				c <- array[i+2][j]
+			}
+		}
+	}(c3_in)
 
-	go init1(c1_in)
-	go init2(c2_in)
-	go init3(c3_in)
+	// go init1(c1_in)
+	// go init2(c2_in)
+	// go init3(c3_in)
 
 	go process1(c1_in, c1_out)              // to FPGA
 	go process2(c2_in, c2_out)              // to FPGA
@@ -144,20 +144,20 @@ func main() {
 		}
 	}
 
-	//    fmt.Println("Original array")
-	//    for i := 0; i < 8; i++ {
-	//      for j := 0; j < 8; j++ {
-	//        fmt.Print(array[i][j], " ")
-	//      }
-	//      fmt.Println()
-	//    }
-	//
-	//    fmt.Println("Result array")
-	//    for i := 0; i < 6; i++ {
-	//      for j := 0; j < 6; j++ {
-	//        fmt.Print(result[i][j], " ")
-	//      }
-	//      fmt.Println()
-	//    }
-	//
+	fmt.Println("Original array")
+	for i := 0; i < 8; i++ {
+	  for j := 0; j < 8; j++ {
+	    fmt.Printf("%4d ", array[i][j])
+	  }
+	  fmt.Println()
+	}
+	
+	fmt.Println("Result array")
+	for i := 0; i < 6; i++ {
+	  for j := 0; j < 6; j++ {
+	    fmt.Printf("%4d ", result[i][j])
+	  }
+	  fmt.Println()
+	}
+	
 }
