@@ -70,8 +70,6 @@ func checkSort(arr []int) {
 func main() {
 	load_values()
 
-//	c0 := make(chan int)
-
 	checkSort(input)
 
 	i0 := make(chan int)
