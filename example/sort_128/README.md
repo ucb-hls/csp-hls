@@ -1,0 +1,1 @@
+Generating divide and conquer by hand sucks. If we can support arrays of channels in LegUp, we can use LLVM to unroll these loops so that they can still be expressed naturally in Go (albeit still with a fixed input size).
