@@ -56,8 +56,8 @@ func stream_data(channel chan int) {
 
 func main() {
     c1 := make(chan int, NUM_ROWS * NUM_COLS); // Host->FPGA
-    c2 := make(chan int, NUM_ROWS * NUM_COLS); // Host->FPGA
-    c3 := make(chan int, NUM_ROWS * NUM_COLS); // Host->FPGA
+    c2 := make(chan int, NUM_ROWS * NUM_COLS); // FPGA
+    c3 := make(chan int, NUM_ROWS * NUM_COLS); // FPGA->Host
 
     //var array [NUM_ROWS][NUM_COLS] int
     var result [NUM_ROWS][NUM_COLS] int
@@ -70,8 +70,8 @@ func main() {
     // Host->FPGA
     go stream_data(c1)
 
-    go process1(c1, c2) // to FPGA
-    go process2(c2, c3) // to FPGA
+    go process1(c1, c2) // FPGA
+    go process2(c2, c3) // FPGA
 
     for i := 0; i < NUM_ROWS; i++ {
       for j := 0; j < NUM_COLS; j++ {
