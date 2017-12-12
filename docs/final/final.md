@@ -285,17 +285,29 @@ The automatic-sizing of the channel buffer is another interesting topic to explo
 Equal work was performed by all three project members.
 ## References
 [1] https://aws.amazon.com/ec2/instance-types/f1/
-[2] https://newsroom.intel.com/news/alibaba-collaborating-intel-fpga-based-solution-help-customers-accelerate-business-applications/
-[3] https://www.xilinx.com/news/press/2017/baidu-deploys-xilinx-fpgas-in-new-public-cloud-acceleration-services.html
-[4] https://cloud.tencent.com/product/fpga?lang=en
-[5] “Vivado hls.” [Online]. Available: https://www.xilinx.com/products/design-tools/vivado/integration/esl-design.html
-[6] “Intel opencl sdk.” [Online]. Available: https://www.altera.com/products/design-software/embedded-software-developers/opencl/overview.html,
-[7] “Legup hls.” [Online]. Available: http://legup.eecg.utoronto.ca/
-[8] C. Hoare, “Communicating sequential processes,” Communications of the ACM, Aug. 1978. “The go programming language,” 2017. [Online]. Available: https://golang.org/doc/
-[9] “The rust programming language,” 2017. [Online]. Available: https://www.rust-lang.org/en-US/documentation.html
-[10] J. A. Jongsok Choi, Stephen Brown, “From pthreads to multicore hardware systems in legup high-level synthesis for fpgas,” IEEE Transactions on Very Large Scale Integration (VLSI) Systems, Oct. 2017.
-[11] M. Saldaña, A. Patel, C. Madill, D. Nunes, D. Wang, P. Chow, R. Wittig, H. Styles, and A. Putnam, “Mpi as a programming model for high-performance reconfigurable computers,” ACM Trans. Reconfigurable Technol. Syst., vol. 3, no. 4, pp. 22:1–22:29, Nov. 2010. [Online]. Available: http://doi.acm.org/10.1145/1862648.1862652
-[12] Reconfigure.io https://reconfigure.io/
-[13] Teak: A Token-Flow Implementation for the Balsa Language. Proc. 9th International Conference on the Application of Concurrency to System Design (ACSD'09), Augsburg, Germany, 1-3 July 2009, pp. 23-31. ISBN 978-0-7695-3697-2, ISSN 1550-4808 
-[14] https://embedded.eecs.berkeley.edu/research/hsc/#intro
 
+[2] https://newsroom.intel.com/news/alibaba-collaborating-intel-fpga-based-solution-help-customers-accelerate-business-applications/
+
+[3] https://www.xilinx.com/news/press/2017/baidu-deploys-xilinx-fpgas-in-new-public-cloud-acceleration-services.html
+
+[4] https://cloud.tencent.com/product/fpga?lang=en
+
+[5] “Vivado hls.” [Online]. Available: https://www.xilinx.com/products/design-tools/vivado/integration/esl-design.html
+
+[6] “Intel opencl sdk.” [Online]. Available: https://www.altera.com/products/design-software/embedded-software-developers/opencl/overview.html,
+
+[7] “Legup hls.” [Online]. Available: http://legup.eecg.utoronto.ca/
+
+[8] C. Hoare, “Communicating sequential processes,” Communications of the ACM, Aug. 1978. “The go programming language,” 2017. [Online]. Available: https://golang.org/doc/
+
+[9] “The rust programming language,” 2017. [Online]. Available: https://www.rust-lang.org/en-US/documentation.html
+
+[10] J. A. Jongsok Choi, Stephen Brown, “From pthreads to multicore hardware systems in legup high-level synthesis for fpgas,” IEEE Transactions on Very Large Scale Integration (VLSI) Systems, Oct. 2017.
+
+[11] M. Saldaña, A. Patel, C. Madill, D. Nunes, D. Wang, P. Chow, R. Wittig, H. Styles, and A. Putnam, “Mpi as a programming model for high-performance reconfigurable computers,” ACM Trans. Reconfigurable Technol. Syst., vol. 3, no. 4, pp. 22:1–22:29, Nov. 2010. [Online]. Available: http://doi.acm.org/10.1145/1862648.1862652
+
+[12] Reconfigure.io https://reconfigure.io/
+
+[13] Teak: A Token-Flow Implementation for the Balsa Language. Proc. 9th International Conference on the Application of Concurrency to System Design (ACSD'09), Augsburg, Germany, 1-3 July 2009, pp. 23-31. ISBN 978-0-7695-3697-2, ISSN 1550-4808 
+
+[14] https://embedded.eecs.berkeley.edu/research/hsc/#intro
