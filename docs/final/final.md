@@ -91,6 +91,9 @@ For this demonstration of system integration, we use Vivado HLS to generate RTL,
 
 Once the modules are connected properly, we create a Vivado project to run Synthesis, Place and Route, and finally generate bitstream to configure the FPGA. We use Xillinux, a Linux distribution that comes along with the Xillybus IP core to boot the board and run the application.
 
+![alt text](https://github.com/hqjenny/csp-hls/blob/master/docs/misc/go_xillybus.png)
+
+
 ## Installation
 ### Prerequisites
 `llvm`, `llvm`, `clang` and `llvm-cbe` compile on an Ubuntu 16.04 machine with the following packages installed: `build-essential` `ninja-build` `cmake`
