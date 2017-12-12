@@ -1,5 +1,7 @@
-S294-141 go2fpga Final Report
+# CS294-141 go2fpga Final Report
+
 Qijing Huang, Tan Nguyen, Arya Reais-Parsi
+
 ## Introduction
 
 With the emergence of FPGA Acceleration-as-a-Service offerings from major cloud service providers in the past year Amazon [1], Alibaba [2], Baidu [3], Tencent [4], FPGAs have become more accessible to general application developers. However, ease of use remains a critical barrier to the adoption of FPGAs. High Level Synthesis (HLS) is one potential solution, providing a more familiar environment for software developers and software minded hardware engineers to develop hardware accelerators. HLS allows developers to code an accelerator in a familiar language, such as C, and to compile that program description into RTL. Support of sequential C is maturing in existing HLS frameworks like Vivado HLS [5], Altera OpenCL [6], LegUp [7], but the high-level abstraction to support concurrent models of computation is still limited in these tools. Given the complexity of modern applications and the underlying hardware platforms, an expressive yet simple abstraction for concurrency is needed. 
