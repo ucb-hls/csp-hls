@@ -154,25 +154,29 @@ Documentation: https://www.xilinx.com/support/documentation/sw_manuals/xilinx201
 Download Xillinux bootable image file and sample design at: http://xillybus.com/download
 Follow the instructions for how to boot Linux and run sample applications: http://xillybus.com/downloads/doc/xillybus_getting_started_zynq.pdf
 ## Usage
-Run `llgo`: `${LLGO} -S -emit-llvm source.go`
-This will generate `source.s`.
-Run `llvm-cbe`: `${LLVM_CBE} source.s`
-This will generate `source.s.cbe.c`.
-Run HLS tool 
-LegUp: 
-Create a new project and specify the top-level as “main” or the name of the function you would like to synthesize to hardware
-Add the source.s.cbe.c to the project
-Run synthesis 
-To verify the generated hardware, a verilog test bench can be added to the project. 
-Vivado HLS: launch different synthesis runs for each process which is mapped to hardware
-System integration
-            As an example, go to `csp-hls/backend/`, then run: `go run main.go ../example/example1/example1` (Make sure to set `$GOPATH` environment variable)
-            This will generate `chan.txt` which contains information of channel operations in `example1.go`
-            Edit the file `hls_config.json` to specify the functions to synthesize, target timing constraint, and target device.
-            Run: `python hardware_gen.py chan.txt hls_config.json`
-            This will generate `xillydemo.v` which is the top-level module for the hardware design. The module instantiates the process modules, FIFOs, and their wirings.
+
+* Run `llgo`: `${LLGO} -S -emit-llvm source.go`
+  This will generate `source.s`.
+* Run `llvm-cbe`: `${LLVM_CBE} source.s`
+  This will generate `source.s.cbe.c`.
+* Run HLS tool 
+  * LegUp: 
+    * Create a new project and specify the top-level as “main” or the name of the function you would like to synthesize to hardware
+    * Add the source.s.cbe.c to the project
+    * Run synthesis 
+    * To verify the generated hardware, a verilog test bench can be added to the project. 
+  * Vivado HLS: launch different synthesis runs for each process which is mapped to hardware
+* System integration
+  * As an example, go to `csp-hls/backend/`, then run: `go run main.go ../example/example1/example1` (Make sure to set `$GOPATH` environment variable)
+  * This will generate `chan.txt` which contains information of channel operations in `example1.go`
+  * Edit the file `hls_config.json` to specify the functions to synthesize, target timing constraint, and target device.
+  * Run: `python hardware_gen.py chan.txt hls_config.json`
+    This will generate `xillydemo.v` which is the top-level module for the hardware design. The module instantiates the process modules, FIFOs, and their wirings.
+
 ## Results
+
 It works! Except...
+
 ### Limitations / Difficulties
 
 * Array support is incomplete. There is an `llvm-cbe` bug in passing arrays as arguments, so feeding in large data sets is hard.
