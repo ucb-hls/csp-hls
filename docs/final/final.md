@@ -38,7 +38,7 @@ Go API | Go Runtime | LegUp API
 --- | --- | ---
 `make` | `__go_new_channel` | `fifo_malloc`
 `_ <- chan` | `__go_receive` | `fifo_read`
-`chan` <- _ | `__go_send_big` | `fifo_write`
+`chan <- _` | `__go_send_big` | `fifo_write`
 `close`  | `__go_builtin_close` | `fifo_free`
 `select` | `runtime.selectrecv2` | `fifo_read_nb`
 ### Vivado HLS
@@ -201,8 +201,10 @@ We have demonstrated a working end-to-end toolchain for synthesising a subset of
 The most difficult part of this project was understanding the requirements at each of the component boundaries. What subset of valid C does the HLS suite support? How different are Vivado’s expectations? What form of the LLVM IR does the C backend understand? What are the assumptions behind the design decisions made in the Go compiler, and how far can we stretch them to mutate types and the IR? With more effort spent to reverse engineer (or collaborate with the community around) each software component, we expect that a more tightly integrated, and much more robust toolchain can be produced.
 
 Though our support for Go features is incomplete, it is sufficiently cohesive to demonstrate how programs written with Go’s CSP-style concurrency model naturally fit hardware acceleration. The semantics of our Go programs (from the view of the programmer) are carried through to the hardware unchanged; the intermediate forms simply have to get out of the way. That said, a founding observation of this work was that usability is one of the key barriers to the widespread adoption of FPGAs. Writing concurrent programs in Go actually _felt_ simple, and having them synthesised in hardware _felt_ very satisfying. Our toolchain on the other hand, as a prototype, is finicky, and needs to be automatic and more robust. As will be discussed in Future Work, we now have a good understanding of the work needed to achieve this.
-Future Work
-Feature completeness, bug scrub
+
+
+## Future Work
+### Feature completeness, bug scrub
 **Make the flow automatic.** Wrap all steps in a management script (including installation of relevant parts).
 
 **Fix bug in passing array arguments.** A [problem with llvm-cbe][https://github.com/hqjenny/csp-hls/issues/18] prevents array arguments from being passed correctly. We have thus avoided using arrays. We have to make sure that struct arguments passed in LLVM “byref”
