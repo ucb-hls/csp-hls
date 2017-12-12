@@ -7,6 +7,6 @@ Qijing Huang, Tan Nguyen, Arya Reais-Parsi
 
 * [Final report](docs/final/final.md)
 * [Initial proposal](docs/proposal/cs294-141-proposal.pdf)
-* [Our llgo README](llgo/README.md)
-* [Our llvm-cbe README](llvm-cbe/README.md)
+* Our llgo README is in the `llgo` submodule
+* Our llvm-cbe README is in the `llvm-cbe` submodule
 * [Hardware scripts README](backed/README.md)
