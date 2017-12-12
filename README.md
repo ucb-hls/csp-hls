@@ -9,4 +9,4 @@ Qijing Huang, Tan Nguyen, Arya Reais-Parsi
 * [Initial proposal](docs/proposal/cs294-141-proposal.pdf)
 * Our llgo README is in the `llgo` submodule
 * Our llvm-cbe README is in the `llvm-cbe` submodule
-* [Hardware scripts README](backed/README.md)
+* [Hardware scripts README](backend/README.md)
