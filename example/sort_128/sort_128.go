@@ -8,7 +8,7 @@ func divide(in chan int, out_left, out_right chan int) {
    for i := 0;; i++ {
 		l := <- in
 		if l == -1  {
-			// Order matters:
+			// Order matters if channels are not buffered:
 			out_left <- -1
 			out_right <- -1
 			continue
