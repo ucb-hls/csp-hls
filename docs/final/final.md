@@ -107,7 +107,7 @@ export TOP=$(pwd)
 git clone https://git.llvm.org/git/llvm.git/ llvm
 cd ${TOP}/llvm/tools
 git clone https://git.llvm.org/git/clang.git/
-git clone https://git.llvm.org/git/llgo.git/
+git clone https://github.com/ucb-hls/llgo.git
 cd ${TOP}
 mkdir llvm-build
 cd llvm-build
