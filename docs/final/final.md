@@ -99,7 +99,7 @@ Once the modules are connected properly, we create a Vivado project to run Synth
 `llvm`, `llvm`, `clang` and `llvm-cbe` compile on an Ubuntu 16.04 machine with the following packages installed: `build-essential` `ninja-build` `cmake`
 
 We [had problems](https://groups.google.com/forum/#!topic/llgo-dev/D921fYrojUI) compiling on a 17.10 machine.
-### llgo`
+### llgo
 We use `llvm`, `llgo` and `clang` at HEAD (as of 12/11/2017).
 
 ```
