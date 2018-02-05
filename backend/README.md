@@ -13,7 +13,7 @@ go get golang.org/x/tools/cmd/godoc
 ```
 The package can be found at $GOPATH/src/golang.org/x/tools/godoc/analysis
 ```
-git apply $(PWD)/../go_static_analysis/godoc_analysis.patch $GOPATH/src/golang.org/x/tools/godoc/analysis
+git apply `pwd`/godoc_analysis.patch $GOPATH/src/golang.org/x/tools/godoc/analysis
 ```
 Example:
 ```
