@@ -19,7 +19,6 @@ git apply -v godoc_analysis.patch
 ```
 Example:
 ```
-cd $(PWD)/../go_static_analysis
 go run main.go `pwd`/../examples/great_success/example1/example1 (path to Go code for analysis, make sure to omit ".go")
 ```
 It will generate an output file chan.txt:
