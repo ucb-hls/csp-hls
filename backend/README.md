@@ -13,12 +13,14 @@ go get golang.org/x/tools/cmd/godoc
 ```
 The package can be found at $GOPATH/src/golang.org/x/tools/godoc/analysis
 ```
-git apply `pwd`/godoc_analysis.patch $GOPATH/src/golang.org/x/tools/godoc/analysis
+cp `pwd`/godoc_analysis.patch $GOPATH/src/golang.org/x/tools/godoc/analysis
+cd $GOPATH/src/golang.org/x/tools/godoc/analysis
+git apply -v godoc_analysis.patch 
 ```
 Example:
 ```
 cd $(PWD)/../go_static_analysis
-go run main.go /path/to/example/example1/example1 (path to Go code for analysis, make sure to omit ".go")
+go run main.go `pwd`/../examples/great_success/example1/example1 (path to Go code for analysis, make sure to omit ".go")
 ```
 It will generate an output file chan.txt:
 
