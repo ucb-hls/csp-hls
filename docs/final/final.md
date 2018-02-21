@@ -104,7 +104,7 @@ We use `llvm`, `llgo` and `clang` at HEAD (as of 12/11/2017).
 
 ```
 export TOP=$(pwd)
-git clone https://git.llvm.org/git/llvm.git/ llvm
+git clone git@github.com:ucb-hls/llvm.git llvm
 cd ${TOP}/llvm/tools
 git clone https://git.llvm.org/git/clang.git/
 git clone https://github.com/ucb-hls/llgo.git
